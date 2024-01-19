@@ -1,0 +1,51 @@
+title: "Unifying individual and metapopulation scales with stochastic population models: the effect of climate and competition on tree range limits"
+running_title: "Unifying scales with stochastic population models"
+abstract: "TODO"
+keywords:
+    - "Integral Projection Models"
+    - "Perturbation analysis"
+    - "Competition"
+    - "demography"
+highlights:
+    - ""
+supporting-files:
+  - "suppInfo"
+language: "en"
+license: "CC-BY"
+github-user: "willvieira"
+github-repo: "ms_forest-ipm-sensitivity"
+bibliography: "https://dl.dropboxusercontent.com/scl/fi/dezttmg4f3ilnnacep1pt/library.bib?rlkey=6ihjlqic0bmttjqeo846h9s9b&dl=0"
+zenodoDOI: ""
+google-analytics: ""
+
+authors:
+    - affiliations: [1]
+      email: willian.vieira@usherbrooke.ca
+      familyname: Vieira
+      givennames: Willian
+      orcid: 0000-0003-0283-4570
+      corresponding: TRUE
+    - affiliations: [1]
+      email: Robert.Bradley@usherbrooke.ca
+      familyname: Bradley
+      givennames: Robert L.
+      orcid: []
+    - affiliations: [1]
+      email: Dominique.Gravel@USherbrooke.ca
+      familyname: Gravel
+      givennames: Dominique
+      orcid: 0000-0002-4498-7076
+
+affiliations:
+    - index: 1
+      name: Département de biologie, Université de Sherbrooke, Sherbrooke, Québec, Canada
+
+acknowledgments: "We thank nice people"
+data_availability: "All the code and data used to reproduce the analysis, figure and manuscript are stored as a research compendium at [https://github.com/willvieira/ms_forest-ipm-sensitivity](https://github.com/willvieira/ms_forest-ipm-sensitivity))."
+funding: "This research was supported by the BIOS² NSERC CREATE program."
+authorship: ""
+conflicts-of-interest: "The authors declare no conflict of interest."
+
+link-citations: true
+figures-at-end: false
+double-blind: false
