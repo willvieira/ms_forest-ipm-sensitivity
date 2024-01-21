@@ -9,8 +9,8 @@ By approaching species distribution from a demographic perspective, we can accou
 
 Several studies have attempted to predict species distribution based on demographic performance.
 The fundamental version of these models uses environment-dependent demographic rates to predict $\lambda$ [e.g. @Merow2014;@Csergo2017].
-However, factors like competition undeniably influence both demographic rates [@@Luo2011;@Clark2011;@Zhang2015] and population performance [@Scherrer2020;@lesquin2021] in forest trees.
-This realized version of the niche [@Hutchinson1957] may explain why North American forest trees often do not occur within their climatically suitable range [@Boucher-Lalonde2012;@Talluto2017].
+However, factors like competition undeniably influence both demographic rates [@@Luo2011;@Clark2011;@Zhang2015] and population performance [@Scherrer2020;@LeSquin2021] in forest trees.
+This realized version of the niche [@Hutchinson1957] may explain why North American forest trees often do not occur within their climatically suitable range [@BoucherLalonde2012;@Talluto2017].
 
 Despite theoretical predictions, an increasing body of evidence indicates weak correlations between the demographic performance of trees and their distribution [@McGill2012;@Thuiller2014;@Csergo2017;@bohner2020;@LeSquin2021;@Midolo2021;@Guyennon2023].
 This mismatch is often attributed to the oversight of processes beyond climate and competition.
@@ -36,7 +36,7 @@ We use flexible non-linear hierarchical Bayesian models to capture the multiple 
 These demographic rate models are then incorporated into an Integral Projection Model (IPM) to quantify the $\lambda$ of each species under climate and competition effects.
 
 Our primary goal is to use the fitted IPM to compute the sensitivity of each species' $\lambda$ to climate and competition across its range distribution.
-Employing perturbation analysis, we quantify the relative contribution of each covariate to changes in $\lambda$ [@Caswell2001].
+Employing perturbation analysis, we quantify the relative contribution of each covariate to changes in $\lambda$ [@Caswell2000].
 Precisely, we assess the species sensitivity of an observed $\lambda$ for each plot-year combination based on their specific climate and competition conditions.
 This approach enables an evaluation of the overall sensitivity of $\lambda$ to a covariate while considering the inherent variability of the covariate experienced by the species.
 For instance, a species may exhibit high sensitivity to temperature, but if most of its distribution is observed under optimal temperature conditions, the average sensitivity of the species will be low.
