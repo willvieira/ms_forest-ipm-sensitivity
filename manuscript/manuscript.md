@@ -241,9 +241,36 @@ The code used to perform this analysis is hosted at the [`forest-IPM`](https://g
 
 ## Model validation
 
-- Intercept
+All species-specific demographic models demonstrated convergence with $\hat{R} <1.05$ and low to no divergent iterations.
+In comparing the simple intercept model with the more complete versions, the LOO-CV consistently favored the complete model for all three demographic rates, featuring plot random effects, competition, and climate covariates, over other competing models.
+The absolute values of LOO-CV suggested that the growth model gained the most information from including covariates, followed by recruitment and survival models.
+To further validate our approach, we compared known trait groups from the literature, leveraging the mechanistic equations characterizing each demographic model.
+Specifically, we used traits of growth rate classes, maximum observed size, maximum observed age, shade tolerance, and seed mass [@burns1990silvics;@diaz2022].
 
-- Covariates
+The growth model intercept comprises two parameters, one determining the asymptotic size ($\zeta_{\infty}$) and the annual growth rate $\Gamma$.
+The $\zeta_{\infty}$ can be interpreted as the maximum predicted size of the species, which correlates well across all 31 species with the maximum observed size in the literature (Figure @fig:crossGrowthSurv).
+Similarly, $\Gamma$ among the species exhibited a distribution aligning with the fast, moderate, and slow-growing traits (Figure SX).
+In the survival model, the expected longevity ($L$) can be derived from the annual survival rate ( $\psi$) following the equality $L = e^{\psi}$, showing a high correlation with the maximum observed age in the literature.
+In the recruitment model, the log of the annual ingrowth rate ($\phi$) reduced linearly with seed mass, capturing the seed mass-growth rate tradeoff [@Reich1998].
+Additionally, the annual survival probability of ingrowth ($\rho$) decreased with intolerance to shade (Figure SX).
+
+![]{#fig:crossGrowthSurv width=100%}
+
+For competition effects, both conspecific and heterospecific competition effects for the growth and survival models increased with intolerance to shade (Figure @fig:crossComp).
+The stronger competition effect of conspecific over heterospecific was consistent for almost all species in both growth and survival models.
+Only two species for growth and three for survival among the 31 presented heterospecific competition stronger than conspecific.
+Moreover, *Fagus grandifolia* and *Thuja occidentalis* exhibited positive density dependence for the survival model.
+For recruitment, the effect of total stand density increased with shade intolerance among the species (Figure SX).
+
+![]{#fig:crossGrowthSurv width=100%}
+
+The distribution of optimal MAT ($\xi_{MAT}$) and MAP ($\xi_{MAP}$) for the 31 species revealed that the optimal climates for growth, survival, and recruitment were rarely located at the center of the species ranges (Figure SX and SX).
+Furthermore, most species exhibited some degree of demographic compensation, that is, the opposing responses to the environment between demographic rates [@Villellas2015].
+Lastly, the climate breadth ($\sigma$) determined how flat or narrow the performance of species was across MAT and MAP.
+
+We found that the niche breadth of each demographic model over the MAT and MAP increases with the range size among all species, showing the more expanded a species is, the larger its niche breadth (Figure SX).
+We found among all species that niche breadth increased with range size, demonstrating that species with more range occupancy had larger niche breadths.
+The exception was the niche breadth of survival over MAT, showing a weak, flat correlation.
 
 ## Sensitivity
 
