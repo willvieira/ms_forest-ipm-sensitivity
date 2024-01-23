@@ -313,6 +313,8 @@ rsconnect/
 trash/*
 docs/
 .history/
+_data.path
+
 
 ## Ignore all figures genereated by code but not the other generated elsewhere
 # manuscript/figs/*
