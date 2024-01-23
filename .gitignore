@@ -315,4 +315,4 @@ docs/
 .history/
 
 ## Ignore all figures genereated by code but not the other generated elsewhere
-manuscript/figs/*
+# manuscript/figs/*
