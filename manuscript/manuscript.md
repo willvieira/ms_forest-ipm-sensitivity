@@ -26,14 +26,15 @@ For instance, @Clark2011 found that individual growth is more sensitive to compe
 In contrast, @CopenhaverParry2016 found that growth was more sensitive to climate than competition.
 These studies provide crucial insights into how forest trees will respond to climate change and forest management, supporting conservation planning.
 However, they only assess the importance of climate and competition on single demographic models, lacking a complete picture of population dynamics.
-Furthermore, it is expected that the sensitivity of $\lambda$ to each of these components to be dependent on the species range position, such as climate being relatively more important in abiotic stressful conditions and competition being more critical when climate is benign [@Louthan2015].
+This is especially critical if species are susceptible to variation in sensitivity to climate and competition across life history stages [@Russell2012;@Ettinger2013].
+Furthermore, the sensitivity of $\lambda$ to climate and competition may depend on the species range position, such as climate being relatively more important in abiotic stressful conditions and competition being more critical when climate is benign [@Louthan2015].
 Nevertheless, such information is still lacking for trees [@Ohse2023].
 
 Here, we evaluate how climate and competition affect the demography and population growth rate of the 31 most abundant forest tree species across Eastern North America.
 We leverage the complete (26 - 53°) latitudinal coverage of forest inventories across the US and Canada to capture the biogeographical range distribution of these species.
 Specifically, we model each of the growth, survival, and recruitment vital rates as a function of mean annual temperature and precipitation, as well as conspecific and heterospecific basal area density, serving as a proxy for competition for light.
 We use flexible non-linear hierarchical Bayesian models to capture the multiple effect forms of climate and competition while accounting for model uncertainty at different organizational scales.
-These demographic rate models are then incorporated into an Integral Projection Model (IPM) to quantify the $\lambda$ of each species under climate and competition effects.
+These demographic rate models are then incorporated into a size-structured Integral Projection Model (IPM) to quantify the $\lambda$ of each species under climate and competition effects.
 
 Our primary goal is to use the fitted IPM to compute the sensitivity of each species' $\lambda$ to climate and competition across its range distribution.
 Employing perturbation analysis, we quantify the relative contribution of each covariate to changes in $\lambda$ [@Caswell2000].
@@ -221,12 +222,11 @@ $$
 	\frac{\partial \lambda_i}{\partial X_i} \approx \frac{\Delta \lambda_i}{\Delta X_i} = \frac{|f(X_i') - f(X_i)|}{X_i' - X_i}
 $${#eq:sens}
 
-We perform this process for each species across all plot-year observations $i$ to gauge the sensitivity of $\lambda$ that is proportional to the conditions experienced by the species.
+We perform this process for each species across all plot-year observations $i$.
 We set the perturbation size to a 1% increase in the normalized scale for each covariate.
 For instance, a 1% increase translates to a rise of 0.3°C for Mean Annual Temperature (MAT) and 26 mm for Mean Annual Precipitation (MAP).
 Because the competition metric is computed at the individual level, the perturbation was applied at each individual, where a 1% increase corresponds to a rise of 1.2 cm in dbh.
 As we were interested in the absolute difference, the resulting sensitivity value ranges between 0 and infinity, with lower values indicating a lower sensitivity of $\lambda$ to the specific covariate.
-
 We further computed the log ratio between competition and climate ($CCR$) sensitivities to discern their relative effects as follows:
 
 \begin{align}
@@ -237,7 +237,14 @@ We further computed the log ratio between competition and climate ($CCR$) sensit
 
 Here, $S$ represents the total sensitivity to competition or climate.
 Negative $CCR$ values indicate higher sensitivity of $\lambda$ to climate, while positive values suggest the opposite.
-The code used to perform this analysis is hosted at the [`forest-IPM`](https://github.com/willvieira/forest-IPM/tree/master/simulations/covariates_perturbation) GitHub repository.
+
+From this analysis, we derived a sensitivity measure ($S_X$) for each covariate across plot-year observations ($i$) within a given species.
+When averaging $S_X$ across $i$, this metric reflects the sensitivity of $\lambda$ to $X$, which is conditional upon the probability distribution of the covariate $X$.
+To consider plot locations across the species' range distribution, we categorized each plot into cold, center, or hot conditions along the MAT axis.
+Plots were labeled as cold (or hot) if the average MAT fell below (above) the 10% (90%) probability distribution, with all intermediate plots considered center plots.
+Thus, sensitivity to a covariate in the cold range of the species signifies the average sensitivity among all plots classified as cold.
+It is important to note that this classification is also conditional on the probability distribution of observed MAT within the species.
+The code used for this analysis is available in the [`forest-IPM`](https://github.com/willvieira/forest-IPM/tree/master/simulations/covariates_perturbation) GitHub repository.
 
 # Results
 
