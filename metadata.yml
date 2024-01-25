@@ -1,11 +1,10 @@
-title: "Unifying individual and metapopulation scales with stochastic population models: the effect of climate and competition on tree range limits"
-running_title: "Unifying scales with stochastic population models"
+title: "Sensitivity of tree species performance to climate and competition changes across their range distribution"
+running_title: "Tree sensitivity to climate and competition"
 abstract: "TODO"
 keywords:
     - "Integral Projection Models"
     - "Perturbation analysis"
-    - "Competition"
-    - "demography"
+    - "demography performance"
 highlights:
     - ""
 supporting-files:
@@ -26,6 +25,11 @@ authors:
       orcid: 0000-0003-0283-4570
       corresponding: TRUE
     - affiliations: [1]
+      email: Andrew.Macdonald@USherbrooke.ca
+      familyname: MacDonald
+      givennames: Andrew
+      orcid: 0000-0003-1162-169X
+    - affiliations: [1]
       email: Robert.Bradley@usherbrooke.ca
       familyname: Bradley
       givennames: Robert L.
@@ -38,7 +42,7 @@ authors:
 
 affiliations:
     - index: 1
-      name: Département de biologie, Université de Sherbrooke, Sherbrooke, Québec, Canada
+      name: Département de biologie, Université de Sherbrooke, Sherbrooke, QC, Canada
 
 acknowledgments: "We thank nice people"
 data_availability: "All the code and data used to reproduce the analysis, figure and manuscript are stored as a research compendium at [https://github.com/willvieira/ms_forest-ipm-sensitivity](https://github.com/willvieira/ms_forest-ipm-sensitivity))."
