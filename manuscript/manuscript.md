@@ -53,9 +53,9 @@ Our integrative approach allows us to assess the relative effects of climate and
 We used two open inventory datasets from eastern North America: the Forest Inventory and Analysis (FIA) dataset in the United States [@OConnell2007] and the Forest Inventory of Québec [@Naturelles2016].
 At the plot level, we focused on plots sampled at least twice, excluding those that had undergone harvesting to concentrate solely on natural dynamics.
 Specifically, we selected surveys conducted for the FIA dataset using the modern standardized methodology implemented since 1999.
-After applying these filters, our final dataset encompassed nearly 26,000 plots spanning a latitude range from 26° to 53° (Figure S1).
+After applying these filters, our final dataset encompassed nearly 26,000 plots spanning a latitude range from 26° to 53° (Figure S7).
 Each plot within the dataset was measured between 1970 and 2021, with observation frequencies ranging from 2 to 7 times and an average of 3 measurements per plot.
-The time intervals between measurements varied from 1 to 40 years, with a median interval of 7 years (Figure S1).
+The time intervals between measurements varied from 1 to 40 years, with a median interval of 7 years (Figure S7).
 
 These datasets provide individual-level information on the diameter at breast height (DBH) and the status (dead or alive) of more than 200 species.
 From this pool, we selected the 31 most abundant species (Table S1).
@@ -258,10 +258,10 @@ Specifically, we used traits of growth rate classes, maximum observed size, maxi
 
 The growth model intercept comprises two parameters, one determining the asymptotic size ($\zeta_{\infty}$) and the annual growth rate $\Gamma$.
 The $\zeta_{\infty}$ can be interpreted as the maximum predicted size of the species, which correlates well across all 31 species with the maximum observed size in the literature ($R^2 = 0.31$, Figure @fig:crossGrowthSurv).
-Similarly, $\Gamma$ among the species exhibited a distribution aligning with the fast, moderate, and slow-growing traits (Figure SX).
+Similarly, $\Gamma$ among the species exhibited a distribution aligning with the fast, moderate, and slow-growing traits (Figure S8).
 In the survival model, the expected longevity ($L$) can be derived from the annual survival rate ( $\psi$) following the equality $L = e^{\psi}$, showing a high correlation with the maximum observed age in the literature ($R^2 = 0.59$, Figure @fig:crossGrowthSurv).
-In the recruitment model, the log of the annual ingrowth rate ($\phi$) reduced linearly with seed mass, capturing the seed mass-growth rate tradeoff [@Reich1998].
-Additionally, the annual survival probability of ingrowth ($\rho$) decreased with intolerance to shade (Figure SX).
+In the recruitment model, the log of the annual ingrowth rate ($\phi$) reduced linearly with seed mass (Figure S9), capturing the seed mass-growth rate tradeoff [@Reich1998].
+Additionally, the annual survival probability of ingrowth ($\rho$) decreased with intolerance to shade (Figure S10).
 
 ![Correlation between predicted asymptotic size ($\zeta_{\infty}$) with maximum observed size (left) and predicted longevity ($L$) with maximum observed age for the 31 forest species. Maximum observed size and age are obtained from @burns1990silvics. The gray line is the identity curve.](manuscript/figs/crossGrowthSurv.png){#fig:crossGrowthSurv width=100%}
 
@@ -269,11 +269,11 @@ For competition effects, both conspecific and heterospecific competition effects
 The stronger competition effect of conspecific over heterospecific was consistent for almost all species in both growth and survival models.
 Only two species for growth and three for survival among the 31 presented heterospecific competition stronger than conspecific.
 Moreover, *Fagus grandifolia* and *Thuja occidentalis* exhibited positive density dependence for the survival model.
-For recruitment, the effect of total stand density increased with shade intolerance among the species (Figure SX).
+For recruitment, the effect of total stand density increased with shade intolerance among the species (Figure S11).
 
 ![Posterior distribution for the conspecific (red) and heterospecific (blue) density dependence for each class of shade tolerance [@burns1990silvics]. The more negative the $\beta$, the stronger the competition effect.](manuscript/figs/crossComp.png){#fig:crossComp width=100%}
 
-The distribution of optimal MAT ($\xi_{MAT}$) and MAP ($\xi_{MAP}$) for the 31 species revealed that the optimal climates for growth, survival, and recruitment were rarely located at the center of the species ranges (Figure SX and SX).
+The distribution of optimal MAT ($\xi_{MAT}$) and MAP ($\xi_{MAP}$) for the 31 species revealed that the optimal climates for growth, survival, and recruitment were rarely located at the center of the species ranges (Figure S12 and S13).
 Furthermore, most species exhibited some degree of demographic compensation, that is, the opposing responses to the environment between demographic rates [@Villellas2015].
 Lastly, the climate breadth ($\sigma$) determined how flat or narrow the performance of species was across MAT and MAP.
 We found among all species that niche breadth increased with range size, demonstrating that species with more range occupancy had larger niche breadths.
@@ -326,13 +326,13 @@ These findings contribute to a better understanding of how tree species might re
 
 Our model demonstrated the ability to independently predict various traits associated with the growth, survival, and recruitment models.
 The intercepts for growth and survival exhibited good correlations with external observations in the literature [@burns1990silvics], while the recruitment intercept aligned well with the seed mass trait [@diaz2022].
-Additionally, the models effectively reproduced the fast-slow continuum [@SalgueroGomez2016], showing a negative correlation between growth and survival rate and a positive correlation between growth and recruitment rate (Figure SX intercept_corr).
+Additionally, the models effectively reproduced the fast-slow continuum [@SalgueroGomez2016], showing a negative correlation between growth and survival rate and a positive correlation between growth and recruitment rate (Figure S14).
 Regarding competition, the model captured the negative correlation between density dependence and shade tolerance.
 The model also adhered to the Janzen-Connell hypothesis [@Janzen1970;@Connell1971], predicting stronger conspecific density dependence compared to heterospecific, crucial for biodiversity maintenance [@Chesson2000a].
-Moreover, the intensity of conspecific density dependence was higher for fast-growing trees than for slow-growing ones (Figure SX comp_CNDD_vs_growth), similar to observations in tropical trees [@Zhu2018].
+Moreover, the intensity of conspecific density dependence was higher for fast-growing trees than for slow-growing ones (Figure S15), similar to observations in tropical trees [@Zhu2018].
 For climate, validation is challenging due to limited data on optimal temperature and precipitation measures.
 Nevertheless, our results align with others, indicating the presence of demographic compensation across forest trees [@bohner2020;@Yang2022].
-Furthermore, the estimated climate niche breadth correlates with the size distribution of the species (Figure SX), suggesting that the model captures information not explicitly included.
+Furthermore, the estimated climate niche breadth correlates with the size distribution of the species (Figure S16), suggesting that the model captures information not explicitly included.
 
 Most of the variability in $\lambda$ was associated with local plot conditions captured by random effects, akin to previous studies [@Vanderwel2016a;@LeSquin2021].
 This implies the influence of other factors beyond the climate-competition dimensions on demographic rates.
@@ -349,7 +349,7 @@ For instance, while some suggest that competition has a higher effect on growth 
 Furthermore, the relative effect between climate and competition can change between demographic models, where growth is more sensitive to competition while fecundity to climate [@Clark2011].
 This disparity may arise from a tendency to evaluate sensitivity to specific demographic rates rather than considering their integrated effects.
 This is particularly critical since the population growth rate does not respond equally to all covariates.
-We performed additional sensitivity analyses, which revealed that most species are primarily sensitive to recruitment, followed by survival, with a relatively lower impact from growth (see Supplementary Material 2).
+We performed additional sensitivity analyses, which revealed that most species are primarily sensitive to recruitment, followed by survival, with a relatively lower impact from growth (see Supplementary Material 3).
 
 Assessing climate sensitivity across the species range distribution revealed divergent responses.
 As species' performance changes nonlinearly with climate, lower sensitivity values to a climate covariate indicate that the species operates under optimal climate conditions, whereas higher sensitivity values suggest the species is deviating from its optimal climate condition.
@@ -357,7 +357,7 @@ Overall, climate sensitivity (primarily driven by MAT) was higher at both the co
 This implies that species in colder temperatures exhibit optimal performance towards their warmer range, and vice versa for species in hotter conditions.
 Interestingly, the demographic models driving higher sensitivity to climate at the cold and hot extremes differ.
 The recruitment and growth models primarily influenced sensitivity at the cold range, while the survival model dominated at the hot range 
-(see Figure SX temp_optimal_rangeLocation.png). 
+(see Figure S17). 
 Previous studies have indicated climate-constrained growth rates at the cold range for North American [@Ettinger2013] and European [@Kunstler2021] trees.
 Consistent with our results, a decrease in survival at the hot range was observed for European trees [@Kunstler2021], though not in eastern North America [@Purves2009].
 
@@ -371,7 +371,7 @@ However, when evaluating only the growth rate of North American [@Ettinger2013] 
 
 Structured population models, such as the IPM, play a crucial role in capturing ontogenetic variability within tree population dynamics.
 While the growth model inherently considers individual size, the survival and recruitment models are size-independent.
-We attempted to incorporate the widely assumed "U-shape" form of mortality rate changes with individual size [@Lines2010], but it performed worse than the simple random effects one.
+We attempted to incorporate the widely assumed "U-shape" form of mortality rate changes with individual size [@Lines2010], but it performed worse than the simple random effects one (Figure S6).
 Mortality has been observed to increase with individual size [@Luo2011;@Hember2017], but its significance appears to manifest only when interacting with climate and competition [@LeSquin2021].
 The challenge in capturing size dependence in the survival model likely stems from the lack of information on small individuals (dbh < 12.7 cm) and the rarity of larger individuals in datasets, even for extensive forest inventories [@Canham2017].
 Despite not explicitly including individual size in the survival model, its indirect influence is included with the asymmetric competition, where smaller individuals experience higher competitive pressure.
