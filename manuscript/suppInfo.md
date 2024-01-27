@@ -1,5 +1,3 @@
-\newpage
-
 # Supplementary Material 1
 
 ## Model fit {#sec-model-fit}
@@ -266,7 +264,5 @@ Also, the importance attributed to the survival model for certain species at the
 Although we observed this shift, the overall patterns remained similar to those discussed earlier.
 The only exception was the distribution of relative importance between climate and competition (Figure @fig:climVsComp), where many species had an increase in the importance of competition relative to climate.
 These observed differences primarily arise from the high sensitivity of $\lambda$ to the $\phi$ parameter.
-
-\newpage
 
 # References
