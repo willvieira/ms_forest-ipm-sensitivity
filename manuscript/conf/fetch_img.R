@@ -65,6 +65,9 @@ update_tex <- function(tex_file, to = to_path) {
 }
 
 
+# Before running, make sure `to_path` is available
+dir.create(to_path, recursive = TRUE)
+
 # where magic happens
 invisible(
   sapply(
