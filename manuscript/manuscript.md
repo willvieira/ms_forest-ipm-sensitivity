@@ -388,6 +388,4 @@ Future steps should focus on better understanding the variability captured by ra
 While we addressed individual and plot-level model uncertainty, further considerations for other sources of variability arising from temporal stochasticity in climate and competition covariates are essential.
 This will enhance our understanding of the effects of spatiotemporal variability on species performance across their range [@Holt2022].
 
-
 # References
-
