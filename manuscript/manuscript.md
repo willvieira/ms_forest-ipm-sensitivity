@@ -111,14 +111,14 @@ This assumption is particularly valuable in the context of the IPM, as it preven
 The final likelihood growth model accounting for individual variability is defined as follows: 
 
 \begin{align}
-&dbh_{i,t + \Delta t} \sim \mathcal{N}(\mu, \sigma) \\
+&dbh_{i,t + \Delta t} \sim N(\mu, \sigma) \\
 &\mu = dbh_{i,t} \times e^{-\Gamma \Delta t} + \zeta_{\infty} (1- e^{-\Gamma \Delta t})
 \end{align}
 
 **Survival** - The chance of a mortality event ($M$) for an individual $i$ within the time interval between $t$ and $t+\Delta t$ is modeled as a Bernoulli distribution:
 
 $$
-M_i \sim \mathcal{Bernoulli}(p_i)
+M_i \sim Bernoulli(p_i)
 $${#eq:survL}
 
 Here, $M_i$ represents the individual's status (alive/dead) and $p_i$ the mortality probability of the individual $i$.
@@ -140,7 +140,7 @@ Therefore, we introduce two parameters to control the potential number of recrui
 We introduce two parameters to control the potential number of recruited individuals: $\phi$, determining the annual ingrowth rate per square meter, and $\rho$, denoting the annual survival probability of each ingrowth individual:
 
 $$
-  I \sim \mathcal{Poisson}(~\phi \times A \times \frac{1 - \rho^{\Delta t}}{1-\rho}~)
+  I \sim Poisson(~\phi \times A \times \frac{1 - \rho^{\Delta t}}{1-\rho}~)
 $${#eq:rec}
 
 Where $A$ represents the area of the plot in square meters.
@@ -150,10 +150,10 @@ Instead, $\rho$ is estimated from the data of individuals arriving in the popula
 Once an individual is recruited into the population, a submodel determines its initial size $z_I$, increasing linearly with time:
 
 $$
-  z_{I} \sim \mathcal{TNormal}(\Omega + \beta \Delta t,~\sigma, ~ \alpha, ~ \beta)
+  z_{I} \sim TNormal(\Omega + \beta \Delta t,~\sigma, ~ \alpha, ~ \beta)
 $${#eq:recSize}
 
-The $\mathcal{TNormal}$ is a truncated distribution with lower and upper limits determined by the $\alpha$ and $\beta$ parameters, respectively.
+The $TNormal$ is a truncated distribution with lower and upper limits determined by the $\alpha$ and $\beta$ parameters, respectively.
 We set $\alpha$ to 12.7 cm, aligning it with the ingrowth threshold, while $\beta$ is set to infinity to allow for an unbounded upper limit.
 Similarly, this model is not associated with the growth model for adult (Equation @eq:VBmodel)
 
@@ -163,7 +163,7 @@ Similarly, this model is not associated with the growth model for adult (Equatio
 For a demographic component with an average intercept $\overline{I}$, an offset value ($\alpha$) is drawn for each plot $j$ from a normal distribution with a mean of zero and variance $\sigma$:
 
 \begin{align}
-  &\alpha_{j} \sim \mathcal{N}(0, \sigma) \\
+  &\alpha_{j} \sim N(0, \sigma) \\
   &I_j = \overline{I} + \alpha_j
 \end{align}
 
