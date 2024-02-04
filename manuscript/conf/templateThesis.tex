@@ -1,6 +1,6 @@
 \graphicspath{{chapter$chapter-number$/}{manuscript/}}
 
-\chapter{\textbf{ $chapter-title$}}
+\chapter{\textbf{\MakeUppercase{  $chapter-title$}}}
 
 \section{Résumé de l'article et contribution}
 
@@ -10,7 +10,7 @@ $resume-contribution$
 \pagebreak
 
 \begin{center}
-\textbf{$title$} \\
+\textbf{\MakeUppercase{$title$}} \\
 $if(published)$
 \textit{$journal$} ($year$), $volume-isue-pages$. \\
 $endif$
@@ -19,6 +19,9 @@ $for(authors)$$authors.givennames$~$authors.familyname$$sep$, $endfor$
 
 \section{Abstract}
 
+$abstract$
+
+\textbf{Keywords}: $for(keywords)$$keywords$$sep$, $endfor$
 
 $body$
 

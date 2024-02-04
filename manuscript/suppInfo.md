@@ -43,7 +43,7 @@ As we introduce covariates, it is expected that part of the variance in demograp
 Therefore, the larger the reduction in variance associated with plot random effects, the more significant the role of covariates in explaining demographic rates.
 The Figure @fig:par_var shows the $\sigma_{plot}$ change with increased model complexity for growth, survival, and recruitment vital rates.
 
-![Boxplot shows the change in the posterior distribution of the parameter $\\sigma_{plot}$ across the 31 tree species between the competing models. For each growth, survival, and recruitment vital rate, the simplest model (plot random effects only) increases in complexity with the addition of fixed size, competition, and climate covariates. Each colored dot represents the species' average posterior distribution.](manuscript/figs/supp1_1.png){#fig:par_var}
+![Boxplot showing the change in the posterior distribution of the parameter $\\sigma_{plot}$ across the 31 tree species between the competing models. For each growth, survival, and recruitment vital rate, the simplest model (plot random effects only) increases in complexity with the addition of fixed size, competition, and climate covariates. Each colored dot represents the species' average posterior distribution.](manuscript/figs/supp1_1.png){#fig:par_var short-caption="Boxplot showing the change in the posterior distribution of the parameter $\\sigma_{plot}$ across the 31 tree species between the competing models."}
 
 ## Model predictive accuracy
 
@@ -51,9 +51,9 @@ We used pseudo $R^2$ and MSE metrics derived from comparing observed and predict
 Higher $R^2$ values and lower MSE indicate better overall model accuracy.
 The Figures @fig:R2 and @fig:MSE compare the growth and recruitment models using $R^2$ and MSE, respectively.
 
-![Posterior distribution of pseudo $R^2$ across the 31 tree species between the competing models. For each growth, survival, and recruitment vital rate, the simplest model (plot random effects only) increases in complexity with the addition of fixed competition and climate covariates. Each colored dot represents the species' average posterior distribution.](manuscript/figs/supp1_2.png){#fig:R2}
+![Posterior distribution of pseudo $R^2$ across the 31 tree species between the competing models. For each growth, survival, and recruitment vital rate, the simplest model (plot random effects only) increases in complexity with the addition of fixed competition and climate covariates. Each colored dot represents the species' average posterior distribution.](manuscript/figs/supp1_2.png){#fig:R2 short-caption="Posterior distribution of pseudo $R^2$ across the 31 tree species between the competing models."}
 
-![Posterior distribution of Mean Squared Error (MSE) across the 31 tree species as models become more complex.](manuscript/figs/supp1_3.png){#fig:MSE}
+![Posterior distribution of Mean Squared Error (MSE) across the 31 tree species as models become more complex.](manuscript/figs/supp1_3.png){#fig:MSE short-caption="Posterior distribution of Mean Squared Error (MSE) across the 31 tree species as models become more complex."}
 
 We used three complementary metrics for the survival model to assess model predictions.
 While the accuracy of classification models is often evaluated through the fraction of correct predictions, this measure can be misleading for unbalanced datasets such as mortality, where dead events are rare.
@@ -61,7 +61,7 @@ To address this issue, we calculated sensitivity, which measures the percentage 
 We also computed specificity, which measures the percentage of live trees correctly identified as alive (true negatives).
 The combination of sensitivity and specificity allows us to calculate corrected accuracy, considering the unbalanced accuracy predictions of positive and negative events (Figure @fig:Acc).
 
-![Comparing the posterior distribution of sensitivity, specificity, and accuracy across the 31 tree species between the competing models. Each colored dot represents the species' average posterior distribution.](manuscript/figs/supp1_4.png){#fig:Acc}
+![Comparing the posterior distribution of sensitivity, specificity, and accuracy across the 31 tree species between the competing models. Each colored dot represents the species' average posterior distribution.](manuscript/figs/supp1_4.png){#fig:Acc short-caption="Comparing the posterior distribution of sensitivity, specificity, and accuracy across the 31 tree species between the competing models."}
 
 
 ## Leave-one-out cross-validation
@@ -73,7 +73,7 @@ In contrast, the performance of the other models is assessed based on their devi
 Given the large number of observations in the dataset, we approximated LOO-CV using PSIS-LOO and subsampling.
 For each species, we approximated LOO-CV by sampling one-fifth of the total number of observations.
 
-![Boxplot shows the LOO-CV compare between the competing models based on the expected log pointwise predictive density (ELPD_diff) difference across the 31 tree species. The sd_diff is the standard error of the ELPD difference between the model and the reference model (ELPD_diff equal to zero).](manuscript/figs/supp1_5.png){#fig:loo}
+![Boxplot shows the LOO-CV compare between the competing models based on the expected log pointwise predictive density (ELPD_diff) difference across the 31 tree species. The sd_diff is the standard error of the ELPD difference between the model and the reference model (ELPD_diff equal to zero).](manuscript/figs/supp1_5.png){#fig:loo short-caption="Boxplot shows the LOO-CV compare between the competing models based on the expected log pointwise predictive density (ELPD_diff) difference across the 31 tree species."}
 
 
 ## Size effect in survival
@@ -82,7 +82,7 @@ We initially incorporated the size effect into the survival models due to the st
 However, we observed that the effect of size on mortality probability was generally weak and variable among species, with no clear pattern of increased mortality probability with larger individual size.
 All models that included the size effect performed worse than the null model, which contained only plot random effects (Figure @fig:loo_mort).
 
-![Boxplot shows the LOO-CV compare between the competing models based on the expected log pointwise predictive density (ELPD_diff) difference across the 31 tree species. The sd_diff is the standard error of the ELPD difference between the model and the reference model (ELPD_diff equal to zero).](manuscript/figs/supp1_6.png){#fig:loo_mort}
+![Boxplot shows the LOO-CV compare between the competing models based on the expected log pointwise predictive density (ELPD_diff) difference across the 31 tree species. The sd_diff is the standard error of the ELPD difference between the model and the reference model (ELPD_diff equal to zero).](manuscript/figs/supp1_6.png){#fig:loo_mort short-caption="Boxplot shows the LOO-CV compare between the competing models based on the expected log pointwise predictive density (ELPD_diff) difference across the 31 tree species."}
 
 ## Conclusion
 
@@ -102,76 +102,60 @@ Consequently, we selected the complete model with plot random effects, competiti
 
 # Supplementary Mateiral 2
 
-## Figure S7
 
-![Spatial (top left) and temporal (top right) coverage of the dataset incorporating data from the USA and Quebec. The top right panel shows the distribution of observations per class of latitude for the 31 species used in this study.](https://willvieira.github.io/book_forest-demography-IPM/db_files/figure-html/fig-plotCoverage-1.png){#fig:figsupp1}
-
-\newpage
-
-### Figure S8
-
-![Posterior distribution for the intercept of the growth model using the 10-year average growth rate. Species are classified by their general growth trait following @burns1990silvics.](https://willvieira.github.io/book_forest-demography-IPM/pars_intercept_files/figure-html/fig-intGrowth-1.png){#fig:figsupp2}
+![Spatial (top left) and temporal (top right) coverage of the dataset incorporating data from the USA and Quebec. The top right panel shows the distribution of observations per class of latitude for the 31 species used in this study.](https://willvieira.github.io/book_forest-demography-IPM/db_files/figure-html/fig-plotCoverage-1.png){#fig:figsupp1 short-caption="Spatial (top left) and temporal (top right) coverage of the dataset incorporating data from the USA and Quebec."}
 
 \newpage
 
-### Figure S9
-
-![Posterior distribution for the intercept of the ingrwoth model for the number of individuals that ingress the population per year per $m^2$ in function seed mass [@diaz2022]. Species are classified by their successional status following @burns1990silvics.](https://willvieira.github.io/book_forest-demography-IPM/pars_intercept_files/figure-html/fig-intcerpt_ingrowth-1.png){#fig:figsupp3}
+![Posterior distribution for the intercept of the growth model using the 10-year average growth rate. Species are classified by their general growth trait following @burns1990silvics.](https://willvieira.github.io/book_forest-demography-IPM/pars_intercept_files/figure-html/fig-intGrowth-1.png){#fig:figsupp2 short-caption="Posterior distribution for the intercept of the growth model using the 10-year average growth rate."}
 
 \newpage
 
-### Figure S10
 
-![Posterior distribution for the intercept of the annual survival probability for the ingrowth model. Species are classified by their shade tolerance trait following @burns1990silvics.](https://willvieira.github.io/book_forest-demography-IPM/pars_intercept_files/figure-html/fig-intcerpt_ingP-1.png){#fig:figsupp4}
-
-\newpage
-
-### Figure S11
-
-![Posterior distribution of the density dependence parameter affecting the annual survival rate of recruitment individuals. Species are classified by their shade tolerance trait following @burns1990silvics.](https://willvieira.github.io/book_forest-demography-IPM/pars_competition_files/figure-html/fig-compRec-1.png){#fig:figsupp5}
+![Posterior distribution for the intercept of the ingrwoth model for the number of individuals that ingress the population per year per $m^2$ in function seed mass [@diaz2022]. Species are classified by their successional status following @burns1990silvics.](https://willvieira.github.io/book_forest-demography-IPM/pars_intercept_files/figure-html/fig-intcerpt_ingrowth-1.png){#fig:figsupp3 short-caption="Posterior distribution for the intercept of the ingrwoth model for the number of individuals that ingress the population per year per $m^2$ in function seed mass [@diaz2022]."}
 
 \newpage
 
-### Figure S12
-
-![Distribution for the optimal annual mean temperature ($\xi_{MAT}$) for growth (green), recruitment (yellow), and survival (brown). The gray density plot is the annual mean temperature distribution among all observed trees across space and time.](https://willvieira.github.io/book_forest-demography-IPM/pars_climate_files/figure-html/fig-matDist-1.png){#fig:figsupp6}
+![Posterior distribution for the intercept of the annual survival probability for the ingrowth model. Species are classified by their shade tolerance trait following @burns1990silvics.](https://willvieira.github.io/book_forest-demography-IPM/pars_intercept_files/figure-html/fig-intcerpt_ingP-1.png){#fig:figsupp4 short-caption="Posterior distribution for the intercept of the annual survival probability for the ingrowth model."}
 
 \newpage
 
-### Figure S13
-
-![Distribution for the optimal mean annual precipitation ($\xi_{MAP}$) for growth (green), recruitment (yellow), and survival (brown). The density plot in gray is the distribution of annual precipitation variable among all observed trees across space and time.](https://willvieira.github.io/book_forest-demography-IPM/pars_climate_files/figure-html/fig-mapDist-1.png){#fig:figsupp7}
+![Posterior distribution of the density dependence parameter affecting the annual survival rate of recruitment individuals. Species are classified by their shade tolerance trait following @burns1990silvics.](https://willvieira.github.io/book_forest-demography-IPM/pars_competition_files/figure-html/fig-compRec-1.png){#fig:figsupp5 short-caption="Posterior distribution of the density dependence parameter affecting the annual survival rate of recruitment individuals."}
 
 \newpage
 
-### Figure S14
-
-![Correlation between (left panel) growth rate ($\Gamma$) and annual survival rate ($\psi$) and (right panel) growth rate ($\Gamma$) and annual recruitment rate ($\phi$). The uncertainty of the parameters is summarised by a Multivariate Normal Density function with 90% probability.](manuscript/figs/intercept_corr.png){#fig:figsupp8}
+![Distribution for the optimal annual mean temperature ($\xi_{MAT}$) for growth (green), recruitment (yellow), and survival (brown). The gray density plot is the annual mean temperature distribution among all observed trees across space and time.](https://willvieira.github.io/book_forest-demography-IPM/pars_climate_files/figure-html/fig-matDist-1.png){#fig:figsupp6 short-caption="Distribution for the optimal annual mean temperature ($\xi_{MAT}$) for growth (green), recruitment (yellow), and survival (brown)."}
 
 \newpage
 
-### Figure S15
 
-![Posterior distribution for the conspecific (red) and heterospecific (blue) density dependence for each class of growth rate [@burns1990silvics]. The more negative the $\beta$, the stronger the competition effect.](manuscript/figs/comp_CNDD_vs_growth.png){#fig:figsupp9}
-
-\newpage
-
-### Figure S16
-
-![Climate breadth in function of climate range size. The higher the climate range size, the more climate conditions the species experienced.](https://willvieira.github.io/book_forest-demography-IPM/pars_climate_files/figure-html/fig-climRangeVsTau-1.png){#fig:figsupp10}
+![Distribution for the optimal mean annual precipitation ($\xi_{MAP}$) for growth (green), recruitment (yellow), and survival (brown). The density plot in gray is the distribution of annual precipitation variable among all observed trees across space and time.](https://willvieira.github.io/book_forest-demography-IPM/pars_climate_files/figure-html/fig-mapDist-1.png){#fig:figsupp7 short-caption="Distribution for the optimal mean annual precipitation ($\xi_{MAP}$) for growth (green), recruitment (yellow), and survival (brown)."}
 
 \newpage
 
-### Figure S17
 
-![Correlation between posterior distribution of optimal temperature ($\xi_{MAT}$) and the species' midpoint location across the mean annual temperature range. The transparency of each species point is scaled to be a function of niche breadth. The closer this value is to zero, the higher the breadth around the mean. In other words, when climate breadth is zero, the bell-shaped unimodal function becomes an almost flat line. Colored species names are those with niche breadth higher than 0.5.](manuscript/figs/temp_optimal_rangeLocation.png){#fig:figsupp11}
+![Correlation between (left panel) growth rate ($\Gamma$) and annual survival rate ($\psi$) and (right panel) growth rate ($\Gamma$) and annual recruitment rate ($\phi$). The uncertainty of the parameters is summarised by a Multivariate Normal Density function with 90% probability.](manuscript/figs/intercept_corr.png){#fig:figsupp8 short-caption="Correlation between (left panel) growth rate ($\Gamma$) and annual survival rate ($\psi$) and (right panel) growth rate ($\Gamma$) and annual recruitment rate ($\phi$)."}
+
+\newpage
+
+
+![Posterior distribution for the conspecific (red) and heterospecific (blue) density dependence for each class of growth rate [@burns1990silvics]. The more negative the $\beta$, the stronger the competition effect.](manuscript/figs/comp_CNDD_vs_growth.png){#fig:figsupp9 short-caption="Posterior distribution for the conspecific (red) and heterospecific (blue) density dependence for each class of growth rate [@burns1990silvics]."}
+
+\newpage
+
+
+![Climate breadth in function of climate range size. The higher the climate range size, the more climate conditions the species experienced.](https://willvieira.github.io/book_forest-demography-IPM/pars_climate_files/figure-html/fig-climRangeVsTau-1.png){#fig:figsupp10 short-caption="Climate breadth in function of climate range size."}
+
+\newpage
+
+
+![Correlation between posterior distribution of optimal temperature ($\xi_{MAT}$) and the species' midpoint location across the mean annual temperature range. The transparency of each species point is scaled to be a function of niche breadth. The closer this value is to zero, the higher the breadth around the mean. In other words, when climate breadth is zero, the bell-shaped unimodal function becomes an almost flat line. Colored species names are those with niche breadth higher than 0.5.](manuscript/figs/temp_optimal_rangeLocation.png){#fig:figsupp11 short-caption="Correlation between posterior distribution of optimal temperature ($\xi_{MAT}$) and the species' midpoint location across the mean annual temperature range."}
 
 \newpage
 
 # Supplementary Mateiral 3
 
 ## Sensitivity analysis
-
 
 Here, we conducted a global sensitivity analysis (GSA) of the population growth rate ($\lambda$) with respect to demographic models.
 Sensitivity analysis uses various methods to decompose the total variance of an outcome into contributions from parameters or input variables.
@@ -203,10 +187,10 @@ The code used for this analysis can be found in the [`forest-IPM`](https://githu
 
 ## Simulation Summary
 
-The final simulation involved a total of `r nrow(lambdas)` draws across species and different conditions.
+The final simulation involved a total of 500 draws across species and different conditions.
 The Figure @fig:lambdaDist illustrates the distribution of $\lambda$ computed using 500 random draws from the posterior distribution of parameters across different climate and competition conditions.
 
-![Distribution of 500 draws of population growth rate ($\lambda$) for different climate and competition conditions](https://willvieira.github.io/book_forest-demography-IPM/sens_analysis_files/figure-html/fig-lambdaDist-1.png){#fig:lambdaDist}
+![Distribution of 500 draws of population growth rate ($\lambda$) for different climate and competition conditions](https://willvieira.github.io/book_forest-demography-IPM/sens_analysis_files/figure-html/fig-lambdaDist-1.png){#fig:lambdaDist short-caption="Distribution of 500 draws of population growth rate ($\lambda$) for different climate and competition conditions"}
 
 ## Importance of demographic models
 
@@ -222,21 +206,21 @@ Figure @fig:rfr2 shows the distribution of $R^2$ from 20 random forest replicati
 These values range from 0.2 to 0.9, with an average value of 0.63 across species and conditions.
 This variation possibly reflects the uncertainty in the parameters across species.
 
-![Distribution of $R^2$ from 20 random forest replications across different climate and competition conditions.](https://willvieira.github.io/book_forest-demography-IPM/sens_analysis_files/figure-html/fig-rfr2-1.png){#fig:rfr2}
+![Distribution of $R^2$ from 20 random forest replications across different climate and competition conditions.](https://willvieira.github.io/book_forest-demography-IPM/sens_analysis_files/figure-html/fig-rfr2-1.png){#fig:rfr2 short-caption=""}
 
 As our primary interest lies in demographic levels rather than parameter levels, we focus on the combined importance of all parameters for each demographic model.
 This splits the total importance among the four demographic functions of the IPM: growth, survival, recruitment, and recruited size models.
 The recruited size model had an insignificant contribution to $\lambda$, with nearly all random forest models showing a contribution below 1%.
 Thus, we omitted this model and concentrated on the growth, survival, and recruitment models, which collectively explain over 99% of the variation in $\lambda$ (Figure @fig:ternaryLambda).
 
-![Ternary plot describing the importance distribution among the growth, survival, and recruitment models. Color represents the level of shade tolerance [@burns1990silvics].](https://willvieira.github.io/book_forest-demography-IPM/sens_analysis_files/figure-html/fig-ternaryLambda-1.png){#fig:ternaryLambda}
+![Ternary plot describing the importance distribution among the growth, survival, and recruitment models. Color represents the level of shade tolerance [@burns1990silvics].](https://willvieira.github.io/book_forest-demography-IPM/sens_analysis_files/figure-html/fig-ternaryLambda-1.png){#fig:ternaryLambda short-caption="Ternary plot describing the importance distribution among the growth, survival, and recruitment models."}
 
 The ternary plots above show the raw importance data from the random forest, which can be challenging to interpret.
 The key message is that variance in $\lambda$ is primarily explained by the recruitment and survival demographic models.
 Furthermore, certain conditions appear to shift the importance from recruitment to the survival model.
 In Figure @fig:recVsMort, we explore the correlation between the importance of recruitment and survival under different covariate conditions.
 
-![Correlation between the survival and recruitment relative importance across the 31 species, climate and competition conditions. Species points are grouped by a Multivariate Normal Density function with a probability of 90%.](https://willvieira.github.io/book_forest-demography-IPM/sens_analysis_files/figure-html/fig-recVsMort-1.png){#fig:recVsMort}
+![Correlation between the survival and recruitment relative importance across the 31 species, climate and competition conditions. Species points are grouped by a Multivariate Normal Density function with a probability of 90%.](https://willvieira.github.io/book_forest-demography-IPM/sens_analysis_files/figure-html/fig-recVsMort-1.png){#fig:recVsMort short-caption="Correlation between the survival and recruitment relative importance across the 31 species, climate and competition conditions."}
 
 We observe that at low competition, for most species, variations in $\lambda$ are primarily explained by recruitment.
 This pattern slightly diminishes as we move from the cold range to the center and up to the hot temperature range.
@@ -249,7 +233,7 @@ Similar to assessing parameter importance, we also used the random forest approa
 For simplicity, we used the same output of the simulations as previously explained, shifting the explanatory variables from parameters to covariates.^[This analysis could be expanded to include more marginal conditions beyond just cold, center, and hot temperatures and low and high competition. However, this would exponentially increase the number of simulations.]
 The Figure @fig:climVsComp shows the distribution of relative importance between climate and competition covariates for each species.
 
-![Distribution of relative importance between climate and competition covariates according to Random Forest, the respective $R^2$. The more species are to the right of the panel, the more climate is important relative to competition. Color represents the level of shade tolerance [@burns1990silvics]](https://willvieira.github.io/book_forest-demography-IPM/sens_analysis_files/figure-html/fig-climVsComp-1.png){#fig:climVsComp}
+![Distribution of relative importance between climate and competition covariates according to Random Forest, the respective $R^2$. The more species are to the right of the panel, the more climate is important relative to competition. Color represents the level of shade tolerance [@burns1990silvics]](https://willvieira.github.io/book_forest-demography-IPM/sens_analysis_files/figure-html/fig-climVsComp-1.png){#fig:climVsComp short-caption="Distribution of relative importance between climate and competition covariates according to Random Forest, the respective $R^2$."}
 
 
 ## Notes on Conspecific and Heterospecific Competition Effects
