@@ -76,8 +76,7 @@ pandoc $1 -o docs/manuscript_thesis.tex \
     --filter pandoc-xnos \
     --lua-filter=manuscript/conf/short-captions.lua \
     --number-sections \
-    --natbib \
-    --csl=manuscript/conf/ecology.csl
+    --natbib
 
 # Build suppInfo
 echo [1] Rendering supporting information pdf
@@ -100,9 +99,7 @@ pandoc $4 -o docs/suppInfo_thesis.tex \
     --filter pandoc-xnos \
     --lua-filter=manuscript/conf/short-captions.lua \
     --number-sections \
-    --natbib \
-    --csl=manuscript/conf/ecology.csl
-
+    --natbib
 
 # Build html
 echo [1] Rendering html document
