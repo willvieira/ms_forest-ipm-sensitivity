@@ -34,6 +34,13 @@ extract_id <- function(tex_file, type) {
 }
 
 
+# Function to add chapter specific ID (char) to fig ID
+# return sentence text with modified figure ID
+add_chapterID <- function(text, elem_id, chapter)
+  gsub(paste0(elem_id, '\\}'), paste0(elem_id, chapter, '\\}'), text)
+
+
+
 # Function to detect supp figure and table citations
 # return detected line row indexes
 detect_citation <- function(tex_file, type) {
@@ -63,13 +70,13 @@ detect_citation <- function(tex_file, type) {
 
 # Function to convert SX text to href tex using vectors of figure IDs
 # return sentence text with converted text
-text2tex <- function(text, elem_id, type) {
+text2tex <- function(text, elem_id, type, chapter) {
   # first find what is the figure or table numbe
-  sel_char <- unlist(regmatches(text, gregexpr('S[0-9]', text)))
+  sel_char <- unlist(regmatches(text, gregexpr('S\\d+', text)))
 
   # convert each SX to specific figure ID
   new_name <- sapply(sel_char, \(x) elem_id[as.numeric(gsub('[A-Z]', '', x))])
-  new_name <- paste0('\\ref{', type, ':', new_name, '}')
+  new_name <- paste0('\\ref{', type, ':', paste0(new_name, chapter), '}')
   
   for(i in seq_along(sel_char)) {
     text <- gsub(sel_char[i], new_name[i], text, fixed = TRUE)
@@ -81,8 +88,8 @@ text2tex <- function(text, elem_id, type) {
 
 # meta function that takes a main and supp files to
 # replace figure and table citations to latex hyper
-# returns the main TeX file with converted citation keys
-change_citation <- function(main, supp) {
+# returns the main and supp TeX file with converted citation keys
+change_citation <- function(main, supp, chapter) {
   # loop over figure and tables citation types
   for(typ in c('fig', 'tbl'))
   {
@@ -90,15 +97,32 @@ change_citation <- function(main, supp) {
     elem_id <- extract_id(supp[elem_rows], typ)
     citation_rows <- detect_citation(main, typ)
 
+    # select element IDs to add chapter ID
+    sel_char <- unlist(regmatches(main[citation_rows], gregexpr('S\\d+', main[citation_rows])))
+    sel_index <- as.numeric(unlist(regmatches(sel_char, gregexpr('\\d+', sel_char))))
+    elem_toChange <- unique(elem_id[sel_index])
+
+    # edit main text
     for(i in seq_along(citation_rows))
       main[citation_rows[i]] <- text2tex(
         main[citation_rows[i]],
         elem_id,
-        typ
+        typ,
+        chapter
       )
-  }
 
-  return( main )
+    # edit supp text
+    for(i in seq_along(elem_toChange)) {
+      rowIDs <- grep(elem_toChange[i], supp)
+      for(r in seq_along(rowIDs))
+        supp[rowIDs[r]] <- add_chapterID(
+          supp[rowIDs[r]],
+          elem_toChange[i],
+          chapter
+        )
+    }
+  }
+  return( list( main, supp ) )
 }
 
 
@@ -109,11 +133,25 @@ change_citation <- function(main, supp) {
 main_t <- readLines(file.path('docs', 'manuscript_thesis.tex'))
 supp_t <- readLines(file.path('docs', 'suppInfo_thesis.tex'))
 
-# convert main TeX
-main_new <- change_citation(main_t, supp_t)
+# detect chapter number to add it to element ID
+metadat <- readLines('metadata.yml')
+metadat <- metadat[grep('chapter-number', metadat)]
+chap <- unlist(regmatches(metadat, gregexpr("[[:digit:]]+", metadat)))
 
-# save converted file
+# convert main TeX
+new_files <- change_citation(
+  main_t,
+  supp_t,
+  chapter = paste0('_ch', chap)
+)
+
+# save converted files
 writeLines(
-  main_new,
+  new_files[[1]],
   file.path('docs', 'manuscript_thesis.tex')
+)
+
+writeLines(
+  new_files[[2]],
+  file.path('docs', 'suppInfo_thesis.tex')
 )
