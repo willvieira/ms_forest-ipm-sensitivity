@@ -43,7 +43,7 @@ As we introduce covariates, it is expected that part of the variance in demograp
 Therefore, the larger the reduction in variance associated with plot random effects, the more significant the role of covariates in explaining demographic rates.
 The Figure @fig:par_var shows the $\sigma_{plot}$ change with increased model complexity for growth, survival, and recruitment vital rates.
 
-![Boxplot showing the change in the posterior distribution of the parameter $\\sigma_{plot}$ across the 31 tree species between the competing models. For each growth, survival, and recruitment vital rate, the simplest model (plot random effects only) increases in complexity with the addition of fixed size, competition, and climate covariates. Each colored dot represents the species' average posterior distribution.](manuscript/figs/supp1_1.png){#fig:par_var short-caption="Boxplot showing the change in the posterior distribution of the parameter $\sigma_{plot}$ across the 31 tree species between the competing models."}
+![Boxplot showing the change in the posterior distribution of the parameter $\\sigma_{plot}$ across the 31 tree species between the competing models. For each growth, survival, and recruitment vital rate, the simplest model (plot random effects only) increases in complexity with the addition of fixed size, competition, and climate covariates. Each colored dot represents the species' average posterior distribution.](manuscript/figs/supp1_1.png){#fig:par_var short-caption="Boxplot showing the change in the posterior distribution of the parameter $\\sigma_{plot}$ across the 31 tree species between the competing models."}
 
 ## Model predictive accuracy
 
@@ -100,7 +100,7 @@ Consequently, we selected the complete model with plot random effects, competiti
 
 \newpage
 
-# Supplementary Material 2
+# Supplementary Mateiral 2
 
 
 ![Spatial (top left) and temporal (top right) coverage of the dataset incorporating data from the USA and Quebec. The top right panel shows the distribution of observations per class of latitude for the 31 species used in this study.](https://willvieira.github.io/book_forest-demography-IPM/db_files/figure-html/fig-plotCoverage-1.png){#fig:figsupp1 short-caption="Spatial (top left) and temporal (top right) coverage of the dataset incorporating data from the USA and Quebec."}
@@ -206,7 +206,7 @@ Figure @fig:rfr2 shows the distribution of $R^2$ from 20 random forest replicati
 These values range from 0.2 to 0.9, with an average value of 0.63 across species and conditions.
 This variation possibly reflects the uncertainty in the parameters across species.
 
-![Distribution of $R^2$ from 20 random forest replications across different climate and competition conditions.](https://willvieira.github.io/book_forest-demography-IPM/sens_analysis_files/figure-html/fig-rfr2-1.png){#fig:rfr2 short-caption="Distribution of $R^2$ across different climate and competition conditions."}
+![Distribution of $R^2$ from 20 random forest replications across different climate and competition conditions.](https://willvieira.github.io/book_forest-demography-IPM/sens_analysis_files/figure-html/fig-rfr2-1.png){#fig:rfr2 short-caption=""}
 
 As our primary interest lies in demographic levels rather than parameter levels, we focus on the combined importance of all parameters for each demographic model.
 This splits the total importance among the four demographic functions of the IPM: growth, survival, recruitment, and recruited size models.
