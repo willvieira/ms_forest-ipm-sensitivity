@@ -43,7 +43,7 @@ As we introduce covariates, it is expected that part of the variance in demograp
 Therefore, the larger the reduction in variance associated with plot random effects, the more significant the role of covariates in explaining demographic rates.
 The Figure @fig:par_var shows the $\sigma_{plot}$ change with increased model complexity for growth, survival, and recruitment vital rates.
 
-![Boxplot showing the change in the posterior distribution of the parameter $\\sigma_{plot}$ across the 31 tree species between the competing models. For each growth, survival, and recruitment vital rate, the simplest model (plot random effects only) increases in complexity with the addition of fixed size, competition, and climate covariates. Each colored dot represents the species' average posterior distribution.](manuscript/figs/supp1_1.png){#fig:par_var short-caption="Boxplot showing the change in the posterior distribution of the parameter $\\sigma_{plot}$ across the 31 tree species between the competing models."}
+![Boxplot showing the change in the posterior distribution of the parameter $\\sigma_{plot}$ across the 31 tree species between the competing models. For each growth, survival, and recruitment vital rate, the simplest model (plot random effects only) increases in complexity with the addition of fixed size, competition, and climate covariates. Each colored dot represents the species' average posterior distribution.](manuscript/figs/supp1_1.png){#fig:par_var short-caption="Boxplot showing the change in the posterior distribution of the parameter $\sigma_{plot}$ across the 31 tree species between the competing models."}
 
 ## Model predictive accuracy
 
@@ -100,8 +100,56 @@ Consequently, we selected the complete model with plot random effects, competiti
 
 \newpage
 
-# Supplementary Mateiral 2
+# Supplementary Material 2
 
+\hypertarget{tbl:variability_impl_mech}{%
+\begin{longtable}{lrrr}
+\caption{List of species and their frequency across the dataset.}
+\label{tbl:variability_impl_mech}
+\endfirsthead
+\endhead
+  \toprule
+    Species & Number of
+    plots & Number of
+    individual & Number of
+    observation \\
+    \midrule\addlinespace[2.5pt]
+    \emph{Acer rubrum} & 13149 & 96739 & 235408 \\
+    \emph{Abies balsamea} & 11932 & 247737 & 521565 \\
+    \emph{Betula papyrifera} & 9508 & 78049 & 203500 \\
+    \emph{Picea mariana} & 7869 & 186491 & 454246 \\
+    \emph{Acer saccharum} & 7403 & 71961 & 184641 \\
+    \emph{Picea glauca} & 5889 & 27641 & 65626 \\
+    \emph{Populus tremuloides} & 5876 & 56010 & 127115 \\
+    \emph{Betula alleghaniensis} & 5624 & 28872 & 73116 \\
+    \emph{Quercus rubra} & 4549 & 18272 & 46341 \\
+    \emph{Quercus alba} & 4200 & 20376 & 51466 \\
+    \emph{Fagus grandifolia} & 3819 & 21784 & 51764 \\
+    \emph{Prunus serotina} & 3730 & 12178 & 26464 \\
+    \emph{Thuja occidentalis} & 3230 & 51312 & 125811 \\
+    \emph{Pinus strobus} & 3165 & 15638 & 38470 \\
+    \emph{Fraxinus americana} & 2885 & 8942 & 21501 \\
+    \emph{Quercus velutina} & 2722 & 10068 & 23298 \\
+    \emph{Tsuga canadensis} & 2604 & 17914 & 45198 \\
+    \emph{Nyssa sylvatica} & 2436 & 6275 & 15785 \\
+    \emph{Quercus stellata} & 2279 & 14707 & 32102 \\
+    \emph{Picea rubens} & 2190 & 16580 & 41674 \\
+    \emph{Liquidambar styraciflua} & 2154 & 11655 & 29671 \\
+    \emph{Fraxinus pennsylvanica} & 2149 & 9048 & 20588 \\
+    \emph{Tilia americana} & 2059 & 8415 & 21412 \\
+    \emph{Pinus banksiana} & 2057 & 34122 & 75372 \\
+    \emph{Populus grandidentata} & 2015 & 13759 & 29358 \\
+    \emph{Fraxinus nigra} & 1951 & 12633 & 31156 \\
+    \emph{Liriodendron tulipifera} & 1912 & 8580 & 21071 \\
+    \emph{Carya tomentosa} & 1636 & 3897 & 10590 \\
+    \emph{Carya glabra} & 1622 & 4002 & 9916 \\
+    \emph{Quercus prinus} & 1590 & 11000 & 27554 \\
+    \emph{Juniperus virginiana} & 1571 & 9474 & 21400 \\
+  \bottomrule
+\end{longtable}
+}
+
+\newpage
 
 ![Spatial (top left) and temporal (top right) coverage of the dataset incorporating data from the USA and Quebec. The top right panel shows the distribution of observations per class of latitude for the 31 species used in this study.](https://willvieira.github.io/book_forest-demography-IPM/db_files/figure-html/fig-plotCoverage-1.png){#fig:figsupp1 short-caption="Spatial (top left) and temporal (top right) coverage of the dataset incorporating data from the USA and Quebec."}
 
@@ -206,7 +254,7 @@ Figure @fig:rfr2 shows the distribution of $R^2$ from 20 random forest replicati
 These values range from 0.2 to 0.9, with an average value of 0.63 across species and conditions.
 This variation possibly reflects the uncertainty in the parameters across species.
 
-![Distribution of $R^2$ from 20 random forest replications across different climate and competition conditions.](https://willvieira.github.io/book_forest-demography-IPM/sens_analysis_files/figure-html/fig-rfr2-1.png){#fig:rfr2 short-caption=""}
+![Distribution of $R^2$ from 20 random forest replications across different climate and competition conditions.](https://willvieira.github.io/book_forest-demography-IPM/sens_analysis_files/figure-html/fig-rfr2-1.png){#fig:rfr2 short-caption="Distribution of $R^2$ across different climate and competition conditions."}
 
 As our primary interest lies in demographic levels rather than parameter levels, we focus on the combined importance of all parameters for each demographic model.
 This splits the total importance among the four demographic functions of the IPM: growth, survival, recruitment, and recruited size models.
