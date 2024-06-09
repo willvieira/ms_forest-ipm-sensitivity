@@ -2,9 +2,6 @@
 # This applies only for the templateThesis.tex file where both main text and supp are in the same pdf output
 # Warning, this should be writen in Lua
 
-#TODO: automate the update of supplemental figure citations to LaTeX
-#TODO: move the execution of this file and the `fetch_img.R` script from `github/workflows/build.yml` to `manuscript/conf/build.sh`
-
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 # Steps:
