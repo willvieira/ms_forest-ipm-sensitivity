@@ -19,11 +19,11 @@ However, the precision of methods used to quantify demographic performance is ra
 Some studies assess performance based solely on one of the growth, survival, or recruitment rates [@McGill2012;@bohner2020].
 When demographic rates are integrated into population models, specific components, such as recruitment, are often overlooked due to data limitations [@Kunstler2021;@LeSquin2021].
 Moreover, some studies do not account for density dependence [@Csergo2017;@Ohse2023], and when they do, they rarely differentiate between conspecific and heterospecific competition [@bohner2020;@LeSquin2021].
-Finally, despite the need to embrace model and data uncertainty [@MilnerGulland2017a], most of these studies assessed performance under average conditions and pointwise estimations, neglecting the associated uncertainty of the estimates.
+Finally, despite the need to embrace model and data uncertainty [@MilnerGulland2017a], most of these studies assessed performance under average covariate conditions and pointwise estimations, neglecting the associated uncertainty of the estimates.
 
 Rather than asking whether demographic performance correlates with distribution, a more fruitful question may be how climate and competition influence demographic performance.
 Indeed, we still miss a comprehensive partitioning of the sensitivity of forest dynamics to local and biogeographical drivers of performance [@Ohse2023].
-For instance, @Clark2011 found that individual growth is more sensitive to competition, while fecundity is more sensitive to climate.
+For instance, @Clark2011 found that annual growth rate is more sensitive to competition, while fecundity is more sensitive to climate.
 In contrast, @CopenhaverParry2016 found that growth was more sensitive to climate than competition.
 These studies provide crucial insights into how forest trees will respond to climate change and forest management, supporting conservation planning.
 However, they only assess the importance of climate and competition on single demographic components, lacking a complete picture of population dynamics.
@@ -34,7 +34,9 @@ Nevertheless, such information is still lacking for trees [@Ohse2023].
 Here, we evaluate how climate and competition affect the demography and population growth rate of the 31 most abundant forest tree species across Eastern North America.
 We leverage the complete (26 - 53°) latitudinal coverage of forest inventories across the US and Canada to capture the entire range of these species.
 Specifically, we model each of the growth, survival, and recruitment vital rates as a function of mean annual temperature and precipitation, as well as conspecific and heterospecific basal area density, serving as a proxy for competition for light.
-We use flexible non-linear hierarchical Bayesian models to capture the multiple effect forms of climate and competition while accounting for model uncertainty at different organizational scales.
+We fit these demographic models with a flexible, non-linear hierarchical Bayesian model.
+The non-linear approach captures both the complexity of trees' demographic rates and the multiple-effect forms of climate and competition.
+Furhtermore, the hierarchical Bayesian approach allows one to account for model uncertainty at different organizational scales.
 These demographic rate models are then incorporated into a size-structured Integral Projection Model (IPM) to quantify the $\lambda$ of each species under climate and competition effects.
 
 Our primary goal is to use the fitted IPM to compute the sensitivity of each species' $\lambda$ to climate and competition across their range.
@@ -60,9 +62,10 @@ The time intervals between measurements varied from 1 to 40 years, with a median
 
 These datasets provide individual-level information on the diameter at breast height (DBH) and the status (dead or alive) of more than 200 species.
 From this pool, we selected the 31 most abundant species (Table S1).
-This selection comprises nine conifer species and 21 hardwood species.
+This selection comprises 9 conifer species and 22 hardwood species.
 We ensured an even distribution of species across the shade tolerance axis, with three species classified as very intolerant, nine as intolerant, eight as intermediate, eight as tolerant, and five as very tolerant [@burns1990silvics].
 
+For the competition metric, we use asymmetric competition for light, meaning that each individual is affected only by neighbour individuals of larger size.
 We quantified asymmetric competition for light for a focal individual in a given plot by summing the total basal area of all individuals larger than the focal one, herein BAL.
 We further split BAL into the total density of conspecific and heterospecific individuals.
 For the climate variable, we obtained the 19 bioclimatic variables with a 10 $km^2$ (300 arcsec) resolution grid, covering the period from 1970 to 2018.
@@ -74,21 +77,21 @@ Due to the transitional nature of the dataset, we considered both the average an
 ## Model
 
 We evaluated the population growth rates of the 31 forest species using an Integral Projection Model (IPM).
-The IPM is a mathematical tool used to represent the dynamics of structured populations and communities.
+An IPM is a mathematical tool used to represent the dynamics of structured populations and communities.
 It distinguishes itself from traditional population models with the representation of a continuous trait in discrete time [@Easterling2000].
 This is especially relevant for trees due to the considerable variability in demographic rates depending on individual size [@kohyama1992].
 Specifically, the IPM consists of a set of functions predicting the transition of a distribution of individual traits from time $t$ to time $t+1$:
 
 $$
-n(z', t + 1) = \int_{L}^{U} \, k(z', z, \theta)\, n(z, t)\, \mathrm{d}z
+n(z', t + 1) = \int_{L}^{U} \, K(z', z, \theta)\, n(z, t)\, \mathrm{d}z
 $${#eq:ipm}
 
-The continuous trait $z$ at time $t$ represents the DBH, and $n(z, t)$ characterizes the continuous DBH distribution for a population.
+The continuous trait $z$ at time $t$ represents the DBH, bouded between the lower ($L$) and upper ($U$) values, and $n(z, t)$ characterizes the continuous DBH distribution for a population.
 The probability of the population distribution size from $n(z, t)$ to $n(z', t+1)$ is governed by the kernel $K$ and the species-specific parameters $\theta$.
-The kernel $K$ is composed of three sub-models:
+The kernel $K$, a continuous version of the discretized projection Matrix in structured population models, is composed of three sub-models:
 
 $$
-k(z', z, \theta) = [Growth(z', z, \theta) \times Survival(z, \theta)] + Recruitment(z, \theta)
+K(z', z, \theta) = [Growth(z', z, \theta) \times Survival(z, \theta)] + Recruitment(z, \theta)
 $${#eq:kernel}
 
 The growth function describes how individual trees increase in size, while the survival function determines the probability of staying alive throughout the next time step.
@@ -97,23 +100,23 @@ Below, we describe the basic (intercept) version of these models, followed by th
 
 ### Demographic rates
 
-**Growth** - We used the von Bertalanffy growth equation to describe the annual growth rate in DBH of an individual $i$ [@von1957quantitative].
-The size at time $t+\Delta t$ from the initial size $z_{i, t}$ of an individual at time $t$ is given by:
+**Growth** - the size in DBH of an individual at time $t + \Delta t$ after growing from time $t$ is determined by:
 
 $$
-  z_{i, t+\Delta t} = z_{i,t}  \times e^{-\Gamma \Delta t} + \zeta_{\infty} (1- e^{-\Gamma \Delta t})
+  dbh_{i,t + \Delta t} \sim N(\mu_{i, t+\Delta t}, \sigma) \\
+$$
+
+We used the von Bertalanffy growth equation to describe the annual growth rate in DBH of an individual $i$ [@von1957quantitative].
+The average size at time $t+\Delta t$ from the initial size $dbh_{i, t}$ of an individual at time $t$ is given by:
+
+$$
+  \mu_{i, t+\Delta t} = dbh_{i,t}  \times e^{-\Gamma \Delta t} + \zeta_{\infty} (1- e^{-\Gamma \Delta t})
 $$ {#eq:VBmodel}
 
 Where $\Delta t$ is the time interval between the initial and final size measurements and $\Gamma$ represents a dimensionless growth rate coefficient.
 $\zeta_{\infty}$ denotes the asymptotic size, which is the location at which growth approximates to zero.
 The rationale behind this model is that the growth rate exponentially decreases with size, converging to zero as size approaches $\zeta_{\infty}$.
 This assumption is particularly valuable in the context of the IPM, as it prevents eviction — where individuals are projected beyond the limits of the size distribution ($[L, U]$) defined by the Kernel.
-The final likelihood growth model accounting for individual variability is defined as follows: 
-
-\begin{align}
-&dbh_{i,t + \Delta t} \sim N(\mu, \sigma) \\
-&\mu = dbh_{i,t} \times e^{-\Gamma \Delta t} + \zeta_{\infty} (1- e^{-\Gamma \Delta t})
-\end{align}
 
 **Survival** - The chance of a mortality event ($M$) for an individual $i$ within the time interval between $t$ and $t+\Delta t$ is modeled as a Bernoulli distribution:
 
@@ -136,7 +139,6 @@ Most of all, they have different size thresholds for individual-based measuremen
 Therefore, we quantified the recruitment rate ($I$) as the ingrowth of new individuals into the adult population, defined as those with a DBH exceeding 12.7 cm.
 The quantity $I$ encompasses the processes of fecundity, dispersal, growth, and survival up to reaching the size threshold.
 Similar to growth and survival, the count of ingrowth individuals ($I$) reaching the 12.7 cm size threshold depends on the time interval between measurements.
-Therefore, we introduce two parameters to control the potential number of recruited individuals.
 We introduce two parameters to control the potential number of recruited individuals: $\phi$, determining the annual ingrowth rate per square meter, and $\rho$, denoting the annual survival probability of each ingrowth individual:
 
 $$
@@ -145,7 +147,7 @@ $${#eq:rec}
 
 Where $A$ represents the area of the plot in square meters.
 The model assumes that new individuals enter the population annually at a rate of $\phi$, and their likelihood of surviving until the subsequent measurement ($\rho$) declines over time.
-Note that $\rho$ in Equation #@eq:rec is not associated with Equation @eq:survP determining the survival of the adults.
+Note that $\rho$ in Equation @eq:rec is not associated with Equation @eq:survP determining the survival of the adults.
 Instead, $\rho$ is estimated from the data of individuals arriving in the population.
 Once an individual is recruited into the population, a submodel determines its initial size $z_I$, increasing linearly with time:
 
@@ -155,7 +157,6 @@ $${#eq:recSize}
 
 The $TNormal$ is a truncated distribution with lower and upper limits determined by the $\alpha$ and $\beta$ parameters, respectively.
 We set $\alpha$ to 12.7 cm, aligning it with the ingrowth threshold, while $\beta$ is set to infinity to allow for an unbounded upper limit.
-Similarly, this model is not associated with the growth model for adult (Equation @eq:VBmodel)
 
 ### Covariates
 
@@ -169,7 +170,7 @@ For a demographic component with an average intercept $\overline{I}$, an offset 
 
 Where $\sigma$ represents the variance among all plots $j$ and $I$ can take one of three forms: $\Gamma$ for growth, $\psi$ for survival, and $\phi$ for the recruitment model.
 
-**Competition** - We used BAL (asymmetric competition) instead of BA (symmetric competition), assuming that competition for light is the primary competitive factor driving forest dynamics [@Pacala1996a].
+**Competition** - We used basal area of larger individuals (BAL; asymmetric competition) instead of total basal area (BA; symmetric competition), assuming that competition for light is the primary competitive factor driving forest dynamics [@Pacala1996a].
 Therefore, each of the growth ($\Gamma$), longevity ($\psi$), and recruitment survival ($\rho$) parameters decreases exponentially with BAL.
 Take $I$ as one of the three parameters, the effect of BAL on $I$ is driven by two parameters describing the conspecific ($\beta$) and heterospecific ($\theta$) competition:
 
@@ -202,17 +203,19 @@ To address this issue, we constrained the optimal climate condition parameter ($
 
 ### Model fit and validation
 
-We fitted each of the growth, survival, and recruitment models separately for each species, using the Hamiltonian Monte Carlo (HMC) algorithm implemented in Stan [version 2.30.1 @stan2022stan] with the `cmdstandr` R package [version 0.5.3 @cmdstanr].
+We fitted each of the growth, survival, and recruitment models separately for each species, using the Hamiltonian Monte Carlo (HMC) algorithm implemented in the Stan software [version 2.30.1 @stan2022stan] with the `cmdstandr` R package interface [version 0.5.3 @cmdstanr].
+We conducted 2000 iterations for the warm-up and 2000 iterations for the sampling phase for each of the four chains, resulting in 8000 posterior samples (excluding the warm-up).
+However, we kept only the last 1000 iterations of the sampling phase to save computation time and storage space, resulting in 4000 posterior samples.
 We build and fit each demographic component incrementally, from a simple intercept, and gradually incorporate plot random effects, competition, and climate covariates.
-We recall that our goal is not to have the most complex model to achieve the highest predictive metric but to make inferences [@Tredennick2021].
+Recall that our goal is not to have the most complex model to achieve the highest predictive metric but to make inferences [@Tredennick2021].
 We focus on assessing the relative effects of climate and competition while controlling for other influential factors.
 Therefore, our modeling approach is guided by biological mechanisms, which tend to provide more robust extrapolation [@Briscoe2019] rather than being solely dictated by specific statistical metrics.
-Nevertheless, we check if increasing model complexity with new covariates does not result in worse performance using complementary metrics such as mean squared error (MSE), pseudo $R^2$, and Leave-One-Out Cross-Validation (LOO-CV).
+Nevertheless, we checked if increasing model complexity with new covariates does not result in worse performance using complementary metrics such as mean squared error (MSE), pseudo $R^2$ [@Gelman2019], and Leave-One-Out Cross-Validation (LOO-CV).
 Detailed discussions regarding model fit, diagnostics, and model comparison can be found in supplementary material 1.
 
 With the fitted demographic components, we constructed the Kernel $K$ of the IPM following Equation @eq:kernel.
 We employed the mid-point rule to perform the discrete-form integration of the continuous $K$ [@Ellner2016].
-This involved discretizing $K$ using bins of 0.1 cm, which are considered appropriate for obtaining unbiased estimates [@zuidema2010integral].
+This involved discretizing the projection kernel $K$ using bins of 0.1 cm, which are considered appropriate for obtaining unbiased estimates [@zuidema2010integral].
 Finally, we computed the asymptotic population growth rate ($\lambda$) using the leading eigenvalue of the discretized matrix $K$.
 
 ## Perturbation analysis
@@ -257,7 +260,6 @@ The code for the IPM model and the respective sensitivity analysis is available 
 All species-specific demographic components demonstrated convergence with $\hat{R} <1.05$ and low to no divergent iterations.
 In comparing the simple intercept model with the more complete versions, the LOO-CV consistently favored the complete model for all three demographic rates, featuring plot random effects, competition, and climate covariates, over other competing models (supplementary material 1).
 The absolute values of LOO-CV suggested that the growth model gained the most information from including covariates, followed by recruitment and survival models.
-We compared known trait groups from the literature, leveraging the mechanistic equations characterizing each demographic component.
 We further validated our model predictions by comparing the parameters with traits groups such as growth rate classes, maximum observed size, maximum observed age, shade tolerance, and seed mass [@burns1990silvics;@diaz2022].
 
 The growth model intercept comprises two parameters, one determining the asymptotic size ($\zeta_{\infty}$) and the annual growth rate $\Gamma$.
@@ -327,11 +329,11 @@ These findings contribute to a better understanding of how tree species might re
 
 ***Fit of demographic components***
 
-Our model demonstrated remarkable coherence between various traits associated and the growth, survival, and recruitment components.
+Our model demonstrated remarkable coherence when reproducing the known variation in traits related to growth, survival, and recruitment components found in the literature.
 The intercepts for growth and survival were correlated with maximal size and longevity [@burns1990silvics], while the recruitment intercept aligned well with the seed mass [@diaz2022].
 Additionally, the models effectively reproduced the fast-slow continuum [@SalgueroGomez2016], showing a negative correlation between growth and survival rate and a positive correlation between growth and recruitment rate (Figure S14).
 Regarding competition, the model captured the negative correlation between density dependence and shade tolerance.
-The model is also coherent with coexistence theory, with a stronger response to conspecific competition relative to heterospecific competition, crucial for biodiversity maintenance [@Chesson2000a].
+The model also matches a common expectation of communities where species coexist, with a stronger response to conspecific competition relative to heterospecific competition, crucial for biodiversity maintenance [@Chesson2000a].
 The intensity of conspecific density dependence was also higher for fast-growing trees than for slow-growing ones (Figure S15), similar to observations in tropical trees [@Zhu2018].
 For climate, validation is challenging due to limited data on optimal temperature and precipitation measures.
 Nevertheless, our results align with others, indicating the presence of demographic compensation across forest trees [@bohner2020;@Yang2022].
