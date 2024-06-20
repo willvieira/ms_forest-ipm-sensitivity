@@ -43,7 +43,7 @@ As we introduce covariates, it is expected that part of the variance in demograp
 Therefore, the larger the reduction in variance associated with plot random effects, the more significant the role of covariates in explaining demographic rates.
 The Figure @fig:par_var shows the $\sigma_{plot}$ change with increased model complexity for growth, survival, and recruitment vital rates.
 
-![Boxplot showing the change in the posterior distribution of the parameter $\\sigma_{plot}$ across the 31 tree species between the competing models. For each growth, survival, and recruitment vital rate, the simplest model (plot random effects only) increases in complexity with the addition of fixed size, competition, and climate covariates. Each colored dot represents the species' average posterior distribution.](manuscript/figs/supp1_1.png){#fig:par_var short-caption="Boxplot showing the change in the posterior distribution of the parameter $\sigma_{plot}$ across the 31 tree species between the competing models."}
+![Boxplot showing the change in the posterior distribution of the parameter $\sigma_{plot}$ across the 31 tree species between the competing models. For each growth, survival, and recruitment vital rate, the simplest model (plot random effects only) increases in complexity with the addition of fixed size, competition, and climate covariates. Each colored dot represents the species' average posterior distribution.](manuscript/figs/supp1_1.png){#fig:par_var short-caption="Boxplot showing the change in the posterior distribution of the parameter $\sigma_{plot}$ across the 31 tree species between the competing models."}
 
 ## Model predictive accuracy
 
@@ -66,7 +66,7 @@ The combination of sensitivity and specificity allows us to calculate corrected 
 
 ## Leave-one-out cross-validation
 
-Finally, we evaluated the competing models using the LOO-CV metric, where models are compared based on the difference in the expected log pointwise predictive density (ELPD_diff).
+Finally, we evaluated the competing models using the LOO-CV metric (Figure @fig:loo), where models are compared based on the difference in the expected log pointwise predictive density (ELPD_diff).
 In cases involving multiple models, the difference is calculated relative to the model with highest ELPD [@vehtari2017practical].
 Consequently, the model with ELPD_diff equal to zero is defined as the best model.
 In contrast, the performance of the other models is assessed based on their deviation from the reference model in pointwise predictive cross-validation.
@@ -211,7 +211,7 @@ In structured population models, sensitivity analyses involve computing partial 
 
 $$
  \frac{\partial \lambda}{\partial \theta_i}
-$$
+$${#eq:sens}
 
 where theta represents a vector of $i$ parameters.
 However, most methods quantify the local sensitivity of each parameter separately while holding all others constant [@Saltelli2019].
@@ -254,7 +254,7 @@ Figure @fig:rfr2 shows the distribution of $R^2$ from 20 random forest replicati
 These values range from 0.2 to 0.9, with an average value of 0.63 across species and conditions.
 This variation possibly reflects the uncertainty in the parameters across species.
 
-![Distribution of $R^2$ from 20 random forest replications across different climate and competition conditions.](https://willvieira.github.io/book_forest-demography-IPM/sens_analysis_files/figure-html/fig-rfr2-1.png){#fig:rfr2 short-caption="Distribution of $R^2$ across different climate and competition conditions."}
+![Distribution of $R^2$ from 20 random forest replications across different climate and competition conditions.](https://willvieira.github.io/book_forest-demography-IPM/sens_analysis_files/figure-html/fig-rfr2-1.png){#fig:rfr2 short-caption="Distribution of $R^2$ from 20 random forest replications across different climate and competition conditions."}
 
 As our primary interest lies in demographic levels rather than parameter levels, we focus on the combined importance of all parameters for each demographic model.
 This splits the total importance among the four demographic functions of the IPM: growth, survival, recruitment, and recruited size models.

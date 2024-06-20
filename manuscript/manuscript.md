@@ -103,8 +103,8 @@ Below, we describe the basic (intercept) version of these models, followed by th
 **Growth** - the size in DBH of an individual at time $t + \Delta t$ after growing from time $t$ is determined by:
 
 $$
-  dbh_{i,t + \Delta t} \sim N(\mu_{i, t+\Delta t}, \sigma) \\
-$$
+  dbh_{i,t + \Delta t} \sim N(\mu_{i, t+\Delta t}, \sigma)
+$${#eq:VBlik}
 
 We used the von Bertalanffy growth equation to describe the annual growth rate in DBH of an individual $i$ [@von1957quantitative].
 The average size at time $t+\Delta t$ from the initial size $dbh_{i, t}$ of an individual at time $t$ is given by:
@@ -163,10 +163,12 @@ We set $\alpha$ to 12.7 cm, aligning it with the ingrowth threshold, while $\bet
 **Random effects** - We introduced plot-level random effects in each demographic component to account for shared variance between individuals within the same plot.
 For a demographic component with an average intercept $\overline{I}$, an offset value ($\alpha$) is drawn for each plot $j$ from a normal distribution with a mean of zero and variance $\sigma$:
 
-\begin{align}
-  &\alpha_{j} \sim N(0, \sigma) \\
-  &I_j = \overline{I} + \alpha_j
-\end{align}
+$$
+\begin{split}
+&\alpha_{j} \sim N(0, \sigma) \\[2pt]
+&I_j = \overline{I} + \alpha_j
+\end{split}
+$${#eq:randomEffect}
 
 Where $\sigma$ represents the variance among all plots $j$ and $I$ can take one of three forms: $\Gamma$ for growth, $\psi$ for survival, and $\phi$ for the recruitment model.
 
@@ -176,7 +178,7 @@ Take $I$ as one of the three parameters, the effect of BAL on $I$ is driven by t
 
 $$
   I + \beta (BAL_{cons} + \theta \times BAL_{het})
-$$
+$${#eq:compEffect}
 
 When $\theta < 1$, conspecific competition is stronger than heterospecific competition.
 Conversely, heterospecific competition prevails when $\theta > 1$, and when $\theta = 1$, there is no distinction between conspecific and heterospecific competition.
@@ -235,11 +237,13 @@ Because the competition metric is computed at the individual level, the perturba
 As we were interested in the absolute difference, the resulting sensitivity value ranges between 0 and infinity, with lower values indicating a lower sensitivity of $\lambda$ to the specific covariate.
 We computed the log ratio between competition and climate ($CCR$) sensitivities to discern their relative effects as follows:
 
-\begin{align}
-&S_{comp, ij} = \frac{\partial \lambda_{ij}}{\partial BA_{cons, i}} + \frac{\partial \lambda_{ij}}{\partial BA_{het, i}}\\
-&S_{clim, ij} = \frac{\partial \lambda_{ij}}{\partial MAT_{i}} + \frac{\partial \lambda_{ij}}{\partial MAP_{i}}\\
+$$
+\begin{split}
+&S_{comp, ij} = \frac{\partial \lambda_{ij}}{\partial BA_{cons, i}} + \frac{\partial \lambda_{ij}}{\partial BA_{het, i}} \\[2pt]
+&S_{clim, ij} = \frac{\partial \lambda_{ij}}{\partial MAT_{i}} + \frac{\partial \lambda_{ij}}{\partial MAP_{i}} \\[2pt]
 &CCR_{ij} = \text{ln} \frac{S_{comp, ij}}{S_{clim, ij}}
-\end{align}
+\end{split}
+$${#eq:CCR}
 
 Here, $S$ represents the total sensitivity of species $i$ to competition or climate for a given plot $j$.
 Negative $CCR$ values indicate higher sensitivity of $\lambda$ to climate, while positive values indicate the opposite.
@@ -303,7 +307,7 @@ The decrease in sensitivity to competition from the cold to the hot border was m
 
 ![Differences in species population growth rate sensitivity to climate (left) and competition between the cold and hot range limits. Each species is represented by a connected line linking their cold (circle) and hot (triangle) range positions, colored according to the difference between the cold and hot sensitivities. Note that uncertainty in each sensitivity point estimation has been omitted for clarity.](https://willvieira.github.io/book_forest-demography-IPM/marginal_lambda_files/figure-html/fig-hot_vs_cold-1.png){#fig:cold_vs_hot width=100% short-caption="Differences in species population growth rate sensitivity to climate (left) and competition between the cold and hot range limits."}
 
-We further explore the relative sensitivity between climate and competition changes across the species' range distribution.
+We further explore the relative sensitivity between climate and competition changes across the species' range distribution (Figure @fig:temp_vs_comp).
 $\lambda$ was more sensitive to climate than competition for almost all species across the cold, center, and hot ranges ($ln(CCR)$ below zero).
 Across the MAT range distribution, the relative effect of climate to competition increased toward both the cold and hot borders of the range.
 This indicates that species located at the extremes of the MAT range distribution are even more sensitive to climate than species at the center.
