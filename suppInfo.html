@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+   <head>
+      <meta charset="utf-8">
+      <title>Sensitivity of tree species performance to climate and competition changes across their range distribution</title>
+      <script src="https://hypothes.is/embed.js" async></script>
+      <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <!--fonts-->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin="anonymous" />
+      <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,600|Source+Sans+Pro:300,300i,400,400i,600,600i&display=swap&subset=greek" rel="stylesheet">
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://cdn.rawgit.com/jpswalsh/academicons/master/css/academicons.min.css">
+      <style>
+         h1.title {
+            font-size: 38px;
+            text-align: center;
+         }
+
+         h4.author {
+            font-size: 18px;
+            text-align: center;
+         }
+
+         body {
+         font-size: 18px;
+         font-family: "Source Sans Pro", sans-serif;
+         }
+         body b,
+         body strong {
+         font-weight: 600;
+         }
+         body code,
+         body pre {
+         font-family: "Source Code Pro", monospace;
+         }
+         .container {
+         display: block !important;
+         margin: 0px auto;
+         padding: 3em;
+         max-width: 1000px;
+         }
+         header {
+         background-color: #f8f8f8;
+         }
+         header h1 {
+         margin-top: -0.2em;
+         padding-left: 0.5em;
+         }
+         a {
+         text-decoration: none;
+         color: #00667F;
+         }
+         a:hover {
+         color: #2a6496;
+         }
+         article p {
+         line-height: 150%;
+         color:#131313;
+         }
+         article.container {
+         max-width: 800px;
+         }
+         d-appendix {
+         font-size: 16px;
+         line-height: 1.3;
+         padding-left: 18px;
+         border: 1px solid rgba(0,0,0,0.1);
+         background: rgba(0, 0, 0, 0.02);
+         padding: 10px 18px;
+         color: rgba(150, 150, 150, 1);
+         overflow: hidden;
+         margin-top: -10px;
+         word-wrap: break-word;
+         display: block;
+         }
+         /* columns for appendix */
+         .row {
+         display: flex;
+         margin-left: -65px;
+         }
+         /* Create two equal columns that sits next to each other */
+         .rightColumn {
+         flex: 10%;
+         padding: 5px;
+         height: auto; /* Should be removed. Only for demonstration */
+         font-weight: 200;
+         margin-right: 110px;
+         }
+         .leftColumn {
+         padding: 5px;
+         width: 150px;
+         height: auto; /* Should be removed. Only for demonstration */
+         }
+         article h1 {
+         margin-top: 2em;
+         border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+         font-weight: 400;
+         }
+         article h2 {
+         margin-top: 1em;
+         margin-bottom: 0px;
+         padding-bottom: 0px;
+         font-weight: 400;
+         }
+         article h3 {
+         font-weight: 400;
+         }
+         .citation {
+         border-bottom: 1px #00667F;
+         }
+         figure {
+         font-size: 85%;
+         color: #767e79;
+         margin: 2em 0;
+         line-height: 1.3;
+         text-align: center;
+         }
+         figure img {
+         max-width: 100%;
+         }
+         figure figcaption {
+         text-align: left;
+         padding: 1em;
+         }
+         figure figcaption span {
+         color: #6c7670;
+         font-weight: 600;
+         }
+         nav.artifacts {
+         text-align: center;
+         background-color: #edefee;
+         padding: 1em;
+         }
+         .creators .creator {
+         margin-bottom: 0.5em;
+         padding-left: 1em;
+         }
+         .creators .creator .author {
+            display: inline-block;
+            color: #859089;
+            padding-bottom: 1em;
+         }
+         .creators .creator .affiliation {
+            display: inline-block;
+            color: #859089;
+            line-height: 1.4;
+            font-size: 85%;
+         }
+         .creators .creator .author {
+         color: #1e201f;
+         font-weight: 600;
+         }
+         .creators .creator .orcid {
+         padding-left: 2em;
+         font-family: "Source Code Pro", monospace;
+         float: right;
+         }
+         summary {
+         padding-top: 2em;
+         padding-left: 1em;
+         padding-right: 3em;
+         line-height: 1.3;
+         }
+         summary::before {
+         content: "Abstract";
+         font-weight: 600;
+         }
+         /* Reference when hover */
+         .tooltip-inner{
+         max-width:750px;
+         font-size: 90%;
+         text-align: left;
+         line-height: 1.5;
+         padding:0.8rem;
+         background-color:rgb(245, 245, 245);
+         border-radius: 10px;
+         }
+         .fade{
+         opacity:0;
+         transition:opacity .15s linear
+         }
+         .fade.show{
+         opacity:1
+         }
+      </style>
+   </head>
+   <body>
+      <header>
+         <section class="container">
+            <h2 style="padding-left: 0.7em;">Supporting information</h2>
+            <h1>Sensitivity of tree species performance to climate and competition changes across their range distribution</h1>
+            <section class="creators">
+            <div class="creator">
+                                 <div class="author">Willian Vieira</div>
+                  <div class="affiliation"><sup>
+                                             1                  </sup></div>
+                                       <a style="font-size: 1.2em; color: rgb(172, 203, 72);"  href='https://orcid.org/0000-0003-0283-4570' target="_blank";">
+                        <i class="ai ai-orcid"></i>
+                     </a>
+                                                         <a style="font-size: 1em; color: #00667F;" href = "mailto: willian.vieira@usherbrooke.ca">
+                        <i class="fas fa-envelope"></i>
+                     </a>
+                                    &nbsp;
+                                 <div class="author">Andrew MacDonald</div>
+                  <div class="affiliation"><sup>
+                                             1                  </sup></div>
+                                       <a style="font-size: 1.2em; color: rgb(172, 203, 72);"  href='https://orcid.org/0000-0003-1162-169X' target="_blank";">
+                        <i class="ai ai-orcid"></i>
+                     </a>
+                                                      &nbsp;
+                                 <div class="author">Dominique Gravel</div>
+                  <div class="affiliation"><sup>
+                                             1                  </sup></div>
+                                       <a style="font-size: 1.2em; color: rgb(172, 203, 72);"  href='https://orcid.org/0000-0002-4498-7076' target="_blank";">
+                        <i class="ai ai-orcid"></i>
+                     </a>
+                                                      &nbsp;
+                              <br>
+                                 <div class="affiliation"><sup>1</sup> Département de biologie, Université de Sherbrooke, Sherbrooke, QC, Canada</div><br>
+                           </div>
+            </section>
+         </section>
+      </header>
+
+      <nav class="artifacts">
+         <a href="https://github.com/willvieira/ms_forest-ipm-sensitivity" title="Github repo" target="_blank"><img src="https://img.shields.io/badge/write-github-blue.svg" /></a>
+         <a href="manuscript.pdf" title="Github repo" target="_blank"><img src="https://img.shields.io/badge/read-pdf-green.svg" /></a>
+         <a href="manuscript.docx" title="Github repo" target="_blank"><img src="https://img.shields.io/badge/read-docx-yellow.svg" /></a>
+               </nav>
+
+      <article class="container js-toc-content">
+         <h1 id="supplementary-material-1">Supplementary Material 1</h1>
+         <h2 id="sec-model-fit">Model fit</h2>
+         <p>We assessed the growth, survival, and recruitment rates by examining transitions between two measurements. While we fitted the growth and survival functions at the individual level, recruitment was evaluated at the plot level. Due to differences in measurement thresholds between the FIA and Quebec protocols, we only considered individuals with a dbh <span class="math inline">\(\ge\)</span> 127 mm. Therefore, we quantified the ingrowth rate as the number of individuals crossing the 127 mm threshold. We included trees with at least two measurements over time to quantify growth and survival. Similarly, we used plots with at least two measurements over time for ingrowth. To simplify the model hierarchy, we did not incorporate temporal models. Instead, we treated two transition measurements for the same individual as independent information. The plot random effects partially accounted for the variation at the individual level, where different individuals with multiple measurements shared the same variation.</p>
+         <p>We fitted each of the growth, survival, and recruitment models separately for each species, using the Hamiltonian Monte Carlo (HMC) algorithm via the Stan software <span class="citation" data-cites="stan2022stan">(version 2.30.1 Team and Others <a href="#ref-stan2022stan" role="doc-biblioref">2022</a>)</span> and the <code>cmdstandr</code> R package <span class="citation" data-cites="cmdstanr">(version 0.5.3 Gabry, Češnovar, and Johnson <a href="#ref-cmdstanr" role="doc-biblioref">2023</a>)</span>. We conducted 2000 iterations for the warm-up and sampling phases for each of the four chains, resulting in 8000 posterior samples. However, we kept only the last 1000 iterations of the sampling phase to save computation time and storage space, resulting in 4000 posterior samples. We assessed model convergence using Stan’s <span class="math inline">\(\hat{R}\)</span> statistic, considering convergence achieved when <span class="math inline">\(\hat{R} &lt; 1.05\)</span>. The complete code used for data preparation, model execution, and diagnostic analysis is hosted at <a href="https://github.com/willvieira/TreesDemography">https://github.com/willvieira/TreesDemography</a>. Diagnostic reports for all fitted models, including information on model convergence, parameter distributions, prediction checks, <span class="math inline">\(R^2\)</span>, and other metrics, are available at <a href="https://willvieira.github.io/TreesDemography/">https://willvieira.github.io/TreesDemography/</a>.</p>
+         <h2 id="model-comparison">Model comparison</h2>
+         <p>We constructed the demographic models incrementally, starting from the simple intercept model and gradually adding plot random effects, competition, and climate covariates. While the intercept-only model represents the most basic form, we opted to discard it and use the intercept model with random effects as the baseline or null model for comparison with more complex models. We ensured the convergence of all these model forms, and comprehensive diagnostic details are available at <a href="https://github.com/willvieira/TreesDemography">https://github.com/willvieira/TreesDemography</a>.</p>
+         <p>Our primary objective is to select the model that has learned the most from the data. We used complementary metrics to quantify the gain in information achieved by adding complexity to each demographic model. One intuitive metric involves assessing the reduction in variance attributed to likelihood and the variance associated with plot random effects. A greater reduction in their variance implies a greater information gain from model complexity. The following metrics are all derived from the idea of increasing predictive accuracy. Although we focus on inference, measuring predictive power is crucial for quantifying the additional information gained from including new covariates. The first two classic measures of predictive accuracy are the mean squared error (MSE) and the pseudo <span class="math inline">\(R^2\)</span>. We base these metrics on the linear relationship between observed and predicted demographic outputs. Finally, we used Leave-One-Out Cross-Validation (LOO-CV), which uses the sampled data to estimate the model’s out-of-sample predictive accuracy <span class="citation" data-cites="vehtari2017practical">(Vehtari, Gelman, and Gabry <a href="#ref-vehtari2017practical" role="doc-biblioref">2017</a>)</span>. LOO-CV allows us to assess how well each model describes the observed data and compare competing models to determine which has learned the most from the data.</p>
+         <h2 id="parameter-variance">Parameter variance</h2>
+         <p>This section describes how the variance attributed to plot random effects changes with increasing model complexity. As we introduce covariates, it is expected that part of the variance in demographic rates, initially attributed to random effects, shifts towards the covariate fixed effects. Therefore, the larger the reduction in variance associated with plot random effects, the more significant the role of covariates in explaining demographic rates. The Figure <a href="#fig:par_var">1</a> shows the <span class="math inline">\(\sigma_{plot}\)</span> change with increased model complexity for growth, survival, and recruitment vital rates.</p>
+         <div id="fig:par_var" class="fignos">
+         <figure>
+         <img src="manuscript/figs/supp1_1.png" data-short-caption="Boxplot showing the change in the posterior distribution of the parameter $\sigma_{plot}$ across the 31 tree species between the competing models." alt="Figure 1: Boxplot showing the change in the posterior distribution of the parameter \sigma_{plot} across the 31 tree species between the competing models. For each growth, survival, and recruitment vital rate, the simplest model (plot random effects only) increases in complexity with the addition of fixed size, competition, and climate covariates. Each colored dot represents the species’ average posterior distribution." /><figcaption aria-hidden="true"><span>Figure 1:</span> Boxplot showing the change in the posterior distribution of the parameter <span class="math inline">\(\sigma_{plot}\)</span> across the 31 tree species between the competing models. For each growth, survival, and recruitment vital rate, the simplest model (plot random effects only) increases in complexity with the addition of fixed size, competition, and climate covariates. Each colored dot represents the species’ average posterior distribution.</figcaption>
+         </figure>
+         </div>
+         <h2 id="model-predictive-accuracy">Model predictive accuracy</h2>
+         <p>We used pseudo <span class="math inline">\(R^2\)</span> and MSE metrics derived from comparing observed and predicted values to evaluate the predictive accuracy of growth and recruitment demographic rates. Higher <span class="math inline">\(R^2\)</span> values and lower MSE indicate better overall model accuracy. The Figures <a href="#fig:R2">2</a> and <a href="#fig:MSE">3</a> compare the growth and recruitment models using <span class="math inline">\(R^2\)</span> and MSE, respectively.</p>
+         <div id="fig:R2" class="fignos">
+         <figure>
+         <img src="manuscript/figs/supp1_2.png" data-short-caption="Posterior distribution of pseudo $R^2$ across the 31 tree species between the competing models." alt="Figure 2: Posterior distribution of pseudo R^2 across the 31 tree species between the competing models. For each growth, survival, and recruitment vital rate, the simplest model (plot random effects only) increases in complexity with the addition of fixed competition and climate covariates. Each colored dot represents the species’ average posterior distribution." /><figcaption aria-hidden="true"><span>Figure 2:</span> Posterior distribution of pseudo <span class="math inline">\(R^2\)</span> across the 31 tree species between the competing models. For each growth, survival, and recruitment vital rate, the simplest model (plot random effects only) increases in complexity with the addition of fixed competition and climate covariates. Each colored dot represents the species’ average posterior distribution.</figcaption>
+         </figure>
+         </div>
+         <div id="fig:MSE" class="fignos">
+         <figure>
+         <img src="manuscript/figs/supp1_3.png" data-short-caption="Posterior distribution of Mean Squared Error (MSE) across the 31 tree species as models become more complex." alt="Figure 3: Posterior distribution of Mean Squared Error (MSE) across the 31 tree species as models become more complex." /><figcaption aria-hidden="true"><span>Figure 3:</span> Posterior distribution of Mean Squared Error (MSE) across the 31 tree species as models become more complex.</figcaption>
+         </figure>
+         </div>
+         <p>We used three complementary metrics for the survival model to assess model predictions. While the accuracy of classification models is often evaluated through the fraction of correct predictions, this measure can be misleading for unbalanced datasets such as mortality, where dead events are rare. To address this issue, we calculated sensitivity, which measures the percentage of dead trees correctly identified as dead (true positives). We also computed specificity, which measures the percentage of live trees correctly identified as alive (true negatives). The combination of sensitivity and specificity allows us to calculate corrected accuracy, considering the unbalanced accuracy predictions of positive and negative events (Figure <a href="#fig:Acc">4</a>).</p>
+         <div id="fig:Acc" class="fignos">
+         <figure>
+         <img src="manuscript/figs/supp1_4.png" data-short-caption="Comparing the posterior distribution of sensitivity, specificity, and accuracy across the 31 tree species between the competing models." alt="Figure 4: Comparing the posterior distribution of sensitivity, specificity, and accuracy across the 31 tree species between the competing models. Each colored dot represents the species’ average posterior distribution." /><figcaption aria-hidden="true"><span>Figure 4:</span> Comparing the posterior distribution of sensitivity, specificity, and accuracy across the 31 tree species between the competing models. Each colored dot represents the species’ average posterior distribution.</figcaption>
+         </figure>
+         </div>
+         <h2 id="leave-one-out-cross-validation">Leave-one-out cross-validation</h2>
+         <p>Finally, we evaluated the competing models using the LOO-CV metric (Figure <a href="#fig:loo">5</a>), where models are compared based on the difference in the expected log pointwise predictive density (ELPD_diff). In cases involving multiple models, the difference is calculated relative to the model with highest ELPD <span class="citation" data-cites="vehtari2017practical">(Vehtari, Gelman, and Gabry <a href="#ref-vehtari2017practical" role="doc-biblioref">2017</a>)</span>. Consequently, the model with ELPD_diff equal to zero is defined as the best model. In contrast, the performance of the other models is assessed based on their deviation from the reference model in pointwise predictive cross-validation. Given the large number of observations in the dataset, we approximated LOO-CV using PSIS-LOO and subsampling. For each species, we approximated LOO-CV by sampling one-fifth of the total number of observations.</p>
+         <div id="fig:loo" class="fignos">
+         <figure>
+         <img src="manuscript/figs/supp1_5.png" data-short-caption="Boxplot shows the LOO-CV compare between the competing models based on the expected log pointwise predictive density (ELPD_diff) difference across the 31 tree species." alt="Figure 5: Boxplot shows the LOO-CV compare between the competing models based on the expected log pointwise predictive density (ELPD_diff) difference across the 31 tree species. The sd_diff is the standard error of the ELPD difference between the model and the reference model (ELPD_diff equal to zero)." /><figcaption aria-hidden="true"><span>Figure 5:</span> Boxplot shows the LOO-CV compare between the competing models based on the expected log pointwise predictive density (ELPD_diff) difference across the 31 tree species. The sd_diff is the standard error of the ELPD difference between the model and the reference model (ELPD_diff equal to zero).</figcaption>
+         </figure>
+         </div>
+         <h2 id="size-effect-in-survival">Size effect in survival</h2>
+         <p>We initially incorporated the size effect into the survival models due to the structured-population approach. However, we observed that the effect of size on mortality probability was generally weak and variable among species, with no clear pattern of increased mortality probability with larger individual size. All models that included the size effect performed worse than the null model, which contained only plot random effects (Figure <a href="#fig:loo_mort">6</a>).</p>
+         <div id="fig:loo_mort" class="fignos">
+         <figure>
+         <img src="manuscript/figs/supp1_6.png" data-short-caption="Boxplot shows the LOO-CV compare between the competing models based on the expected log pointwise predictive density (ELPD_diff) difference across the 31 tree species." alt="Figure 6: Boxplot shows the LOO-CV compare between the competing models based on the expected log pointwise predictive density (ELPD_diff) difference across the 31 tree species. The sd_diff is the standard error of the ELPD difference between the model and the reference model (ELPD_diff equal to zero)." /><figcaption aria-hidden="true"><span>Figure 6:</span> Boxplot shows the LOO-CV compare between the competing models based on the expected log pointwise predictive density (ELPD_diff) difference across the 31 tree species. The sd_diff is the standard error of the ELPD difference between the model and the reference model (ELPD_diff equal to zero).</figcaption>
+         </figure>
+         </div>
+         <h2 id="conclusion">Conclusion</h2>
+         <p>Our analysis revealed that incorporating competition into the growth, survival, and recruitment models proved more effective in gaining individual-level information than climate variables. The parameter <span class="math inline">\(\sigma_{plot}\)</span>, interpreted as spatial heterogeneity, was lowest in the growth model, followed by recruitment and survival. As the models became more complex with the inclusion of covariates, recruitment exhibited the most significant reduction in spatial variance, followed by growth, with no clear pattern in the case of survival.</p>
+         <p>Regarding predictive performance, competition contributed more to the overall predictive capacity (<span class="math inline">\(R^2\)</span>, MSE, and corrected accuracy) in the growth and survival models compared to climate variables. Although recruitment had the largest reduction in <span class="math inline">\(\sigma_{plot}\)</span>, it had minimal impact on prediction accuracy.</p>
+         <p>Finally, the LOO-CV indicates a clear trend where the complete model featuring plot random effects, competition, and climate covariates outperformed the other competing models. Furthermore, the absolute value of the ELPD shows that the growth model gained the most information from including covariates, followed by recruitment and survival models. Consequently, we selected the complete model with plot random effects, competition, and climate covariates as the preferred model for further analysis.</p>
+         <h1 id="supplementary-material-2">Supplementary Material 2</h1>
+         <div id="fig:figsupp1" class="fignos">
+         <figure>
+         <img src="https://willvieira.github.io/book_forest-demography-IPM/db_files/figure-html/fig-plotCoverage-1.png" data-short-caption="Spatial (top left) and temporal (top right) coverage of the dataset incorporating data from the USA and Quebec." alt="Figure 7: Spatial (top left) and temporal (top right) coverage of the dataset incorporating data from the USA and Quebec. The top right panel shows the distribution of observations per class of latitude for the 31 species used in this study." /><figcaption aria-hidden="true"><span>Figure 7:</span> Spatial (top left) and temporal (top right) coverage of the dataset incorporating data from the USA and Quebec. The top right panel shows the distribution of observations per class of latitude for the 31 species used in this study.</figcaption>
+         </figure>
+         </div>
+         <div id="fig:figsupp2" class="fignos">
+         <figure>
+         <img src="https://willvieira.github.io/book_forest-demography-IPM/pars_intercept_files/figure-html/fig-intGrowth-1.png" data-short-caption="Posterior distribution for the intercept of the growth model using the 10-year average growth rate." alt="Figure 8: Posterior distribution for the intercept of the growth model using the 10-year average growth rate. Species are classified by their general growth trait following Burns, Honkala, and Others (1990)." /><figcaption aria-hidden="true"><span>Figure 8:</span> Posterior distribution for the intercept of the growth model using the 10-year average growth rate. Species are classified by their general growth trait following <span class="citation" data-cites="burns1990silvics">Burns, Honkala, and Others (<a href="#ref-burns1990silvics" role="doc-biblioref">1990</a>)</span>.</figcaption>
+         </figure>
+         </div>
+         <div id="fig:figsupp3" class="fignos">
+         <figure>
+         <img src="https://willvieira.github.io/book_forest-demography-IPM/pars_intercept_files/figure-html/fig-intcerpt_ingrowth-1.png" data-short-caption="Posterior distribution for the intercept of the ingrwoth model for the number of individuals that ingress the population per year per $m^2$ in function seed mass [@diaz2022]." alt="Figure 9: Posterior distribution for the intercept of the ingrwoth model for the number of individuals that ingress the population per year per m^2 in function seed mass (Díaz et al. 2022). Species are classified by their successional status following Burns, Honkala, and Others (1990)." /><figcaption aria-hidden="true"><span>Figure 9:</span> Posterior distribution for the intercept of the ingrwoth model for the number of individuals that ingress the population per year per <span class="math inline">\(m^2\)</span> in function seed mass <span class="citation" data-cites="diaz2022">(Díaz et al. <a href="#ref-diaz2022" role="doc-biblioref">2022</a>)</span>. Species are classified by their successional status following <span class="citation" data-cites="burns1990silvics">Burns, Honkala, and Others (<a href="#ref-burns1990silvics" role="doc-biblioref">1990</a>)</span>.</figcaption>
+         </figure>
+         </div>
+         <div id="fig:figsupp4" class="fignos">
+         <figure>
+         <img src="https://willvieira.github.io/book_forest-demography-IPM/pars_intercept_files/figure-html/fig-intcerpt_ingP-1.png" data-short-caption="Posterior distribution for the intercept of the annual survival probability for the ingrowth model." alt="Figure 10: Posterior distribution for the intercept of the annual survival probability for the ingrowth model. Species are classified by their shade tolerance trait following Burns, Honkala, and Others (1990)." /><figcaption aria-hidden="true"><span>Figure 10:</span> Posterior distribution for the intercept of the annual survival probability for the ingrowth model. Species are classified by their shade tolerance trait following <span class="citation" data-cites="burns1990silvics">Burns, Honkala, and Others (<a href="#ref-burns1990silvics" role="doc-biblioref">1990</a>)</span>.</figcaption>
+         </figure>
+         </div>
+         <div id="fig:figsupp5" class="fignos">
+         <figure>
+         <img src="https://willvieira.github.io/book_forest-demography-IPM/pars_competition_files/figure-html/fig-compRec-1.png" data-short-caption="Posterior distribution of the density dependence parameter affecting the annual survival rate of recruitment individuals." alt="Figure 11: Posterior distribution of the density dependence parameter affecting the annual survival rate of recruitment individuals. Species are classified by their shade tolerance trait following Burns, Honkala, and Others (1990)." /><figcaption aria-hidden="true"><span>Figure 11:</span> Posterior distribution of the density dependence parameter affecting the annual survival rate of recruitment individuals. Species are classified by their shade tolerance trait following <span class="citation" data-cites="burns1990silvics">Burns, Honkala, and Others (<a href="#ref-burns1990silvics" role="doc-biblioref">1990</a>)</span>.</figcaption>
+         </figure>
+         </div>
+         <div id="fig:figsupp6" class="fignos">
+         <figure>
+         <img src="https://willvieira.github.io/book_forest-demography-IPM/pars_climate_files/figure-html/fig-matDist-1.png" data-short-caption="Distribution for the optimal annual mean temperature ($\xi_{MAT}$) for growth (green), recruitment (yellow), and survival (brown)." alt="Figure 12: Distribution for the optimal annual mean temperature (\xi_{MAT}) for growth (green), recruitment (yellow), and survival (brown). The gray density plot is the annual mean temperature distribution among all observed trees across space and time." /><figcaption aria-hidden="true"><span>Figure 12:</span> Distribution for the optimal annual mean temperature (<span class="math inline">\(\xi_{MAT}\)</span>) for growth (green), recruitment (yellow), and survival (brown). The gray density plot is the annual mean temperature distribution among all observed trees across space and time.</figcaption>
+         </figure>
+         </div>
+         <div id="fig:figsupp7" class="fignos">
+         <figure>
+         <img src="https://willvieira.github.io/book_forest-demography-IPM/pars_climate_files/figure-html/fig-mapDist-1.png" data-short-caption="Distribution for the optimal mean annual precipitation ($\xi_{MAP}$) for growth (green), recruitment (yellow), and survival (brown)." alt="Figure 13: Distribution for the optimal mean annual precipitation (\xi_{MAP}) for growth (green), recruitment (yellow), and survival (brown). The density plot in gray is the distribution of annual precipitation variable among all observed trees across space and time." /><figcaption aria-hidden="true"><span>Figure 13:</span> Distribution for the optimal mean annual precipitation (<span class="math inline">\(\xi_{MAP}\)</span>) for growth (green), recruitment (yellow), and survival (brown). The density plot in gray is the distribution of annual precipitation variable among all observed trees across space and time.</figcaption>
+         </figure>
+         </div>
+         <div id="fig:figsupp8" class="fignos">
+         <figure>
+         <img src="manuscript/figs/intercept_corr.png" data-short-caption="Correlation between (left panel) growth rate ($\Gamma$) and annual survival rate ($\psi$) and (right panel) growth rate ($\Gamma$) and annual recruitment rate ($\phi$)." alt="Figure 14: Correlation between (left panel) growth rate (\Gamma) and annual survival rate (\psi) and (right panel) growth rate (\Gamma) and annual recruitment rate (\phi). The uncertainty of the parameters is summarised by a Multivariate Normal Density function with 90% probability." /><figcaption aria-hidden="true"><span>Figure 14:</span> Correlation between (left panel) growth rate (<span class="math inline">\(\Gamma\)</span>) and annual survival rate (<span class="math inline">\(\psi\)</span>) and (right panel) growth rate (<span class="math inline">\(\Gamma\)</span>) and annual recruitment rate (<span class="math inline">\(\phi\)</span>). The uncertainty of the parameters is summarised by a Multivariate Normal Density function with 90% probability.</figcaption>
+         </figure>
+         </div>
+         <div id="fig:figsupp9" class="fignos">
+         <figure>
+         <img src="manuscript/figs/comp_CNDD_vs_growth.png" data-short-caption="Posterior distribution for the conspecific (red) and heterospecific (blue) density dependence for each class of growth rate [@burns1990silvics]." alt="Figure 15: Posterior distribution for the conspecific (red) and heterospecific (blue) density dependence for each class of growth rate (Burns, Honkala, and Others 1990). The more negative the \beta, the stronger the competition effect." /><figcaption aria-hidden="true"><span>Figure 15:</span> Posterior distribution for the conspecific (red) and heterospecific (blue) density dependence for each class of growth rate <span class="citation" data-cites="burns1990silvics">(Burns, Honkala, and Others <a href="#ref-burns1990silvics" role="doc-biblioref">1990</a>)</span>. The more negative the <span class="math inline">\(\beta\)</span>, the stronger the competition effect.</figcaption>
+         </figure>
+         </div>
+         <div id="fig:figsupp10" class="fignos">
+         <figure>
+         <img src="https://willvieira.github.io/book_forest-demography-IPM/pars_climate_files/figure-html/fig-climRangeVsTau-1.png" data-short-caption="Climate breadth in function of climate range size." alt="Figure 16: Climate breadth in function of climate range size. The higher the climate range size, the more climate conditions the species experienced." /><figcaption aria-hidden="true"><span>Figure 16:</span> Climate breadth in function of climate range size. The higher the climate range size, the more climate conditions the species experienced.</figcaption>
+         </figure>
+         </div>
+         <div id="fig:figsupp11" class="fignos">
+         <figure>
+         <img src="manuscript/figs/temp_optimal_rangeLocation.png" data-short-caption="Correlation between posterior distribution of optimal temperature ($\xi_{MAT}$) and the species&#39; midpoint location across the mean annual temperature range." alt="Figure 17: Correlation between posterior distribution of optimal temperature (\xi_{MAT}) and the species’ midpoint location across the mean annual temperature range. The transparency of each species point is scaled to be a function of niche breadth. The closer this value is to zero, the higher the breadth around the mean. In other words, when climate breadth is zero, the bell-shaped unimodal function becomes an almost flat line. Colored species names are those with niche breadth higher than 0.5." /><figcaption aria-hidden="true"><span>Figure 17:</span> Correlation between posterior distribution of optimal temperature (<span class="math inline">\(\xi_{MAT}\)</span>) and the species’ midpoint location across the mean annual temperature range. The transparency of each species point is scaled to be a function of niche breadth. The closer this value is to zero, the higher the breadth around the mean. In other words, when climate breadth is zero, the bell-shaped unimodal function becomes an almost flat line. Colored species names are those with niche breadth higher than 0.5.</figcaption>
+         </figure>
+         </div>
+         <h1 id="supplementary-mateiral-3">Supplementary Mateiral 3</h1>
+         <h2 id="sensitivity-analysis">Sensitivity analysis</h2>
+         <p>Here, we conducted a global sensitivity analysis (GSA) of the population growth rate (<span class="math inline">\(\lambda\)</span>) with respect to demographic models. Sensitivity analysis uses various methods to decompose the total variance of an outcome into contributions from parameters or input variables. In structured population models, sensitivity analyses involve computing partial derivatives of <span class="math inline">\(\lambda\)</span> to individual parameters, following <span class="citation" data-cites="Caswell1978">Caswell (<a href="#ref-Caswell1978" role="doc-biblioref">1978</a>)</span> as:</p>
+         <p><span id="eq:sens" class="eqnos"><span class="math display">\[
+          \frac{\partial \lambda}{\partial \theta_i}
+         \]</span><span class="eqnos-number">(1)</span></span></p>
+         <p>where theta represents a vector of <span class="math inline">\(i\)</span> parameters. However, most methods quantify the local sensitivity of each parameter separately while holding all others constant <span class="citation" data-cites="Saltelli2019">(Saltelli et al. <a href="#ref-Saltelli2019" role="doc-biblioref">2019</a>)</span>. This approach can overlook the obscure parameter interactions often common in complex models. Furthermore, because of the high dimensionality of IPM due to the large number of parameters, these methods can quickly become computationally expensive.</p>
+         <p>To address this, we leveraged the efficiency of non-parametric models, such as random forests, for variable importance classification <span class="citation" data-cites="antoniadis2021">(Antoniadis, Lambert-Lacroix, and Poggi <a href="#ref-antoniadis2021" role="doc-biblioref">2021</a>)</span>. This approach offers speed and suits our study as it allows us to quantify both sources of variability in <span class="math inline">\(\lambda\)</span>. It accounts for the sensitivity of <span class="math inline">\(\lambda\)</span> to each parameter and considers the uncertainty associated with the parameters. Therefore, a specific parameter may have higher importance because either <span class="math inline">\(\lambda\)</span> is more sensitive to it or because the parameter is more uncertain.</p>
+         <p>We quantified the variability in population growth rate in function of the parameters using an <em>insileco</em> experimental approach. Specifically, we quantified the variability <span class="math inline">\(\lambda\)</span> for different climate conditions, ranging from cold to the center and up to the hot mean annual temperatures experienced by each species. Furthermore, we combined the climate conditions with a low and high competition intensity. We defined the temperature ranges for each species using the 1st, 50th, and 99th percentiles. The low competition was defined as a population size of <span class="math inline">\(N = 0.1\)</span>, while high competition was set at the 99th percentile of the plot basal area. Precipitation was kept at optimal conditions computed based on the average optimal precipitation parameters among growth, survival, and recruitment models.</p>
+         <p>For each species, climate, and competition conditions, we computed <span class="math inline">\(\lambda\)</span> 500 times using different draws from the posterior distribution, setting the plot random effects to zero. The code used for this analysis can be found in the <a href="https://github.com/willvieira/forest-IPM/tree/master/simulations/sensAnalysis_v3"><code>forest-IPM</code></a> GitHub repository.</p>
+         <h2 id="simulation-summary">Simulation Summary</h2>
+         <p>The final simulation involved a total of 500 draws across species and different conditions. The Figure <a href="#fig:lambdaDist">18</a> illustrates the distribution of <span class="math inline">\(\lambda\)</span> computed using 500 random draws from the posterior distribution of parameters across different climate and competition conditions.</p>
+         <div id="fig:lambdaDist" class="fignos">
+         <figure>
+         <img src="https://willvieira.github.io/book_forest-demography-IPM/sens_analysis_files/figure-html/fig-lambdaDist-1.png" data-short-caption="Distribution of 500 draws of population growth rate ($\lambda$) for different climate and competition conditions" alt="Figure 18: Distribution of 500 draws of population growth rate (\lambda) for different climate and competition conditions" /><figcaption aria-hidden="true"><span>Figure 18:</span> Distribution of 500 draws of population growth rate (<span class="math inline">\(\lambda\)</span>) for different climate and competition conditions</figcaption>
+         </figure>
+         </div>
+         <h2 id="importance-of-demographic-models">Importance of demographic models</h2>
+         <p>Random forest is a non-parametric classification or regression model that ranks each input variable’s importance in explaining the variance of the response variable. We used the permutation method for ranking variable importance <span class="citation" data-cites="breiman2001">(Breiman <a href="#ref-breiman2001" role="doc-biblioref">2001</a>)</span>. This method measures the change in model performance by individually shuffling (permuting) the values of each input variable. The greater the change in predictive accuracy with shuffling input values, the more important the specific variable will become. This is computed individually for each tree and then averaged across all <span class="math inline">\(n\)</span> random trees. Finally, we normalized the importance output of each regression model so that they sum to 1. We used the R package <code>ranger</code> with default hyperparameters for fitting the random forest models <span class="citation" data-cites="Wright2017">(Wright and Ziegler <a href="#ref-Wright2017" role="doc-biblioref">2017</a>)</span>.</p>
+         <p>Figure <a href="#fig:rfr2">19</a> shows the distribution of <span class="math inline">\(R^2\)</span> from 20 random forest replications across different climate and competition conditions. These values range from 0.2 to 0.9, with an average value of 0.63 across species and conditions. This variation possibly reflects the uncertainty in the parameters across species.</p>
+         <div id="fig:rfr2" class="fignos">
+         <figure>
+         <img src="https://willvieira.github.io/book_forest-demography-IPM/sens_analysis_files/figure-html/fig-rfr2-1.png" data-short-caption="Distribution of $R^2$ from 20 random forest replications across different climate and competition conditions." alt="Figure 19: Distribution of R^2 from 20 random forest replications across different climate and competition conditions." /><figcaption aria-hidden="true"><span>Figure 19:</span> Distribution of <span class="math inline">\(R^2\)</span> from 20 random forest replications across different climate and competition conditions.</figcaption>
+         </figure>
+         </div>
+         <p>As our primary interest lies in demographic levels rather than parameter levels, we focus on the combined importance of all parameters for each demographic model. This splits the total importance among the four demographic functions of the IPM: growth, survival, recruitment, and recruited size models. The recruited size model had an insignificant contribution to <span class="math inline">\(\lambda\)</span>, with nearly all random forest models showing a contribution below 1%. Thus, we omitted this model and concentrated on the growth, survival, and recruitment models, which collectively explain over 99% of the variation in <span class="math inline">\(\lambda\)</span> (Figure <a href="#fig:ternaryLambda">20</a>).</p>
+         <div id="fig:ternaryLambda" class="fignos">
+         <figure>
+         <img src="https://willvieira.github.io/book_forest-demography-IPM/sens_analysis_files/figure-html/fig-ternaryLambda-1.png" data-short-caption="Ternary plot describing the importance distribution among the growth, survival, and recruitment models." alt="Figure 20: Ternary plot describing the importance distribution among the growth, survival, and recruitment models. Color represents the level of shade tolerance (Burns, Honkala, and Others 1990)." /><figcaption aria-hidden="true"><span>Figure 20:</span> Ternary plot describing the importance distribution among the growth, survival, and recruitment models. Color represents the level of shade tolerance <span class="citation" data-cites="burns1990silvics">(Burns, Honkala, and Others <a href="#ref-burns1990silvics" role="doc-biblioref">1990</a>)</span>.</figcaption>
+         </figure>
+         </div>
+         <p>The ternary plots above show the raw importance data from the random forest, which can be challenging to interpret. The key message is that variance in <span class="math inline">\(\lambda\)</span> is primarily explained by the recruitment and survival demographic models. Furthermore, certain conditions appear to shift the importance from recruitment to the survival model. In Figure <a href="#fig:recVsMort">21</a>, we explore the correlation between the importance of recruitment and survival under different covariate conditions.</p>
+         <div id="fig:recVsMort" class="fignos">
+         <figure>
+         <img src="https://willvieira.github.io/book_forest-demography-IPM/sens_analysis_files/figure-html/fig-recVsMort-1.png" data-short-caption="Correlation between the survival and recruitment relative importance across the 31 species, climate and competition conditions." alt="Figure 21: Correlation between the survival and recruitment relative importance across the 31 species, climate and competition conditions. Species points are grouped by a Multivariate Normal Density function with a probability of 90%." /><figcaption aria-hidden="true"><span>Figure 21:</span> Correlation between the survival and recruitment relative importance across the 31 species, climate and competition conditions. Species points are grouped by a Multivariate Normal Density function with a probability of 90%.</figcaption>
+         </figure>
+         </div>
+         <p>We observe that at low competition, for most species, variations in <span class="math inline">\(\lambda\)</span> are primarily explained by recruitment. This pattern slightly diminishes as we move from the cold range to the center and up to the hot temperature range. We can observe an overall shift toward the survival model at high competition intensity, especially in the hot temperature range.</p>
+         <h2 id="importance-of-covariates">Importance of covariates</h2>
+         <p>Similar to assessing parameter importance, we also used the random forest approach to evaluate the importance of covariates. For simplicity, we used the same output of the simulations as previously explained, shifting the explanatory variables from parameters to covariates.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> The Figure <a href="#fig:climVsComp">22</a> shows the distribution of relative importance between climate and competition covariates for each species.</p>
+         <div id="fig:climVsComp" class="fignos">
+         <figure>
+         <img src="https://willvieira.github.io/book_forest-demography-IPM/sens_analysis_files/figure-html/fig-climVsComp-1.png" data-short-caption="Distribution of relative importance between climate and competition covariates according to Random Forest, the respective $R^2$." alt="Figure 22: Distribution of relative importance between climate and competition covariates according to Random Forest, the respective R^2. The more species are to the right of the panel, the more climate is important relative to competition. Color represents the level of shade tolerance (Burns, Honkala, and Others 1990)" /><figcaption aria-hidden="true"><span>Figure 22:</span> Distribution of relative importance between climate and competition covariates according to Random Forest, the respective <span class="math inline">\(R^2\)</span>. The more species are to the right of the panel, the more climate is important relative to competition. Color represents the level of shade tolerance <span class="citation" data-cites="burns1990silvics">(Burns, Honkala, and Others <a href="#ref-burns1990silvics" role="doc-biblioref">1990</a>)</span></figcaption>
+         </figure>
+         </div>
+         <h2 id="notes-on-conspecific-and-heterospecific-competition-effects">Notes on Conspecific and Heterospecific Competition Effects</h2>
+         <p>In the preceding discussion, we did not specify whether we were considering conspecific or heterospecific competition. For all the results presented in this chapter, the <em>high competition</em> condition was applied at the heterospecific level, while conspecific competition was set to a very low proportion. This choice is based on the standard invasion growth rate metric, or the population growth rate when rare, an important measure for quantifying population persistence <span class="citation" data-cites="lewontin1969">(Lewontin and Cohen <a href="#ref-lewontin1969" role="doc-biblioref">1969</a>)</span>.</p>
+         <p>Additionally, we performed the sensitivity analysis with the same conditions, except for changing the high competition from heterospecific to conspecific individuals. We observed that nearly all the variation in <span class="math inline">\(\lambda\)</span>, previously attributed to the growth model, shifted to the recruitment model. Also, the importance attributed to the survival model for certain species at the center and cold temperature conditions shifted toward the recruitment model. Although we observed this shift, the overall patterns remained similar to those discussed earlier. The only exception was the distribution of relative importance between climate and competition (Figure <a href="#fig:climVsComp">22</a>), where many species had an increase in the importance of competition relative to climate. These observed differences primarily arise from the high sensitivity of <span class="math inline">\(\lambda\)</span> to the <span class="math inline">\(\phi\)</span> parameter.</p>
+         <h1 class="unnumbered" id="references">References</h1>
+         <div id="refs" class="references hanging-indent" role="doc-bibliography">
+         <div id="ref-antoniadis2021">
+         <p>Antoniadis, Anestis, Sophie Lambert-Lacroix, and Jean-Michel Poggi. 2021. “Random forests for global sensitivity analysis: A selective review.” <em>Reliability Engineering &amp; System Safety</em> 206: 107312.</p>
+         </div>
+         <div id="ref-breiman2001">
+         <p>Breiman, Leo. 2001. “Random forests.” <em>Machine Learning</em> 45: 5–32.</p>
+         </div>
+         <div id="ref-burns1990silvics">
+         <p>Burns, Russell M, Barbara H Honkala, and Others. 1990. “Silvics of North America: 1. Conifers; 2. Hardwoods Agriculture Handbook 654.” <em>US Department of Agriculture, Forest Service, Washington, DC</em>.</p>
+         </div>
+         <div id="ref-Caswell1978">
+         <p>Caswell, Hal. 1978. “A general formula for the sensitivity of population growth rate to changes in life history parameters.” <em>Theoretical Population Biology</em> 14 (2): 215–30.</p>
+         </div>
+         <div id="ref-diaz2022">
+         <p>Díaz, Sandra, Jens Kattge, Johannes H C Cornelissen, Ian J Wright, Sandra Lavorel, St’ephane Dray, Björn Reu, et al. 2022. “The global spectrum of plant form and function: enhanced species-level trait dataset.” <em>Scientific Data</em> 9 (1): 755.</p>
+         </div>
+         <div id="ref-cmdstanr">
+         <p>Gabry, Jonah, Rok Češnovar, and Andrew Johnson. 2023. <em>cmdstanr: R Interface to ’CmdStan’</em>.</p>
+         </div>
+         <div id="ref-lewontin1969">
+         <p>Lewontin, Richard C, and Daniel Cohen. 1969. “On population growth in a randomly varying environment.” <em>Proceedings of the National Academy of Sciences</em> 62 (4): 1056–60.</p>
+         </div>
+         <div id="ref-Saltelli2019">
+         <p>Saltelli, Andrea, Ksenia Aleksankina, William Becker, Pamela Fennell, Federico Ferretti, Niels Holst, Sushan Li, and Qiongli Wu. 2019. “Why so many published sensitivity analyses are false: A systematic review of sensitivity analysis practices.” <em>Environmental Modelling &amp; Software</em> 114: 29–39.</p>
+         </div>
+         <div id="ref-stan2022stan">
+         <p>Team, Stan Development, and Others. 2022. “Stan modeling language users guide and reference manual, version 2.30.1.” Stan Development Team.</p>
+         </div>
+         <div id="ref-vehtari2017practical">
+         <p>Vehtari, Aki, Andrew Gelman, and Jonah Gabry. 2017. “Practical Bayesian model evaluation using leave-one-out cross-validation and WAIC.” <em>Statistics and Computing</em> 27: 1413–32.</p>
+         </div>
+         <div id="ref-Wright2017">
+         <p>Wright, Marvin N, and Andreas Ziegler. 2017. “{ranger}: A Fast Implementation of Random Forests for High Dimensional Data in {C++} and {R}.” <em>Journal of Statistical Software</em> 77 (1): 1–17. <a href="https://doi.org/10.18637/jss.v077.i01">https://doi.org/10.18637/jss.v077.i01</a>.</p>
+         </div>
+         </div>
+         <section class="footnotes" role="doc-endnotes">
+         <hr />
+         <ol>
+         <li id="fn1" role="doc-endnote"><p>This analysis could be expanded to include more marginal conditions beyond just cold, center, and hot temperatures and low and high competition. However, this would exponentially increase the number of simulations.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+         </ol>
+         </section>
+      </article>
+
+      <d-appendix>
+         <sections class="container">
+            <div class="row">
+               <div class="leftColumn">
+                  <p>References</p>
+               </div>
+                  <div class="rightColumn", id = 'newrefs'>
+               </div>
+            </div>
+         </sections>
+      </d-appendix>
+
+   </body>
+   <script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
+   <script type="text/javascript">
+      // Remove References h1
+      document.getElementById("references").remove();
+      // Move the references from body to appendix
+      var theNewRefs = document.getElementById("newrefs");
+      var theRefs = document.getElementById("refs");
+      theNewRefs.appendChild(theRefs);
+   </script>
+   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+   <script>
+      document.querySelectorAll('[role="doc-biblioref"]').forEach(function (el){
+
+         // get info from reference (to be used in tittle of hover)
+         var refID = el.href.replace(/.*#ref-/, '');
+         var ref = document.getElementById('ref-'.concat(refID));
+         // Title
+         if(/“(.*?)”/g.test(ref.textContent)) {
+            var title = ref.textContent.match(/“(.*?)”/g)[0];
+            title = title.replace(/“/, '').replace(/”/, '').replace(/\./, '');
+         } else {
+            var title = ref.querySelector('em').textContent;
+            var journal = '';
+         }
+         // Journal
+         if(typeof journal == "undefined" & ref.querySelector('em') != null) {
+            var journal = ref.querySelector('em').textContent;
+         }
+         // DOI
+         if(ref.querySelector('a') != null) {
+            var DOI = ref.querySelector('a').textContent;
+            title = "<a href='" + DOI + "' target='_blank';>" + title + "</a>"
+         }
+         // Year
+         uglyYear = ref.textContent.match(/\. \d{4}\./g)[0];
+         var year = uglyYear.replace(/\. /, '').replace(/\./, '');
+         // Authors
+         var re = new RegExp ('(.*?)' + uglyYear, 'g');
+         var authors = ref.textContent.match(re)[0].replace(uglyYear, '').replace(/\s\s+/g, '');
+
+         // Create reference "title" content
+         var refTitle = "<b>" + title + "</b><br>" + authors + "<br>" +
+                        (journal == "" ? "" : journal + ", " ) +
+                        year;
+
+         // add "Tooltips" attributes to the link tag
+         el.setAttribute("data-toggle", "tooltip");
+         el.setAttribute("data-html", "true");
+         el.setAttribute("data-placement", "bottom");
+         el.setAttribute("title", refTitle);
+
+         // remove link href to references
+         el.removeAttribute("href");
+      });
+   </script>
+   <script>
+      $(function () {
+         $('[data-toggle="tooltip"]').tooltip({delay: {show: 300, hide: 500}})
+      })
+   </script>
+   <!-- Global site tag (gtag.js) - Google Analytics -->
+   <script async src="https://www.googletagmanager.com/gtag/js?id="></script>
+   <script>
+   window.dataLayer = window.dataLayer || [];
+   function gtag(){dataLayer.push(arguments);}
+   gtag('js', new Date());
+
+   gtag('config', '');
+   </script>
+</html>
