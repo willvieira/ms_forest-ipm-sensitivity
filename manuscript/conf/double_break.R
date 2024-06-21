@@ -73,7 +73,7 @@ change_file <- function(tex_file)
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 # Load main TeX file
-file.path('docs', 'manuscript_thesis.tex') |>
+list.files('docs', pattern = '_thesis.tex', full.names = TRUE) |>
   sapply(
     \(x) readLines(x) |>
           change_file() |>

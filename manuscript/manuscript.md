@@ -160,7 +160,7 @@ We set $\alpha$ to 12.7 cm, aligning it with the ingrowth threshold, while $\bet
 
 ### Covariates
 
-**Random effects** - We introduced plot-level random effects in each demographic component to account for shared variance between individuals within the same plot.
+**Random effects** - We introduced plot-level random effects in each of the growth, survival, and recruitment demographic component to account for shared variance between the individuals within the same plot.
 For a demographic component with an average intercept $\overline{I}$, an offset value ($\alpha$) is drawn for each plot $j$ from a normal distribution with a mean of zero and variance $\sigma$:
 
 $$
