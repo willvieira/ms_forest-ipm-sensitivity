@@ -49,6 +49,8 @@ Lastly, expanding on previours findings indicating the inability of North Americ
 Furthermore, we explore whether the relative sensitivity between climate and competition changes across the species' distribution range. 
 Our integrative approach allows us to assess the relative effects of climate and competition from demographic rates up to the population growth rate while accounting for model uncertainties and stand structure, revealing essential insights into understanding the response of forest trees to climate change, management practices, and conservation efforts.
 
+![Conceptual framework to assess how population growth rate sensitivity to climate and competition varies across species' geographic ranges. Using repeated measurements of individual trees from forest inventories spanning the eastern United States and Québec, Canada, we fitted species-specific growth, survival, and recruitment models parameterized as functions of individual size, competition, and plot-level climate covariates. These demographic models form the components of an Integral Projection Model (IPM), from which we derive the population growth rate ($\lambda$) for each species $i$ at a plot location $j$. We use perturbation analysis to quantify the sensitivity of $\lambda$ to climate and competition under the local environmental context of each plot. Plots at the cold and hot range edges were identified using the 10th and 90th percentiles of mean annual temperature across the species' distribution. By averaging sensitivities across plots within each range edge, we assess how population growth rate sensitivity differs between cold and hot distributional limits.](manuscript/figs/concept_fig.png){#fig:concept_fig width=100%}
+
 # Methods
 
 ## Forest inventory and climate data
