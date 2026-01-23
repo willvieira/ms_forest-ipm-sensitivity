@@ -36,7 +36,7 @@ We leverage the complete (26 - 53°) latitudinal coverage of forest inventories 
 Specifically, we model each of the growth, survival, and recruitment vital rates as a function of mean annual temperature and precipitation, as well as conspecific and heterospecific basal area density, serving as a proxy for competition for light.
 We fit these demographic models with a flexible, non-linear hierarchical Bayesian model.
 The non-linear approach captures both the complexity of trees' demographic rates and the multiple-effect forms of climate and competition.
-Furhtermore, the hierarchical Bayesian approach allows one to account for model uncertainty at different organizational scales.
+Furthermore, the hierarchical Bayesian approach allows one to account for model uncertainty at different organizational scales.
 These demographic rate models are then incorporated into a size-structured Integral Projection Model (IPM) to quantify the $\lambda$ of each species under climate and competition effects.
 
 Our primary goal is to use the fitted IPM to compute the sensitivity of each species' $\lambda$ to climate and competition across their range.
@@ -45,59 +45,69 @@ Precisely, we assess the species sensitivity of an observed $\lambda$ for each p
 This approach enables an evaluation of the overall sensitivity of $\lambda$ to a covariate while considering the inherent variability of the covariate experienced by the species.
 For instance, a species may exhibit high sensitivity to temperature, but if most of its distribution is observed under optimal temperature conditions, the average sensitivity of the species will be low.
 
-Lastly, expanding on previours findings indicating the inability of North American trees to both expand their cold range and contract their hot range under climate change [@Talluto2017], we ask if sensitivity to climate and competition changes across the species' cold and hot ranges.
+Lastly, expanding on previous findings indicating the inability of North American trees to both expand their cold range and contract their hot range under climate change [@Talluto2017], we ask if sensitivity to climate and competition changes across each species' geographic range.
 Our integrative approach allows us to assess the relative effects of climate and competition from demographic rates up to the population growth rate while accounting for model uncertainties and stand structure, revealing essential insights into understanding the response of forest trees to climate change, management practices, and conservation efforts.
 
 ![Conceptual framework to assess how population growth rate sensitivity to climate and competition varies across species' geographic ranges. Using repeated measurements of individual trees from forest inventories spanning the eastern United States and Québec, Canada, we fitted species-specific growth, survival, and recruitment models parameterized as functions of individual size, competition, and plot-level climate covariates. These demographic models form the components of an Integral Projection Model (IPM), from which we derive the population growth rate ($\lambda$) for each species $i$ at a plot location $j$. We use perturbation analysis to quantify the sensitivity of $\lambda$ to climate and competition under the local environmental and stand composition context of each plot. Plots at the cold and hot range edges were identified using the 10th and 90th percentiles of mean annual temperature across the species' distribution. By averaging sensitivities across plots within each range edge, we assess how population growth rate sensitivity differs between cold and hot distributional limits.](manuscript/figs/concept_fig.png){#fig:concept_fig width=100%}
 
 # Methods
 
-## Forest inventory and climate data
+## Perturbation analysis
 
-We used two open inventory datasets from eastern North America: the Forest Inventory and Analysis (FIA) dataset in the United States [@OConnell2007] and the Forest Inventory of Québec [@Naturelles2016].
-At the plot level, we focused on plots sampled at least twice, excluding those that had undergone harvesting to concentrate solely on natural dynamics.
-Specifically, we selected surveys conducted for the FIA dataset using the modern standardized methodology implemented since 1999.
-After applying these filters, our final dataset encompassed nearly 26,000 plots spanning a latitude range from 26° to 53° (Figure S7).
-Each plot within the dataset was measured between 1970 and 2021, with observation frequencies ranging from 2 to 7 times and an average of 3 measurements per plot.
-The time intervals between measurements varied from 1 to 40 years, with a median interval of 7 years (Figure S7).
+To understand how climate and competition affect forest population dynamics, we developed species-specific, Integral Projection Models (IPM) parameterized with climate- and competition-dependent demographic rates (described in the following section).
+Deriving population growth rate ($\lambda$) from the IPM, we used perturbation analysis to assess the sensitivity of $\lambda$ to competition and climate conditions [@Caswell2000].
+We define sensitivity as the partial derivative of $\lambda$ with respect to a covariate $X$, which can take the form of either conspecific or heterospecific density dependence competition, or temperature or precipitation climate conditions.
+In practice, we quantify sensitivity by slightly increasing each covariate value $X_j$ to $X_j^{'}$ and computing the change in $\lambda$ following the right-hand part of Equation @eq:sens:
 
-These datasets provide individual-level information on the diameter at breast height (DBH) and the status (dead or alive) of more than 200 species.
-From this pool, we selected the 31 most abundant species (Table S1).
-This selection comprises 9 conifer species and 22 hardwood species.
-We ensured an even distribution of species across the shade tolerance axis, with three species classified as very intolerant, nine as intolerant, eight as intermediate, eight as tolerant, and five as very tolerant [@burns1990silvics].
+$$
+	\frac{\partial \lambda_{ij}}{\partial X_j} \bigg\rvert_{K_{ij}} \approx \frac{\Delta \lambda_{ij}}{\Delta X_j} = \frac{|f(X_j^{'}) - f(X_j)|}{X_j^{'} - X_j}
+$${#eq:sens}
 
-For the competition metric, we use asymmetric competition for light, meaning that each individual is affected only by neighbour individuals of larger size.
-We quantified asymmetric competition for light for a focal individual in a given plot by summing the total basal area of all individuals larger than the focal one, herein BAL.
-We further split BAL into the total density of conspecific and heterospecific individuals.
-For the climate variable, we obtained the 19 bioclimatic variables with a 10 $km^2$ (300 arcsec) resolution grid, covering the period from 1970 to 2018.
-These climate variables were modeled using the ANUSPLIN interpolation method [@McKenney2011].
-We used each plot's latitude and longitude coordinates to extract the mean annual temperature (MAT) and mean annual precipitation (MAP).
-In cases where plots did not fall within a valid pixel of the climate variable grid, we interpolated the climate condition using the eight neighboring cells.
-Due to the transitional nature of the dataset, we considered both the average and standard deviation of MAT and MAP over the years within each time interval.
+Sensitivity is evaluated separately for each species $i$ and is conditional on the specific climate and competition conditions observed for the plot-year $j$, along with the Kernel $K_{ij}$ parameters.
+We set the perturbation size to a 1% increase in the normalized scale for each covariate.
+For instance, a 1% increase translates to a rise of 0.3°C for Mean Annual Temperature (MAT) and 26 mm for Mean Annual Precipitation (MAP).
+Because the competition metric is computed at the individual level, the perturbation was applied to each individual before computing the plot basal area (BA), where a 1% increase corresponds approximately to a rise of 1.2 cm in dbh.
+As we were interested in the absolute difference, the resulting sensitivity value ranges between 0 and infinity, with lower values indicating a lower sensitivity of $\lambda$ to the specific covariate.
+Specifically, sensitivity ($S$) to competition or climate of species $i$ for a given plot-year $j$ is defined as follows:
+
+$$
+\begin{split}
+&S_{comp, ij} = \frac{\partial \lambda_{ij}}{\partial BA_{cons, i}} + \frac{\partial \lambda_{ij}}{\partial BA_{het, i}} \\[2pt]
+&S_{clim, ij} = \frac{\partial \lambda_{ij}}{\partial MAT_{i}} + \frac{\partial \lambda_{ij}}{\partial MAP_{i}} \\[2pt]
+\end{split}
+$${#eq:CCR}
+
+When averaging $S_{X,i}$ across $j$, this metric reflects the sensitivity of $\lambda_i$ to $X$, which is conditional upon the probability distribution of the covariate $X$.
+We categorized each plot into cold, center, or hot conditions along the MAT axis for every species.
+Plots were labeled as cold (or hot) if the average MAT fell below (above) the 10% (90%) probability distribution, with all intermediate plots considered center plots.
+Thus, sensitivity to a covariate in the cold range of the species means the average sensitivity among all plots classified as cold.
+It is important to note that this classification is also conditional on the probability distribution of observed MAT within the species.
 
 ## Model
 
-We evaluated the population growth rates of the 31 forest species using an Integral Projection Model (IPM).
+To assess the population growth rate of the 31 tree species, we developed a Bayesian Mechanistic Model.
+This pars a process dynamic model (IPM) with data sub-models for each vital rate to formally quantify process and parameter uncertainity.
 An IPM is a mathematical tool used to represent the dynamics of structured populations and communities.
 It distinguishes itself from traditional population models with the representation of a continuous trait in discrete time [@Easterling2000].
 This is especially relevant for trees due to the considerable variability in demographic rates depending on individual size [@kohyama1992].
-Specifically, the IPM consists of a set of functions predicting the transition of a distribution of individual traits from time $t$ to time $t+1$:
+Specifically, the IPM consists of a set of functions predicting the transition of a distribution of individual traits from time $t$ to time $t+\Delta t$, where $\Delta t$ represents the number of discrete year intervals:
 
 $$
-n(z', t + 1) = \int_{L}^{U} \, K(z', z, \theta)\, n(z, t)\, \mathrm{d}z
+n(z', t + \Delta t) = \int_{L}^{U} \, K(z', z, \theta)\, n(z, t)\, \mathrm{d}z
 $${#eq:ipm}
 
-The continuous trait $z$ at time $t$ represents the DBH, bouded between the lower ($L$) and upper ($U$) values, and $n(z, t)$ characterizes the continuous DBH distribution for a population.
-The probability of the population distribution size from $n(z, t)$ to $n(z', t+1)$ is governed by the kernel $K$ and the species-specific parameters $\theta$.
+The continuous trait $z$ at time $t$ represents the diameter at breast height (DBH), bouded between the lower ($L$) and upper ($U$) values, and $n(z, t)$ characterizes the continuous DBH distribution for a population.
+The probability of the population distribution size from $n(z, t)$ to $n(z', t + \Delta t)$ is governed by the kernel $K$ and the species-specific parameters $\theta$.
 The kernel $K$, a continuous version of the discretized projection Matrix in structured population models, is composed of three sub-models:
 
 $$
 K(z', z, \theta) = [Growth(z', z, \theta) \times Survival(z, \theta)] + Recruitment(z, \theta)
 $${#eq:kernel}
 
-The growth function describes how individual trees increase in size, while the survival function determines the probability of staying alive throughout the next time step.
+The growth function describes how individual trees increase in DBH, while the survival function determines the probability of staying alive throughout the next time step.
 The recruitment model describes the number of individuals ingressing the population.
-Below, we describe the basic (intercept) version of these models, followed by the inclusion of each climate and competition covariate.
+These three models are independent and do not share any parameters.
+Below, we describe the basic (intercept) version of these models, followed by the inclusion of climate and competition covariate in each of them.
 
 ### Demographic rates
 
@@ -192,7 +202,7 @@ $$
   \phi + \left(\frac{BAL_{cons} - \delta}{\sigma}\right)^2
 $${#eq:compingrowth}
 
-**Climate** - We selected mean annual temperature (MAT) and mean annual precipitation (MAP) bioclimatic variables as they are widely used in species distribution modeling and were previously found relevant to model demography of these species [@LeSquin2021].
+**Climate** - We selected mean annual temperature and mean annual precipitation bioclimatic variables as they are widely used in species distribution modeling and were previously found relevant to model demography of these species [@LeSquin2021].
 Each demographic component $I$, representing either $\Gamma$ for growth, $\psi$ for longevity, or $\phi$ for ingrowth, varies as a bell-shaped curve determined by an optimal climate condition ($\xi$) and a climate breadth parameter ($\sigma$):
 
 $$
@@ -203,6 +213,29 @@ The climate breadth parameter ($\sigma$) influences the strength of the specific
 This unimodal function is flexible, assuming various shapes, such as bell, quasi-linear, or flat shapes.
 However, this flexibility introduces the possibility of parameter degeneracy or redundancy, where different combinations of parameter values yield similar outcomes.
 To address this issue, we constrained the optimal climate condition parameter ($\xi$) within the observed climate range for the species, assuming that the optimal climate condition falls within our observed data range.
+
+## Forest inventory and climate data
+
+We used two open inventory datasets from eastern North America: the Forest Inventory and Analysis (FIA) dataset in the United States [@OConnell2007] and the Forest Inventory of Québec [@Naturelles2016].
+At the plot level, we focused on plots sampled at least twice, excluding those that had undergone harvesting to concentrate solely on natural dynamics.
+Specifically, we selected surveys conducted for the FIA dataset using the modern standardized methodology implemented since 1999.
+After applying these filters, our final dataset encompassed nearly 26,000 plots spanning a latitude range from 26° to 53° (Figure S7).
+Each plot within the dataset was measured between 1970 and 2021, with observation frequencies ranging from 2 to 7 times and an average of 3 measurements per plot.
+The time intervals between measurements varied from 1 to 40 years, with a median interval of 7 years (Figure S7).
+
+These datasets provide individual-level information on the DBH and the status (dead or alive) of more than 200 species.
+From this pool, we selected the 31 most abundant species (Table S1).
+This selection comprises 9 conifer species and 22 hardwood species.
+We ensured an even distribution of species across the shade tolerance axis, with three species classified as very intolerant, nine as intolerant, eight as intermediate, eight as tolerant, and five as very tolerant [@burns1990silvics].
+
+For the competition metric, we use asymmetric competition for light, meaning that each individual is affected only by neighbour individuals of larger size.
+We quantified asymmetric competition for light for a focal individual in a given plot by summing the total basal area of all individuals larger than the focal one, herein BAL.
+We further split BAL into the total density of conspecific and heterospecific individuals.
+For the climate variable, we obtained the 19 bioclimatic variables with a 10 $km^2$ (300 arcsec) resolution grid, covering the period from 1970 to 2018.
+These climate variables were modeled using the ANUSPLIN interpolation method [@McKenney2011].
+We used each plot's latitude and longitude coordinates to extract the MAT and MAP climate variables.
+In cases where plots did not fall within a valid pixel of the climate variable grid, we interpolated the climate condition using the eight neighboring cells.
+Due to the transitional nature of the dataset, we considered both the average and standard deviation of MAT and MAP over the years within each time interval.
 
 ### Model fit and validation
 
@@ -218,43 +251,8 @@ Detailed discussions regarding model fit, diagnostics, and model comparison can 
 
 With the fitted demographic components, we constructed the Kernel $K$ of the IPM following Equation @eq:kernel.
 We employed the mid-point rule to perform the discrete-form integration of the continuous $K$ [@Ellner2016].
-This involved discretizing the projection kernel $K$ using bins of 0.1 cm, which are considered appropriate for obtaining unbiased estimates [@zuidema2010integral].
+This involved discretizing the projection kernel $K$ using bins of 0.1 cm, which are considered appropriate for obtaining unbiased estimates for trees [@zuidema2010integral].
 Finally, we computed the asymptotic population growth rate ($\lambda$) using the leading eigenvalue of the discretized matrix $K$.
-
-## Perturbation analysis
-
-We use perturbation analysis to assess the sensitivity of $\lambda$ to competition and climate conditions [@Caswell2000].
-We define sensitivity as the partial derivative of $\lambda$ with respect to a covariate $X$, which can take the form of either conspecific or heterospecific density dependence competition, or temperature or precipitation climate conditions.
-In practice, we quantify sensitivity by slightly increasing each covariate value $X_j$ to $X_j^{'}$ and computing the change in $\lambda$ following the right-hand part of Equation @eq:sens:
-
-$$
-	\frac{\partial \lambda_{ij}}{\partial X_j} \bigg\rvert_{K_{ij}} \approx \frac{\Delta \lambda_{ij}}{\Delta X_j} = \frac{|f(X_j^{'}) - f(X_j)|}{X_j^{'} - X_j}
-$${#eq:sens}
-
-Sensitivity is evaluated separately for each species $i$ and is conditional on the specific climate and competition conditions observed for the plot $j$, along with the Kernel $K_{ij}$ parameters.
-We set the perturbation size to a 1% increase in the normalized scale for each covariate.
-For instance, a 1% increase translates to a rise of 0.3°C for Mean Annual Temperature (MAT) and 26 mm for Mean Annual Precipitation (MAP).
-Because the competition metric is computed at the individual level, the perturbation was applied to each individual, where a 1% increase corresponds approximately to a rise of 1.2 cm in dbh.
-As we were interested in the absolute difference, the resulting sensitivity value ranges between 0 and infinity, with lower values indicating a lower sensitivity of $\lambda$ to the specific covariate.
-We computed the log ratio between competition and climate ($CCR$) sensitivities to discern their relative effects as follows:
-
-$$
-\begin{split}
-&S_{comp, ij} = \frac{\partial \lambda_{ij}}{\partial BA_{cons, i}} + \frac{\partial \lambda_{ij}}{\partial BA_{het, i}} \\[2pt]
-&S_{clim, ij} = \frac{\partial \lambda_{ij}}{\partial MAT_{i}} + \frac{\partial \lambda_{ij}}{\partial MAP_{i}} \\[2pt]
-&CCR_{ij} = \text{ln} \frac{S_{comp, ij}}{S_{clim, ij}}
-\end{split}
-$${#eq:CCR}
-
-Here, $S$ represents the total sensitivity of species $i$ to competition or climate for a given plot $j$.
-Negative $CCR$ values indicate higher sensitivity of $\lambda$ to climate, while positive values indicate the opposite.
-
-When averaging $S_{X,i}$ across $j$, this metric reflects the sensitivity of $\lambda_i$ to $X$, which is conditional upon the probability distribution of the covariate $X$.
-We categorized each plot into cold, center, or hot conditions along the MAT axis for every species.
-Plots were labeled as cold (or hot) if the average MAT fell below (above) the 10% (90%) probability distribution, with all intermediate plots considered center plots.
-Thus, sensitivity to a covariate in the cold range of the species signifies the average sensitivity among all plots classified as cold.
-It is important to note that this classification is also conditional on the probability distribution of observed MAT within the species.
-
 The code to fit each demographic component is available in the [`TreesDemography`](https://github.com/willvieira/TreesDemography) GitHub repository.
 The code for the IPM model and the respective sensitivity analysis is available in the [`forest-IPM`](https://github.com/willvieira/forest-IPM/tree/master/simulations/covariates_perturbation) GitHub repository.
 
