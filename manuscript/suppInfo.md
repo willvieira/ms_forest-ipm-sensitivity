@@ -182,6 +182,16 @@ Consequently, we selected the complete model with plot random effects, competiti
 \newpage
 
 
+![Climate breadth in function of climate range size. The higher the climate range size, the more climate conditions the species experienced.](https://willvieira.github.io/book_forest-demography-IPM/pars_climate_files/figure-html/fig-climRangeVsTau-1.png){#fig:figsupp10 short-caption="Climate breadth in function of climate range size."}
+
+\newpage
+
+
+![Sensitivity of species population growth rate to climate (left) and competition (right). Each species is represented by a connected line linking their cold, center, and hot range position points. Each of these 3 values represents the average sensitivity across all plots classified as one these three range position groups. Each line was colored according to a curvature index, ranging from convace (blue), linear (transparent), to convex (red). Note that uncertainty in each sensitivity point estimation has been omitted for clarity.](manuscript/figs/sensitivity_withCenter.png){#fig:figsupp12 width=100% short-caption="Population growth rate sensitivity for cold, center, and hot ranges."}
+
+\newpage
+
+
 ![Correlation between (left panel) growth rate ($\Gamma$) and annual survival rate ($\psi$) and (right panel) growth rate ($\Gamma$) and annual recruitment rate ($\phi$). The uncertainty of the parameters is summarised by a Multivariate Normal Density function with 90% probability.](manuscript/figs/intercept_corr.png){#fig:figsupp8 short-caption="Correlation between (left panel) growth rate ($\Gamma$) and annual survival rate ($\psi$) and (right panel) growth rate ($\Gamma$) and annual recruitment rate ($\phi$)."}
 
 \newpage
@@ -192,16 +202,7 @@ Consequently, we selected the complete model with plot random effects, competiti
 \newpage
 
 
-![Climate breadth in function of climate range size. The higher the climate range size, the more climate conditions the species experienced.](https://willvieira.github.io/book_forest-demography-IPM/pars_climate_files/figure-html/fig-climRangeVsTau-1.png){#fig:figsupp10 short-caption="Climate breadth in function of climate range size."}
-
-\newpage
-
-
 ![Correlation between posterior distribution of optimal temperature ($\xi_{MAT}$) and the species' midpoint location across the mean annual temperature range. The transparency of each species point is scaled to be a function of niche breadth. The closer this value is to zero, the higher the breadth around the mean. In other words, when climate breadth is zero, the bell-shaped unimodal function becomes an almost flat line. Colored species names are those with niche breadth higher than 0.5.](manuscript/figs/temp_optimal_rangeLocation.png){#fig:figsupp11 short-caption="Correlation between posterior distribution of optimal temperature ($\xi_{MAT}$) and the species' midpoint location across the mean annual temperature range."}
-
-\newpage
-
-![Sensitivity of species population growth rate to climate (left) and competition (right). Each species is represented by a connected line linking their cold, center, and hot range position points. Each of these 3 values represents the average sensitivity across all plots classified as one these three range position groups. Each line was colored according to a curvature index, ranging from convace (blue), linear (transparent), to convex (red). Note that uncertainty in each sensitivity point estimation has been omitted for clarity.](manuscript/figs/sensitivity_withCenter.png){#fig:figsupp12 width=100% short-caption="Population growth rate sensitivity for cold, center, and hot ranges."}
 
 \newpage
 

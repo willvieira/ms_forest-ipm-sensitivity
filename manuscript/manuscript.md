@@ -285,7 +285,7 @@ For recruitment, the effect of total stand density increased with shade intolera
 The distribution of optimal MAT ($\xi_{MAT}$) and MAP ($\xi_{MAP}$) for the 31 species revealed that the optimal climates for growth, survival, and recruitment were rarely located at the center of the species ranges (Figure S12 and S13).
 Furthermore, most species exhibited some degree of demographic compensation, that is, opposing responses to the environment between demographic rates [@Villellas2015].
 Lastly, the climate breadth ($\sigma$) determined how flat or narrow the performance of species was across MAT and MAP.
-We found among all species that climate breadth increased with range size, demonstrating that species with more range occupancy had larger niche breadths (Figure S16).
+We found among all species that climate breadth increased with range size, demonstrating that species with more range occupancy had larger niche breadths (Figure S14).
 The exception was the niche breadth of survival over MAT, showing a weak, flat correlation.
 
 ## $\lambda$ sensitivity to climate and competition
@@ -305,7 +305,7 @@ This decline in competition sensitivity was particularly pronounced for boreal s
 
 ![Differences in the sensitivity of species population growth rate to climate (left) and competition between the cold and hot range limits. Each species is represented by a connected line linking their cold (circle) and hot (triangle) range positions, colored according to the difference between the cold and hot sensitivities. Note that uncertainty in each sensitivity point estimation has been omitted for clarity.](https://willvieira.github.io/book_forest-demography-IPM/marginal_lambda_files/figure-html/fig-hot_vs_cold-1.png){#fig:cold_vs_hot width=100% short-caption="Differences in species population growth rate sensitivity to climate (left) and competition between the cold and hot range limits."}
 
-We further included sensitivity estimates at the center of each species' distribution to characterize the shape of sensitivity changes across the range (Figure SX).
+We further included sensitivity estimates at the center of each species' distribution to characterize the shape of sensitivity changes across the range (Figure S15).
 Overall, most species exhibited a near linear change in sensitivity to both climate and competition from the cold to the hot range margins.
 For climate sensitivity, three of the four species displaying a concave pattern (i.e. sensitivity was higher at both range edges than at the center) were among those with the largest geographic ranges.
 In contrast, for competition, four species showed a convex pattern, with sensitivity to competition peaking at the center of the distribution relative to the range edges.
@@ -328,13 +328,13 @@ These findings contribute to a better understanding of how tree species might re
 
 Our model demonstrated remarkable coherence when reproducing the known variation in traits related to growth, survival, and recruitment components found in the literature.
 The intercepts for growth and survival were correlated with maximal size and longevity [@burns1990silvics], while the recruitment intercept aligned well with the seed mass [@diaz2022].
-Additionally, the models effectively reproduced the fast-slow continuum [@SalgueroGomez2016], showing a negative correlation between growth and survival rate and a positive correlation between growth and recruitment rate (Figure S14).
+Additionally, the models effectively reproduced the fast-slow continuum [@SalgueroGomez2016], showing a negative correlation between growth and survival rate and a positive correlation between growth and recruitment rate (Figure S16).
 Regarding competition, the model captured the negative correlation between density dependence and shade tolerance.
 The model also matches a common expectation of communities where species coexist, with a stronger response to conspecific competition relative to heterospecific competition, crucial for biodiversity maintenance [@Chesson2000a].
-The intensity of conspecific density dependence was also higher for fast-growing trees than for slow-growing ones (Figure S15), similar to observations in tropical trees [@Zhu2018].
+The intensity of conspecific density dependence was also higher for fast-growing trees than for slow-growing ones (Figure S17), similar to observations in tropical trees [@Zhu2018].
 For climate, validation is challenging due to limited data on optimal temperature and precipitation measures.
 Nevertheless, our results align with others, indicating the presence of demographic compensation across forest trees [@bohner2020;@Yang2022].
-Furthermore, the estimated breadth of response to climate correlates with the range size (Figure S16), suggesting that the model captures information not explicitly included.
+Furthermore, the estimated breadth of response to climate correlates with the range size (Figure S14), suggesting that the model captures information not explicitly included.
 
 Most of the variability in $\lambda$ was associated with local plot conditions captured by random effects, akin to previous studies [@Vanderwel2016a;@LeSquin2021].
 This implies the influence of other determinants of demography beyond climate and competition.
@@ -358,7 +358,7 @@ As species' performance changes nonlinearly with climate, lower sensitivity valu
 Overall, climate sensitivity (primarily driven by MAT) was higher at both the cold and hot range extremes.
 This implies that species coming from colder temperatures exhibit optimal performance towards their warmer range, and vice versa for species from hotter conditions.
 Interestingly, the demographic components driving higher sensitivity to climate at the cold and hot extremes differ.
-The recruitment and growth models primarily influenced sensitivity at the cold border, while the survival model dominated at the hot border (see Figure S17).
+The recruitment and growth models primarily influenced sensitivity at the cold border, while the survival model dominated at the hot border (see Figure S19).
 Previous studies have indicated climate-constrained growth rates at the cold border for North American [@Ettinger2013] and European [@Kunstler2021] trees.
 Consistent with our results, a decrease in survival at the hot border was observed for European trees [@Kunstler2021], though not in eastern North America [@Purves2009].
 
