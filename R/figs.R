@@ -4,7 +4,7 @@ library(posterior)
 library(ggdist)
 library(ggpubr)
 library(ggrepel)
-
+library(ggtext)
 
 data_path <- readLines('_data.path')
 pars_path <- file.path(data_path, 'output_sim_processed')
@@ -548,3 +548,95 @@ png(
 print(p)
 dev.off()
 
+
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+## Sensitivity cold, CENTER, border
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+out <- readRDS(file.path(data_path, 'simulation_data', 'covariates_perturbation.RDS'))
+
+# function to determine if a plot is at lower, center, or upper border
+# given how much of the tail we consider border (prob arg) [0-0.5]
+which_border <- function(temp, prob = 0.1, naRm = TRUE) {
+  temp_range = quantile(temp, probs = c(prob, 1 - prob), na.rm = naRm)
+  # output vector with 'center' class
+  out_pos = rep('Center', length(temp))
+  # lower border
+  out_pos[temp < temp_range[1]] = 'Cold'
+  out_pos[temp > temp_range[2]] = 'Hot'
+  
+  return(out_pos)
+}
+
+# class of range position (cold, center, hot)
+treeData |>
+  group_by(species_id, plot_id) |>
+  # get a single obs per plot to remove abundance effect
+  reframe(bio_01_mean = mean(bio_01_mean)) |>
+  group_by(species_id) |>
+  mutate(
+    border_cl = which_border(bio_01_mean, prob = 0.1)
+  ) |>
+  select(species_id, plot_id, border_cl) |>
+  mutate(border_cl = factor(border_cl, levels = c('Cold', 'Center', 'Hot'))) ->
+plotBorder_class
+
+out |>
+  # three species that had the lowest AME (low sensitivity to covariates)
+  # filter(!species_id %in% c('NAQUEPRI', '19290QUEALB', '27821NYSSYL')) |>
+  # filter(species_id == '18032ABIBAL') |>
+  mutate(
+    clim = log(par.temp + par.prec),
+    comp = log(par.BA_con + par.BA_het),
+    ccr = comp - clim
+  ) |>
+  left_join(plotBorder_class) |>
+  select(species_id, border_cl, rep, clim, comp) |>
+  group_by(species_id, border_cl) |>
+  reframe(
+    Climate = mean(clim),
+    Competition = mean(comp)
+  ) |>
+  # filter(border_cl != 'Center') |>
+  pivot_longer(
+    cols = c(Climate, Competition),
+    names_to = 'covariable'
+  ) |>
+  pivot_wider(names_from = border_cl, values_from = value) |>
+  mutate(
+    d_cold = Cold - Center,
+    d_hot = Hot - Center,
+    d_d = d_cold + d_hot
+  ) |>
+  pivot_longer(cols = c(Cold, Hot, Center), names_to = 'border_cl') |>
+  left_join(    
+    treeData |>
+      left_join(plotBorder_class) |>
+      group_by(species_id, border_cl) |>
+      reframe(
+        range_pos = median(bio_01_mean, na.rm = TRUE)
+      ) |>
+      mutate(range_pos = range_pos + rnorm(n(), 0, 0.001))
+  ) |>
+  ggplot() +
+  aes(range_pos, value) +
+  geom_line(aes(color = d_d, group = species_id)) +
+  facet_wrap(~covariable) +
+  scale_color_gradient2() +
+  scale_fill_gradient2() +
+  theme_classic() +
+  labs(
+    x = 'Mean annual temperature (°C)',
+    y = 'ln(Sensitivity)',
+    color = "Curvature index<br>(<span style='color:#6863A9;'>concave</span> ↔ <span style='color:#9B5C54;'>convex</span>)"
+  ) +
+  theme(legend.title = element_markdown()) ->
+p
+
+png(
+  filename = file.path('manuscript', 'figs', 'sensitivity_withCenter.png'),
+  width = 9, height = 4.25, units = 'in', res = 300
+)
+print(p)
+dev.off()

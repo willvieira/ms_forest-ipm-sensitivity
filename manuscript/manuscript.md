@@ -285,37 +285,31 @@ For recruitment, the effect of total stand density increased with shade intolera
 The distribution of optimal MAT ($\xi_{MAT}$) and MAP ($\xi_{MAP}$) for the 31 species revealed that the optimal climates for growth, survival, and recruitment were rarely located at the center of the species ranges (Figure S12 and S13).
 Furthermore, most species exhibited some degree of demographic compensation, that is, opposing responses to the environment between demographic rates [@Villellas2015].
 Lastly, the climate breadth ($\sigma$) determined how flat or narrow the performance of species was across MAT and MAP.
-We found among all species that climate breadth increased with range size, demonstrating that species with more range occupancy had larger niche breadths.
+We found among all species that climate breadth increased with range size, demonstrating that species with more range occupancy had larger niche breadths (Figure S16).
 The exception was the niche breadth of survival over MAT, showing a weak, flat correlation.
 
 ## $\lambda$ sensitivity to climate and competition
 
 We used perturbation analysis to assess the relative contribution of each covariate to changes in $\lambda$.
-Figure @fig:mean_sens describes the average sensitivity of each species' population growth rate to conspecific and heterospecific competition, temperature, and precipitation.
+Figure @fig:mean_sens describes the sensitivity of each species' population growth rate to conspecific and heterospecific competition, temperature, and precipitation averaged across all plot-year observations.
 Across all species, $\lambda$ exhibited higher sensitivity to temperature, followed by conspecific and heterospecific competition, while sensitivity to mean annual precipitation was practically zero.
 This observation of sensitivity to the covariates was consistent across all species.
 
 ![Log sensitivity of species population growth rate to conspecific competition, heterospecific competition, mean annual temperature, and mean annual precipitation across all plot-year observations. The smaller the values, the lower the sensitivity to a covariate.](https://willvieira.github.io/book_forest-demography-IPM/marginal_lambda_files/figure-html/fig-ame-1.png){#fig:mean_sens width=100% short-caption="Log sensitivity of species population growth rate to conspecific competition, heterospecific competition, mean annual temperature, and mean annual precipitation across all plot-year observations."}
 
-We split plots into different regions to ask for each species if sensitivity to climate and competition changes between cold and hot portions of the range (Figure @fig:cold_vs_hot).
-We evaluate the sensitivity of each species' border location according to the average Mean Annual Temperature (MAT) among all plots of the species' border group.
-Species distributed toward colder temperature ranges often exhibited a decrease in sensitivity to climate from the cold to the hot border.
-Conversely, most species in the hot range distribution demonstrated increased sensitivity to climate at the hot border compared to the cold.
-Most species also presented a decreased sensitivity to competition from the cold to the hot border.
-The decrease in sensitivity to competition from the cold to the hot border was more pronounced for boreal species.
+We divided plots into cold and hot regions of each species' range using the mean annual temperature to test whether sensitivity to climate and competition differs between range margins (Figure @fig:cold_vs_hot).
+Species distributed in colder climates generally showed a decrease in climate sensitivity from the cold to the hot border.
+In contrast, species whose distributions are centered in warmer climates tended to exhibit higher climate sensitivity at the hot border than at the cold border.
+Across most species, sensitivity to competition declined from the cold to the hot border.
+This decline in competition sensitivity was particularly pronounced for boreal species.
 
-![Differences in species population growth rate sensitivity to climate (left) and competition between the cold and hot range limits. Each species is represented by a connected line linking their cold (circle) and hot (triangle) range positions, colored according to the difference between the cold and hot sensitivities. Note that uncertainty in each sensitivity point estimation has been omitted for clarity.](https://willvieira.github.io/book_forest-demography-IPM/marginal_lambda_files/figure-html/fig-hot_vs_cold-1.png){#fig:cold_vs_hot width=100% short-caption="Differences in species population growth rate sensitivity to climate (left) and competition between the cold and hot range limits."}
+![Differences in the sensitivity of species population growth rate to climate (left) and competition between the cold and hot range limits. Each species is represented by a connected line linking their cold (circle) and hot (triangle) range positions, colored according to the difference between the cold and hot sensitivities. Note that uncertainty in each sensitivity point estimation has been omitted for clarity.](https://willvieira.github.io/book_forest-demography-IPM/marginal_lambda_files/figure-html/fig-hot_vs_cold-1.png){#fig:cold_vs_hot width=100% short-caption="Differences in species population growth rate sensitivity to climate (left) and competition between the cold and hot range limits."}
 
-We further explore the relative sensitivity between climate and competition changes across the species' range distribution (Figure @fig:temp_vs_comp).
-$\lambda$ was more sensitive to climate than competition for almost all species across the cold, center, and hot ranges ($ln(CCR)$ below zero).
-Across the MAT range distribution, the relative effect of climate to competition increased toward both the cold and hot borders of the range.
-This indicates that species located at the extremes of the MAT range distribution are even more sensitive to climate than species at the center.
-Interestingly, the reason for this increase is not the same for the cold and hot ranges.
-In the cold range, the sensitivity of $\lambda$ increased for both climate and competition but was proportionally larger for climate.
-Conversely, in the hot range, the relative sensitivity to climate increased due to a significant decrease in sensitivity to competition.
-
-![Bottom panels describe the sensitivity of species population growth rate to competition (green) and climate (yellow) across the cold, center, and hot temperature ranges. The top panels show the log ratio between competition and climate sensitivities, where negative values mean climate sensitivity is relatively higher than competition. We defined each species' temperature range position as the median Mean Annual Temperature across all observed plots for each cold, center, and hot range class. In the bottom panel, species points are grouped by a Multivariate Normal Density function with 75% probability, while in the top panel, the lines represent the 25, 50, and 75% quantile probabilities.](https://willvieira.github.io/book_forest-demography-IPM/marginal_lambda_files/figure-html/fig-sensBorder_temp-1.png){#fig:temp_vs_comp width=100% short-caption="Bottom panels describe the sensitivity of species population growth rate to competition (green) and climate (yellow) across the cold, center, and hot temperature ranges."}
-
+We further included sensitivity estimates at the center of each species' distribution to characterize the shape of sensitivity changes across the range (Figure SX).
+Overall, most species exhibited a near linear change in sensitivity to both climate and competition from the cold to the hot range margins.
+For climate sensitivity, three of the four species displaying a concave pattern (i.e. sensitivity was higher at both range edges than at the center) were among those with the largest geographic ranges.
+In contrast, for competition, four species showed a convex pattern, with sensitivity to competition peaking at the center of the distribution relative to the range edges.
+These four species also exhibited the highest overall sensitivity to competition and were all predominantly distributed in colder climates.
 
 # Discussion
 

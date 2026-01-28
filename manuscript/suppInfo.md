@@ -201,6 +201,10 @@ Consequently, we selected the complete model with plot random effects, competiti
 
 \newpage
 
+![Sensitivity of species population growth rate to climate (left) and competition (right). Each species is represented by a connected line linking their cold, center, and hot range position points. Each of these 3 values represents the average sensitivity across all plots classified as one these three range position groups. Each line was colored according to a curvature index, ranging from convace (blue), linear (transparent), to convex (red). Note that uncertainty in each sensitivity point estimation has been omitted for clarity.](manuscript/figs/sensitivity_withCenter.png){#fig:figsupp12 width=100% short-caption="Population growth rate sensitivity for cold, center, and hot ranges."}
+
+\newpage
+
 # Supplementary Mateiral 3
 
 ## Sensitivity analysis
