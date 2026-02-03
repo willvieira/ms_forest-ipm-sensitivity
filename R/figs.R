@@ -640,3 +640,186 @@ png(
 )
 print(p)
 dev.off()
+
+
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+## Competition/climate ratio
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+out |>
+  mutate(
+    clim = log(par.temp + par.prec),
+    comp = log(par.BA_con + par.BA_het),
+    ccr = comp - clim
+  ) |>
+  left_join(plotBorder_class) |>
+  select(species_id, border_cl, rep, comp, clim, ccr) |>
+  group_by(species_id, border_cl) |>
+  reframe(
+    clim = median(clim),
+    comp = median(comp),
+    e_size1 = clim * comp,
+    e_size2 = clim + comp,
+    ccr = median(ccr)
+  ) |>
+  left_join(    
+    treeData |>
+      left_join(plotBorder_class) |>
+      group_by(species_id, border_cl) |>
+      reframe(
+        range_pos = median(bio_01_mean, na.rm = TRUE)
+      ) |>
+      mutate(range_pos = range_pos + rnorm(n(), 0, 0.3))
+  ) |>
+  ggplot() +
+  aes(range_pos, ccr) +
+  facet_wrap(~border_cl) +
+  # ggdensity::geom_hdr(
+  #   aes(color = NULL),
+  #   probs = .7, alpha = .5,
+  #   method = 'mvnorm'
+  # ) +
+  geom_smooth(method = "lm", color = "black") +
+  geom_point() +
+  geom_hline(yintercept = 0, alpha = 0.6, linetype = 2) +
+  theme_classic() +
+  labs(
+    x = 'Mean annual temperature (°C)',
+    y = 'Competition/climate sensitivity ratio',
+    color = NULL,
+    fill = NULL
+  ) +
+  theme(legend.title = element_markdown()) +
+  xlim(-3, 21.3) ->
+p
+
+png(
+  filename = file.path('manuscript', 'figs', 'comp_clim_ratio.png'),
+  width = 9, height = 4.25, units = 'in', res = 300
+)
+print(p)
+dev.off()
+
+
+out |>
+  mutate(
+    clim = log(par.temp + par.prec),
+    comp = log(par.BA_con + par.BA_het),
+    ccr = comp - clim
+  ) |>
+  left_join(plotBorder_class) |>
+  select(species_id, border_cl, rep, comp, clim, ccr) |>
+  # group_by(species_id, border_cl) |>
+  # reframe(
+  #   clim = mean(clim),
+  #   comp = mean(comp),
+  #   e_size1 = clim * comp,
+  #   e_size2 = clim + comp,
+  #   ccr = mean(ccr)
+  # ) |>
+  left_join(    
+    treeData |>
+      left_join(plotBorder_class) |>
+      group_by(species_id, border_cl) |>
+      reframe(
+        range_pos = median(bio_01_mean, na.rm = TRUE)
+      ) |>
+      mutate(range_pos = range_pos + rnorm(n(), 0, 0.3))
+  ) |>
+  ggplot() +
+  aes(range_pos, ccr) +
+  facet_wrap(~border_cl) +
+  # ggdensity::geom_hdr(
+  #   aes(color = NULL),
+  #   probs = .7, alpha = .5,
+  #   method = 'mvnorm'
+  # ) +
+  geom_smooth(method = "lm", color = "black") +
+  # geom_point() +
+  stat_pointinterval(alpha = 0.6, .width = c(0.2, 0.7)) +
+  geom_hline(yintercept = 0, alpha = 0.6, linetype = 2) +
+  theme_classic() +
+  labs(
+    x = 'Mean annual temperature (°C)',
+    y = 'Competition/climate sensitivity ratio',
+    color = NULL,
+    fill = NULL
+  ) +
+  theme(legend.title = element_markdown()) +
+  xlim(-3, 21.3) ->
+p
+
+png(
+  filename = file.path('manuscript', 'figs', 'comp_clim_ratio2.png'),
+  width = 9, height = 4.25, units = 'in', res = 300
+)
+print(p)
+dev.off()
+
+
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+## Competition/climate ratio supp
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+out |>
+  # three species that had the lowest AME (low sensitivity to covariates)
+  # filter(!species_id %in% c('NAQUEPRI', '19290QUEALB', '27821NYSSYL')) |>
+  mutate(
+    clim = log(par.temp + par.prec),
+    comp = log(par.BA_con + par.BA_het),
+    ccr = comp - clim
+  ) |>
+  left_join(plotBorder_class) |>
+  group_by(species_id, border_cl, rep) |>
+  mutate(
+    Climate = mean(clim),
+    Competition = mean(comp),
+    CCR = mean(ccr)
+  ) |>
+  slice_head(n = 1) |>
+  pivot_longer(cols = c(Climate, Competition, CCR)) |>
+  left_join(    
+    treeData |>
+      left_join(plotBorder_class) |>
+      group_by(species_id, border_cl) |>
+      reframe(
+        range_pos = median(bio_01_mean, na.rm = TRUE)
+      ) |>
+      mutate(range_pos = range_pos + rnorm(n(), 0, 0.001))
+  ) |>
+  filter(name != 'CCR') |>
+  ggplot() +
+  aes(range_pos, value) +
+  aes(fill = name, color = name) +
+  facet_wrap(~border_cl) +
+  stat_pointinterval(alpha = 0.7) +
+  ggdensity::geom_hdr(
+    aes(color = NULL),
+    probs = .75, alpha = .4,
+    method = 'mvnorm'
+  ) +
+  # geom_smooth(method = 'lm', alpha = .8) +
+  scale_color_manual(values = c('#d8b365', '#5ab4ac')) +
+  scale_fill_manual(values = c('#d8b365', '#5ab4ac')) +
+  theme_classic() +
+  labs(
+    x = 'Mean annual temperature (°C)',
+    y = 'ln(Sensitivity)',
+    color = '',
+    fill = ''
+  ) +
+  theme(
+    legend.position = 'bottom',
+    strip.text = element_blank()
+  ) +
+  scale_y_continuous(breaks = seq(-3, -9, -2)) ->
+p
+
+png(
+  filename = file.path('manuscript', 'figs', 'comp_clim_ratio_supp.png'),
+  width = 9, height = 4.25, units = 'in', res = 300
+)
+print(p)
+dev.off()

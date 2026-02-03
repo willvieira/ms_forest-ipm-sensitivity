@@ -297,19 +297,31 @@ This observation of sensitivity to the covariates was consistent across all spec
 
 ![Log sensitivity of species population growth rate to conspecific competition, heterospecific competition, mean annual temperature, and mean annual precipitation across all plot-year observations. The smaller the values, the lower the sensitivity to a covariate.](https://willvieira.github.io/book_forest-demography-IPM/marginal_lambda_files/figure-html/fig-ame-1.png){#fig:mean_sens width=100% short-caption="Log sensitivity of species population growth rate to conspecific competition, heterospecific competition, mean annual temperature, and mean annual precipitation across all plot-year observations."}
 
-We divided plots into cold and hot regions of each species' range using the mean annual temperature to test whether sensitivity to climate and competition differs between range margins (Figure @fig:cold_vs_hot).
-Species distributed in colder climates generally showed a decrease in climate sensitivity from the cold to the hot border.
-In contrast, species whose distributions are centered in warmer climates tended to exhibit higher climate sensitivity at the hot border than at the cold border.
-Across most species, sensitivity to competition declined from the cold to the hot border.
-This decline in competition sensitivity was particularly pronounced for boreal species.
+We divided plots into cold and hot regions of each species' range based on the MAT to test whether sensitivity to climate and competition differs between range margins (Figure @fig:cold_vs_hot).
+Most species distributed in colder climates showed a decrease in climate sensitivity from the cold to the hot range margin.
+In contrast, species whose distributions are centered in warmer climates tended to exhibit higher climate sensitivity at the hot margin than at the cold margin.
+Sensitivity to competition was generally higher at the cold margin than at the hot margin for most species, regardless of their overall distribution.
+This elevated sensitivity to competition at the cold margin was particularly pronounced for boreal species.
 
-![Differences in the sensitivity of species population growth rate to climate (left) and competition between the cold and hot range limits. Each species is represented by a connected line linking their cold (circle) and hot (triangle) range positions, colored according to the difference between the cold and hot sensitivities. Note that uncertainty in each sensitivity point estimation has been omitted for clarity.](https://willvieira.github.io/book_forest-demography-IPM/marginal_lambda_files/figure-html/fig-hot_vs_cold-1.png){#fig:cold_vs_hot width=100% short-caption="Differences in species population growth rate sensitivity to climate (left) and competition between the cold and hot range limits."}
+We next examined how the relative importance of climate versus competition for population growth varies
+
+![Differences in the sensitivity of species population growth rate to climate (left) and competition between the cold and hot range limits. Each species is represented by a connected line linking their cold (circle) and hot (triangle) range positions, colored according to the difference between the cold and hot sensitivities. Range positions were defined using the median mean annual temperature across all plots belonging to each thermal class. Note that uncertainty in each sensitivity point estimation has been omitted for clarity.](https://willvieira.github.io/book_forest-demography-IPM/marginal_lambda_files/figure-html/fig-hot_vs_cold-1.png){#fig:cold_vs_hot width=100% short-caption="Differences in species population growth rate sensitivity to climate (left) and competition between the cold and hot range limits."}
 
 We further included sensitivity estimates at the center of each species' distribution to characterize the shape of sensitivity changes across the range (Figure S15).
 Overall, most species exhibited a near linear change in sensitivity to both climate and competition from the cold to the hot range margins.
 For climate sensitivity, three of the four species displaying a concave pattern (i.e. sensitivity was higher at both range edges than at the center) were among those with the largest geographic ranges.
 In contrast, for competition, four species showed a convex pattern, with sensitivity to competition peaking at the center of the distribution relative to the range edges.
 These four species also exhibited the highest overall sensitivity to competition and were all predominantly distributed in colder climates.
+
+We then examined how the relative importance of climate versus competition for population growth varies across species' thermal range positions (Figure @fig:comp_clim_ratio).
+For most species, $\lambda$ was consistently more sensitive to climate than to competition across cold, center, and hot range positions.
+Across the MAT gradient, the relative influence of climate increased toward both the cold and hot range margins.
+This pattern indicates that species occurring at the extremes of their thermal distributions are more strongly climate-sensitive than those located near the center of their ranges.
+Notably, the mechanisms underlying this increase differed between cold and hot range margins (Figure S16).
+At the cold margin, sensitivities to both climate and competition increased, but the proportional increase was larger for climate.
+In contrast, at the hot margin, the greater relative importance of climate resulted primarily from a decline in sensitivity to competition.
+
+![Ratio of population growth rate ($\lambda$) sensitivity to competition relative to climate across species' thermal ranges. Negative values indicate greater sensitivity to climate than to competition. Range positions were defined using the median mean annual temperature across all plots belonging to each thermal class. The larger and small bars represent the 20 and 70th quantile probabilities, respectively.](manuscript/figs/comp_clim_ratio2.png){#fig:comp_clim_ratio width=100%}
 
 # Discussion
 
@@ -328,10 +340,10 @@ These findings contribute to a better understanding of how tree species might re
 
 Our model demonstrated remarkable coherence when reproducing the known variation in traits related to growth, survival, and recruitment components found in the literature.
 The intercepts for growth and survival were correlated with maximal size and longevity [@burns1990silvics], while the recruitment intercept aligned well with the seed mass [@diaz2022].
-Additionally, the models effectively reproduced the fast-slow continuum [@SalgueroGomez2016], showing a negative correlation between growth and survival rate and a positive correlation between growth and recruitment rate (Figure S16).
+Additionally, the models effectively reproduced the fast-slow continuum [@SalgueroGomez2016], showing a negative correlation between growth and survival rate and a positive correlation between growth and recruitment rate (Figure S17).
 Regarding competition, the model captured the negative correlation between density dependence and shade tolerance.
 The model also matches a common expectation of communities where species coexist, with a stronger response to conspecific competition relative to heterospecific competition, crucial for biodiversity maintenance [@Chesson2000a].
-The intensity of conspecific density dependence was also higher for fast-growing trees than for slow-growing ones (Figure S17), similar to observations in tropical trees [@Zhu2018].
+The intensity of conspecific density dependence was also higher for fast-growing trees than for slow-growing ones (Figure S18), similar to observations in tropical trees [@Zhu2018].
 For climate, validation is challenging due to limited data on optimal temperature and precipitation measures.
 Nevertheless, our results align with others, indicating the presence of demographic compensation across forest trees [@bohner2020;@Yang2022].
 Furthermore, the estimated breadth of response to climate correlates with the range size (Figure S14), suggesting that the model captures information not explicitly included.
@@ -345,16 +357,16 @@ For instance, tree growth models showed improved estimates when accounting for e
 
 ***$\lambda$ sensitivity to climate and competition***
 
-We found that the sensitivity of $\lambda$ was higher for temperature, followed by conspecific competition, across the species.
+We found across all species that the sensitivity of $\lambda$ was higher for temperature, followed by conspecific competition.
 Studies examining the relative impacts of climate and competition on tree performance yield diverse outcomes.
 For instance, while some suggest that competition has a higher effect on growth than climate [@GomezAparicio2011;@LeSquin2021], others find the opposite [@CopenhaverParry2016].
 Furthermore, the relative effect between climate and competition can change between demographic components, where growth is more sensitive to competition while fecundity to climate [@Clark2011].
 This disparity may arise from a tendency to evaluate sensitivity to specific demographic rates rather than considering their integrated effects.
 This is particularly critical since the population growth rate does not respond equally to all covariates.
-We performed additional sensitivity analyses, which revealed that most species are primarily sensitive to recruitment, followed by survival, with a relatively lower impact from growth (see Supplementary Material 3).
+We performed additional sensitivity analyses, which revealed that $\lambda$ of most species are primarily sensitive to recruitment, followed by survival, with a relatively lower impact from growth (see Supplementary Material 3).
 
 Assessing climate sensitivity across the species range distribution revealed divergent responses.
-As species' performance changes nonlinearly with climate, lower sensitivity values to a climate covariate indicate that the species operates under optimal climate conditions, whereas higher sensitivity values suggest the species is deviating from its optimal climate condition.
+As species' performance responds nonlinearly to climate, lower sensitivity values to a climate covariate indicate that the species operates under optimal climate conditions, whereas higher sensitivity values suggest the species is deviating from its optimal climate condition.
 Overall, climate sensitivity (primarily driven by MAT) was higher at both the cold and hot range extremes.
 This implies that species coming from colder temperatures exhibit optimal performance towards their warmer range, and vice versa for species from hotter conditions.
 Interestingly, the demographic components driving higher sensitivity to climate at the cold and hot extremes differ.

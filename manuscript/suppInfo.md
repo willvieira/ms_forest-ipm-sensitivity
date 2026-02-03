@@ -187,10 +187,14 @@ Consequently, we selected the complete model with plot random effects, competiti
 \newpage
 
 
-![Sensitivity of species population growth rate to climate (left) and competition (right). Each species is represented by a connected line linking their cold, center, and hot range position points. Each of these 3 values represents the average sensitivity across all plots classified as one these three range position groups. Each line was colored according to a curvature index, ranging from convace (blue), linear (transparent), to convex (red). Note that uncertainty in each sensitivity point estimation has been omitted for clarity.](manuscript/figs/sensitivity_withCenter.png){#fig:figsupp12 width=100% short-caption="Population growth rate sensitivity for cold, center, and hot ranges."}
+![Sensitivity of species population growth rate to climate (left) and competition (right). Each species is represented by a connected line linking their cold, center, and hot range position points. Each of these 3 values represents the average sensitivity across all plots classified as one these three range position groups. Each line was colored according to a curvature index, ranging from convace (blue), linear (transparent), to convex (red). Range positions were defined using the median mean annual temperature (MAT) across all plots belonging to each thermal class. Note that uncertainty in each sensitivity point estimation has been omitted for clarity.](manuscript/figs/sensitivity_withCenter.png){#fig:figsupp12 width=100% short-caption="Population growth rate sensitivity for cold, center, and hot ranges."}
 
 \newpage
 
+
+![Sensitivity of species population growth rate to competition (green) and climate (yellow) across the cold, center, and hot temperature ranges. Range positions were defined using the median mean annual temperature (MAT) across all plots belonging to each thermal class. In the bottom panel, species points are grouped by a Multivariate Normal Density function with 75% probability, while in the top panel, the lines represent the 25, 50, and 75% quantile probabilities.](manuscript/figs/comp_clim_ratio_supp.png){#fig:figsupp14 short-caption="Population growth rate sensitivity to competition and climate across the cold, center, and hot temperature ranges."}
+
+\newpage
 
 ![Correlation between (left panel) growth rate ($\Gamma$) and annual survival rate ($\psi$) and (right panel) growth rate ($\Gamma$) and annual recruitment rate ($\phi$). The uncertainty of the parameters is summarised by a Multivariate Normal Density function with 90% probability.](manuscript/figs/intercept_corr.png){#fig:figsupp8 short-caption="Correlation between (left panel) growth rate ($\Gamma$) and annual survival rate ($\psi$) and (right panel) growth rate ($\Gamma$) and annual recruitment rate ($\phi$)."}
 
