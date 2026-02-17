@@ -6,7 +6,7 @@ In an effort to enhance traditional correlative species distribution models [e.g
 One such approach is demographic range models, which predicts a species' distribution based on individual performance governed by growth, survival, and recruitment rates [@Pagel2012].
 This approach operates under the hypothesis that population growth rate ($\lambda$), determined by demographic rates, varies across the environment, with the species range limit defined by conditions where $\lambda$ is positive [@maguire1973niche;@Holt2009;@pang2024niche].
 
-By approaching species distributions from a demographic perspective, we can better capture the complexity of forest dynamics arising from environmental variation and species interactions [@Schurr2012; @Svenning2014].
+By approaching species distributions from a demographic perspective, we can better capture the complexity of forest dynamics arising from environmental variation and species interactions [@Schurr2012;@Svenning2014].
 Several studies have attempted to predict species distributions based on demographic performance of forest trees.
 The simplest implementations of these approaches rely on environment-dependent demographic rates to estimate $\lambda$ [e.g. @Merow2014;@Csergo2017].
 However, competition is a fundamental determinant of demographic rates [@Luo2011; @Clark2011; @Zhang2015] and population performance [@Scherrer2020; @LeSquin2021] in forest ecosystems.
