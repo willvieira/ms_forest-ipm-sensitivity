@@ -1,12 +1,13 @@
-title: "Sensitivity of tree species performance to climate and competition changes across their range distribution"
+title: "Sensitivity of tree species demography to climate and competition across their range"
 running_title: "Tree sensitivity to climate and competition"
-abstract: "Demographic range models, designed to scale individual variation to predict population growth rate, offer a more mechanistic approach to assessing species distribution than phenomenological models. Despite numerous forest models adopting this approach to explore the influence of climate and competition on species population growth rate, the correlation of species performance with their distribution is often weak. What remains unclear is whether the mismatch between species performance and distribution arises from modelling limitations or if climate and competition are poor predictors of species distribution. Here, we developed an Integral Projection Model to evaluate the impact of climate and competition on all demographic components of 31 tree species from eastern North America. By using flexible nonlinear hierarchical models, we filled most of the gaps in previous studies while accounting for process uncertainty. Using perturbation analysis, we found that population growth rate was more sensitive to mean annual temperature than conspecific and heterospecific competition for all species. Furthermore, we examined how population growth rate sensitivity to climate and competition varied across the species range. The dominance of climate over competition increased as species approached the cold or hot temperature ranges. Moreover, most species exhibited a decline in population growth rate sensitivity to competition from the cold to the hot temperature range. Notably, the most influential variable remained the local plot conditions captured by the random effects. Unveiling species-specific sensitivity to climate and competition provides crucial insights into how species may respond to emerging conditions resulting from climate change and disturbance changes."
+abstract: "Theory predicts that demographic performance should peak at the core of species ranges and decreases towards the limits. Yet, empirical correlations between population growth rate and species distribution remain weak for most tree species. Part of the problem may arise from the difficulty of integrating multiple demographic processes across the complex life cycle of a forest, and from the significant variability among individuals and locations. It remains unclear if the mismatch between performance and distribution arises from modelling limitations or if climate is simply a poor predictor of species performance across distribution. Here, we developed an Integral Projection Model to evaluate the effects of climate and competition on all demographic components of 31 tree species across eastern North America. By using flexible nonlinear hierarchical models, we addressed key gaps in previous studies while explicitly accounting for process uncertainty. Perturbation analyses revealed that population growth rate was consistently more sensitive to mean annual temperature than to conspecific or heterospecific competition across all species. We further examined how sensitivities to climate and competition varied across species ranges. The dominance of climate over competition increased toward both cold and hot range limits, while sensitivity to competition generally declined from cold to hot limits. Across species, the largest source of variability remained the local plot conditions captured by random effects, likely reflecting differences in soil conditions, drainage, and disturbance history. Quantifying species-specific sensitivity to climate and competition provides crutial insight into how tree populations may respond to ongoing climate change and shifting disturbance regimes."
 keywords:
     - "Integral Projection Models"
-    - "Perturbation analysis"
-    - "demography performance"
+    - "Tree demography"
+    - "Species distribution"
+    - "Range limits"
 highlights:
-    - ""
+    - "Tree species population growth rate are consistently more sensitive to climate than to competition across their range."
 supporting-files:
   - "suppInfo"
 language: "en"
@@ -39,7 +40,7 @@ affiliations:
     - index: 1
       name: Département de biologie, Université de Sherbrooke, Sherbrooke, QC, Canada
 
-acknowledgments: "We thank nice people"
+acknowledgments: "We acknowledge the support of Calcul Québec and Compute Canada for providing the computational resources used in this research. This research was supported by funding from the BIOS² NSERC CREATE program. We are especially grateful to Amaël Le Squin for insightful discussions on the mathematical and Stan models."
 data_availability: "All the code and data used to reproduce the analysis, figure and manuscript are stored as a research compendium at [https://github.com/willvieira/ms_forest-ipm-sensitivity](https://github.com/willvieira/ms_forest-ipm-sensitivity))."
 funding: "This research was supported by the BIOS² NSERC CREATE program."
 authorship: ""
