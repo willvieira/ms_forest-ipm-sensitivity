@@ -49,150 +49,143 @@ The sensitivity of each species is reported at the cold and hot limits of their 
 
 ## Forest inventory and climate data
 
-We used two open inventory datasets from eastern North America: the Forest Inventory and Analysis (FIA) dataset in the United States [@OConnell2007] and the Forest Inventory of Québec [@Naturelles2016].
-At the plot level, we focused on plots sampled at least twice, excluding those that had undergone harvesting to concentrate solely on natural dynamics.
-Specifically, we selected surveys conducted for the FIA dataset using the modern standardized methodology implemented since 1999.
-After applying these filters, our final dataset encompassed nearly 26,000 plots spanning a latitude range from 26° to 53° (Figure S7).
-Each plot within the dataset was measured between 1970 and 2021, with observation frequencies ranging from 2 to 7 times and an average of 3 measurements per plot.
+We used two open forest inventory datasets from eastern North America: the Forest Inventory and Analysis (FIA) dataset in the United States [@OConnell2007] and the Forest Inventory of Québec [@Naturelles2016].
+At the plot level, we focused on plots sampled at least twice and excluded those that had undergone harvesting in order to concentrate solely on natural forest dynamics.
+Specifically for the FIA dataset, we selected surveys conducted using the modern standardized methodology implemented since 1999.
+After applying these filters, the final dataset encompassed nearly 26,000 plots spanning a latitudinal range from 26° to 53° (Figure S7).
+Each plot was measured between 1970 and 2021, with observation frequencies ranging from 2 to 7 measurements and an average of 3 measurements per plot.
 The time intervals between measurements varied from 1 to 40 years, with a median interval of 7 years (Figure S7).
 
-These datasets provide individual-level information on the DBH and the status (dead or alive) of more than 200 species.
-From this pool, we selected the 31 most abundant species (Table S1).
-This selection comprises 9 conifer species and 22 hardwood species.
-We ensured an even distribution of species across the shade tolerance axis, with three species classified as very intolerant, nine as intolerant, eight as intermediate, eight as tolerant, and five as very tolerant [@burns1990silvics].
+These datasets provide individual-level information on diameter at breast height (DBH) and survival status (alive or dead) for more than 200 species.
+From this pool, we selected the 31 most abundant species (Table S1), comprising 9 conifer species and 22 hardwood species.
+We ensured broad coverage across the shade tolerance gradient, including three very intolerant species, nine intolerant species, eight intermediate species, eight tolerant species, and five very tolerant species [@burns1990silvics].
 
-We obtained the 19 bioclimatic variables with a 10 $km^2$ (300 arcsec) resolution grid, covering the period from 1970 to 2018.
+We obtained 19 bioclimatic variables at a spatial resolution of 10 km² (300 arcsec), covering the period from 1970 to 2018.
 These climate variables were modeled using the ANUSPLIN interpolation method [@McKenney2011].
-We used each plot's latitude and longitude coordinates to extract the MAT and MAP climate variables.
-In cases where plots did not fall within a valid pixel of the climate variable grid, we interpolated the climate condition using the eight neighboring cells.
-Due to the transitional nature of the dataset, we considered both the average and standard deviation of MAT and MAP over the years within each time interval.
+Using the geographic coordinates of each plot, we extracted mean annual temperature (MAT) and mean annual precipitation (MAP).
+When plots did not fall within a valid climate pixel, values were interpolated using the eight neighboring cells.
+Because measurements occurred across multiple years within census intervals, we calculated both the mean and standard deviation of MAT and MAP across the years included in each time interval.
 
 ## Model
 
-We developed an Integral Projection Model (IPM) for 31 tree species, with data sub-models for each vital rate.
-An IPM is a mathematical tool used to represent the dynamics of structured populations and communities.
-It distinguishes itself from traditional population models with the representation of a continuous trait in discrete time [@Easterling2000].
-The model formulation allows a full representation of the distribution of transitions between time steps, which is  especially relevant for trees due to the considerable variability in demographic rates [@kohyama1992;@Clark2011;@LeSquin2021].
-Specifically, the IPM consists of a set of functions predicting the transition of a distribution of individual traits from time $t$ to time $t+\Delta t$, where $\Delta t$ represents the number of discrete year intervals:
+We developed an Integral Projection Model (IPM) for 31 tree species, with separated sub-models for each demographic rate.
+An IPM is a mathematical framework used to represent the dynamics of structured populations and communities.
+Unlike traditional matrix population models, IPMs represent individual traits as continuous variables in discrete time [@Easterling2000].
+This formulation enables a detailed representation of trait transitions between time steps, which is particularly relevant for trees due to the considerable variability in demographic rates [@kohyama1992;@Clark2011;@LeSquin2021].
+Specifically, the IPM predicts the transition of a distribution of individual traits from time $t$ to time $t + \Delta t$, where $\Delta t$ represents the number of years between observations:
 
 $$
 n(z', t + \Delta t) = \int_{L}^{U} \, K(z', z, \theta)\, n(z, t)\, \mathrm{d}z
 $${#eq:ipm}
 
-The continuous trait $z$ at time $t$ represents the diameter at breast height (DBH), bounded between the lower ($L$) and upper ($U$) values, and $n(z, t)$ characterizes the continuous DBH distribution for a population.
-The probability of the population distribution size from $n(z, t)$ to $n(z', t + \Delta t)$ is governed by the kernel $K$ and the species-specific parameters $\theta$.
-The kernel $K$, a continuous version of the discretized projection matrix in structured population models, is composed of three sub-models:
+The continuous trait $z$ represents DBH, bounded between lower ($L$) and upper ($U$) limits, and $n(z, t)$ describes the DBH distribution at time $t$.
+Transitions from $n(z, t)$ to $n(z', t + \Delta t)$ are governed by the kernel $K$ and species-specific parameters $\theta$.
+The kernel $K$, a continuous analogue of the projection matrix in structured population models, is composed of three demographic components:
 
 $$
 K(z', z, \theta) = [Growth(z', z, \theta) \times Survival(z, \theta)] + Recruitment(z, \theta)
 $${#eq:kernel}
 
-The growth function describes how individual trees increase in DBH, while the survival function determines the probability of staying alive throughout the next time step.
-The recruitment model describes the number of individuals ingressing the population.
-These three models are independent and do not share any parameters.
-Below, we describe the basic (intercept) version of these models, followed by the inclusion of climate and competition covariate in each of them.
+The growth function describes changes in DBH, the survival function determines the probability of remaining alive over the next interval, and the recruitment function describes the influx of new individuals.
+These three models are estimated independently and do not share parameters.
+Below, we first describe the baseline versions of these models, followed by the inclusion of climate and competition covariates.
 
 ### Demographic rates
 
-**Growth** - the size in DBH of an individual at time $t + \Delta t$ after growing from time $t$ follows the distribution:
+**Growth** - The DBH of an individual at time $t + \Delta t$ after growing from time $t$ follows the distribution:
 
 $$
-  dbh_{i,t + \Delta t} \sim N(\mu_{i, t+\Delta t}, \sigma)
+dbh_{i,t + \Delta t} \sim N(\mu_{i, t+\Delta t}, \sigma)
 $${#eq:VBlik}
 
-We used the von Bertalanffy growth equation to describe the annual growth rate in DBH of an individual $i$ [@von1957quantitative].
-The average size at time $t+\Delta t$ from the initial size $dbh_{i, t}$ of an individual at time $t$ is given by:
+We used the von Bertalanffy growth equation to describe annual DBH growth for individual $i$ [@von1957quantitative].
+The expected size at time $t + \Delta t$, given initial size $dbh_{i,t}$, is:
 
 $$
-  \mu_{i, t+\Delta t} = dbh_{i,t}  \times e^{-\Gamma \Delta t} + \zeta_{\infty} (1- e^{-\Gamma \Delta t})
+\mu_{i, t+\Delta t} = dbh_{i,t} e^{-\Gamma \Delta t} + \zeta_{\infty} (1 - e^{-\Gamma \Delta t})
 $$ {#eq:VBmodel}
 
-Where $\Delta t$ is the time interval between the initial and final size measurements and $\Gamma$ represents a dimensionless growth rate coefficient.
-$\zeta_{\infty}$ denotes the asymptotic size, which is the location at which growth approximates to zero.
-The rationale behind this model is that the growth rate exponentially decreases with size, converging to zero as size approaches $\zeta_{\infty}$.
-This assumption is particularly valuable in the context of the IPM, as it prevents eviction — where individuals are projected beyond the limits of the size distribution ($[L, U]$) defined by the Kernel.
+Here, $\Delta t$ represents the time interval between measurements, $\Gamma$ is a dimensionless growth-rate parameter, and $\zeta_{\infty}$ represents the asymptotic size at which growth approaches zero.
+This formulation assumes that growth declines exponentially with size, converging to zero as size approaches $\zeta_{\infty}$.
+This assumption is particularly valuable in the context of an IPM, as it prevents eviction beyond the bounds of the IPM domain $[L,U]$.
 
-**Survival** - The chance of a mortality event ($M$) for an individual $i$ within the time interval between $t$ and $t+\Delta t$ is modeled as a Bernoulli distribution:
+**Survival** - A mortality event ($M$) for individual $i$ during the interval between $t$ and $t+\Delta t$ is modeled as:
 
 $$
 M_i \sim Bernoulli(p_i)
 $${#eq:survL}
 
-Here, $M_i$ represents the individual's status (alive/dead) and $p_i$ the mortality probability of the individual $i$.
-The mortality probability is calculated based on the annual survival rate ($\psi$) and the time interval between census ($\Delta t$):
+Here, $M_i$ denotes survival status and $p_i$ represents mortality probability.
+Mortality probability is derived from the annual survival rate ($\psi$):
 
 $$
 p_i = 1 - \psi^{\Delta t}
 $${#eq:survP}
 
-The model assumes that the survival probability ($1 - p_i$) increases with the longevity parameter $\psi$, but is compensated exponentially with the increase in time $\Delta t$.
+Thus, survival probability increases with longevity parameter $\psi$, while longer intervals $\Delta t$ increase mortality risk exponentially.
 
-**Recruitment** - We combined data from the U.S. and Quebec forest inventories to obtain a broader range of climatic conditions.
-However, these inventories have inconsistent protocols for recording seedlings, saplings, and juveniles.
-Most of all, they have different size thresholds for individual-based measurements. 
-Therefore, we quantified the recruitment rate ($I$) as the ingrowth of new individuals into the adult population, defined as those with a DBH exceeding 12.7 cm.
-The quantity $I$ encompasses the processes of fecundity, dispersal, growth, and survival up to reaching the size threshold.
-Similar to growth and survival, the count of ingrowth individuals ($I$) reaching the 12.7 cm size threshold depends on the time interval between measurements.
-We introduce two parameters to control the potential number of recruited individuals: $\phi$, determining the annual ingrowth rate per square meter, and $\rho$, denoting the annual survival probability of each ingrowth individual:
+**Recruitment** - We combined U.S. and Québec inventory data to capture a broader climatic range.
+However, these inventories differ in protocols for recording seedlings and saplings, including size thresholds.
+We therefore defined recruitment as the ingrowth of individuals into the adult population (DBH ≥ 12.7 cm).
+
+Recruitment rate ($I$) integrates fecundity, dispersal, growth, and survival up to the threshold size.
+Because ingrowth depends on census interval length, we defined two parameters: $\phi$, the annual ingrowth rate per square meter, and $\rho$, the annual survival probability of recruits:
 
 $$
-  I \sim Poisson(~\phi \times A \times \frac{1 - \rho^{\Delta t}}{1-\rho}~)
+I \sim Poisson(~\phi \times A \times\frac{1 - \rho^{\Delta t}}{1 - \rho}~)
 $${#eq:rec}
 
-Where $A$ represents the area of the plot in square meters.
-The model assumes that new individuals enter the population annually at a rate of $\phi$, and their likelihood of surviving until the subsequent measurement ($\rho$) declines over time.
+Here, $A$ represents plot area (m²).
+Individuals are assumed to enter annually at rate $\phi$, while their survival ($\rho$) until the subsequent measurement declines with time.
 Note that $\rho$ in Equation @eq:rec is not associated with Equation @eq:survP determining the survival of the adults.
 Instead, $\rho$ is estimated from the data of individuals arriving in the population.
-Once an individual is recruited into the population, a submodel determines its initial size $z_I$, increasing linearly with time:
+Once individuals are recruited into the population, their initial size $z_I$ is modeled as:
 
 $$
-  z_{I} \sim TNormal(\Omega + \beta \Delta t,~\sigma, ~ \alpha, ~ \beta)
+z_{I} \sim TNormal(\Omega + \beta \Delta t,~\sigma, ~ \alpha, ~ \beta)
 $${#eq:recSize}
 
-The $TNormal$ is a truncated distribution with lower and upper limits determined by the $\alpha$ and $\beta$ parameters, respectively.
-We set $\alpha$ to 12.7 cm, aligning it with the ingrowth threshold, while $\beta$ is set to infinity to allow for an unbounded upper limit.
+This truncated normal distribution has lower bound $\alpha=12.7$ cm and no upper bound.
 
 ### Covariates
 
-**Random effects** - We introduced plot-level random effects in each of the growth, survival, and recruitment demographic component to account for shared variance between the individuals within the same plot.
-For a demographic component with an average intercept $\overline{I}$, an offset value ($\alpha$) is drawn for each plot $j$ from a normal distribution with a mean of zero and variance $\sigma$:
+**Random effects** - Plot-level random effects were included in all demographic components to account for shared environmental variation among individuals within plots.
 
 $$
 \begin{split}
-&\alpha_{j} \sim N(0, \sigma) \\[2pt]
+&\alpha_j \sim N(0, \sigma) \\[2pt]
 &I_j = \overline{I} + \alpha_j
 \end{split}
 $${#eq:randomEffect}
 
-Where $\sigma$ represents the variance among all plots $j$ and $I$ can take one of three forms: $\Gamma$ for growth, $\psi$ for survival, and $\phi$ for the recruitment model.
+Here, $I$ represents parameters $\Gamma$, $\psi$, or $\phi$ depending on the demographic component, and $\sigma$ the variance among all plots.
 
 **Competition** - We assumed that competition for light is the primary competitive factor driving forest dynamics [@Pacala1996a].
-We therefore considered that each individual is affected only by neighbour individuals of larger size.
-We quantified asymmetric competition for light for a focal individual in a given plot by summing the total basal area of all individuals larger than the focal one, herein BAL.
+We therefore considered that each individual was affected only by larger neighbors.
+We quantified competition for light for a focal individual in a given plot by summing the basal area of all individuals larger than the focal one, herein BAL.
 We further split BAL into the total density of conspecific and heterospecific individuals.
-Each of the growth ($\Gamma$), longevity ($\psi$), and recruitment survival ($\rho$) parameters decreases exponentially with BAL.
-Take $I$ as one of the three parameters, the effect of BAL on $I$ in the logarithmic scale is driven by two parameters describing the conspecific ($\beta$) and heterospecific ($\theta$) competition:
+
+Competition effects were modeled on parameters $\Gamma$, $\psi$, and $\rho$:
 
 $$
-  I + \beta (BAL_{cons} + \theta \times BAL_{het})
+I + \beta (BAL_{cons} + \theta \times BAL_{het})
 $${#eq:compEffect}
 
-When $\theta < 1$, conspecific competition is stronger than heterospecific competition.
-Conversely, heterospecific competition prevails when $\theta > 1$, and when $\theta = 1$, there is no distinction between conspecific and heterospecific competition.
+Parameter $\theta$ controls the relative strength of heterospecific competition.
+Values $\theta < 1$ indicate stronger conspecific competition, $\theta > 1$ indicates stronger heterospecific effects, and when $theta = 1$, there is no distinction between them.
 Note that $\beta$ is also unbounded, allowing it to converge towards negative (indicating competition) or positive (indicating facilitation) values.
-Furthermore, we fixed $\theta = 1$ for the recruitment ($I = \rho$) due to model convergence issues.
-The recruitment model also accounts for the conspecific density-dependence effect on the annual ingrowth rate ($\phi$).
-Specifically, $\phi$ increases with $BAL_{cons}$ as a positive effect of seed source up to reach the optimal density of recruitment, $\delta$, where it then decreases with more conspecific density due to competition at a rate proportional to $\sigma$:
+For recruitment survival ($\rho$), $\theta$ was fixed at 1 due to convergence issues.
+Recruitment rate $\phi$ also included conspecific density-dependence, where it decreases with $BAL_{cons}$ as a positive effect of seed source up to reach the optimal density of recruitment, $\delta$, and then decreases with more conspecific density due to competition at a rate proportional to $\sigma$:
 
 $$
-  \phi + \left(\frac{BAL_{cons} - \delta}{\sigma}\right)^2
+\phi + \left(\frac{BAL_{cons} - \delta}{\sigma}\right)^2
 $${#eq:compingrowth}
 
-**Climate** - We selected mean annual temperature and mean annual precipitation bioclimatic variables as they are widely used in species distribution modeling and were previously found relevant to model demography of these species [@LeSquin2021].
-Each demographic component $I$, representing either $\Gamma$ for growth, $\psi$ for longevity, or $\phi$ for ingrowth, varies as a bell-shaped curve determined by an optimal climate condition ($\xi$) and a climate breadth parameter ($\sigma$):
+**Climate** - We used MAT and MAP as climate predictors because of their widespread use in species distribution modeling and demonstrated relevance to model demography of these species [@LeSquin2021].
+Each demographic parameter followed a unimodal climate response determined by an optimal climate condition ($\xi$) and a climate breadth parameter ($\sigma$):
 
 $$
-  I + \left(\frac{MAT - \xi_{MAT}}{\sigma_{MAT}}\right)^2 + \left(\frac{MAP - \xi_{MAP}}{\sigma_{MAP}}\right)^2
+I + \left(\frac{MAT - \xi_{MAT}}{\sigma_{MAT}}\right)^2 + \left(\frac{MAP - \xi_{MAP}}{\sigma_{MAP}}\right)^2
 $${#eq:compEffect}
 
 The climate breadth parameter ($\sigma$) influences the strength of the specific climate variable's effect on each demographic component.
@@ -202,39 +195,38 @@ To address this issue, we constrained the optimal climate condition parameter ($
 
 ### Model fit and validation
 
-We fitted each of the growth, survival, and recruitment models separately for each species, using the Hamiltonian Monte Carlo (HMC) algorithm implemented in the Stan software [version 2.30.1 @stan2022stan] with the `cmdstandr` R package interface [version 0.5.3 @cmdstanr].
-We conducted 2000 iterations for the warm-up and 2000 iterations for the sampling phase for each of the four chains, resulting in 8000 posterior samples (excluding the warm-up).
-However, we kept only the last 1000 iterations of the sampling phase to save computation time and storage space, resulting in 4000 posterior samples.
-We built and fitted each demographic component incrementally, from a simple intercept, and gradually incorporating plot random effects, competition, and climate covariates.
-Recall that our goal is not to have the most complex model to achieve the highest predictive metric but to make inferences [@Tredennick2021].
+We fitted growth, survival, and recruitment models separately for each species using Hamiltonian Monte Carlo (HMC) implemented in Stan [version 2.30.1 @stan2022stan] through the `cmdstanr` R interface [version 0.5.3 @cmdstanr].
+Each model used four chains with 2000 warm-up iterations and 2000 sampling iterations, yielding 8000 posterior samples.
+To reduce storage, only the final 1000 samples from each chain were retained, resulting in 4000 posterior samples.
+Models were constructed incrementally, beginning with intercept-only models and progressively adding random effects, competition, and climate covariates.
+Our goal was not maximal predictive accuracy but mechanistic inference [@Tredennick2021].
 We focused on assessing the relative effects of climate and competition while controlling for other influential factors.
 Therefore, our modeling approach is guided by biological mechanisms, which tend to provide more robust extrapolation [@Briscoe2019] rather than being solely dictated by specific statistical metrics.
-Nevertheless, we checked if increasing model complexity with new covariates does not result in worse performance using complementary metrics such as mean squared error (MSE), pseudo $R^2$ [@Gelman2019], and Leave-One-Out Cross-Validation (LOO-CV).
-Detailed discussions regarding model fit, diagnostics, and model comparison can be found in Ssupplementary material 1.
+Nevertheless, we verified that increasing model complexity did not reduce predictive performance using mean squared error (MSE), pseudo-$R^2$ [@Gelman2019], and Leave-One-Out Cross-Validation (LOO-CV).
+Additional diagnostics are provided in Supplementary Material 1.
 
-We constructed the Kernel $K$ of the IPM following Equation @eq:kernel.
-We employed the mid-point rule to perform the discrete-form integration of the continuous $K$ [@Ellner2016].
-This involved discretizing the projection kernel $K$ using bins of 0.1 cm, which are considered appropriate for obtaining unbiased estimates for trees [@zuidema2010integral].
-Finally, asymptotic population growth rate ($\lambda$) is computed from the leading eigenvalue of the discretized matrix $K$, under specific climate and competition conditions.
-The code to fit each demographic component is available in the [`TreesDemography`](https://github.com/willvieira/TreesDemography) GitHub repository.
-The IPM model is packed as an R package at [https://github.com/willvieira/forestIPM](https://github.com/willvieira/forestIPM) and the code for the sensitivity analysis is available in the `simulations
-/covariates_perturbation` folder from the same GitHub repository.
+The IPM kernel $K$ was constructed following Equation @eq:kernel and discretized using the midpoint rule [@Ellner2016].
+Kernel discretization used 0.1 cm size bins, consistent with previous recommendations for trees [@zuidema2010integral].
+The asymptotic population growth rate ($\lambda$) was computed as the leading eigenvalue of the discretized kernel matrix under specified climate and competition conditions.
+
+All model code is available in the [`TreesDemography`](https://github.com/willvieira/TreesDemography) repository.
+The IPM implementation is packaged in [`forestIPM`](https://github.com/willvieira/forestIPM), and sensitivity analysis code is available in the `simulations/covariates_perturbation` directory.
 
 ## Perturbation analysis
 
-We defined sensitivity as the partial derivative of $\lambda$ with respect to a covariate $X$, which can take the form of either conspecific or heterospecific density dependence competition, or temperature or precipitation climate conditions.
-We quantify sensitivity by slightly increasing each covariate value $X_j$ to $X_j^{'}$ and computing the change in $\lambda$ following the right-hand part of Equation @eq:sens:
+Sensitivity was defined as the partial derivative of $\lambda$ with respect to a covariate $X$, representing either competition (conspecific or heterospecific density dependence) or climate (temperature or precipitation).
+We quantified sensitivity by slightly increasing each covariate value $X_j$ to $X_j^{'}$ and computing the resulting change in $\lambda$ using a finite-difference approximation (right-hand side of Equation @eq:sens):
 
 $$
-	\frac{\partial \lambda_{ij}}{\partial X_j} \bigg\rvert_{K_{ij}} \approx \frac{\Delta \lambda_{ij}}{\Delta X_j} = \frac{|f(X_j^{'}) - f(X_j)|}{X_j^{'} - X_j}
+\frac{\partial \lambda_{ij}}{\partial X_j} \bigg\rvert_{K_{ij}} \approx \frac{\Delta \lambda_{ij}}{\Delta X_j} = \frac{|f(X_j^{'}) - f(X_j)|}{X_j^{'} - X_j}
 $${#eq:sens}
 
-Sensitivity was evaluated separately for each species $i$ and is conditional on the specific climate and competition conditions observed for the plot-year $j$, along with the Kernel $K_{ij}$ parameters.
-We set the perturbation size to a 1% increase in the normalized scale for each covariate.
-For instance, a 1% increase translates to a rise of 0.3°C for Mean Annual Temperature (MAT) and 26 mm for Mean Annual Precipitation (MAP).
-Because the competition metric is computed at the individual level, the perturbation was applied to each individual before computing the plot basal area (BA), where a 1% increase corresponds approximately to a rise of 1.2 cm in dbh.
-As we were interested in the absolute difference, the resulting sensitivity value ranges between 0 and infinity, with lower values indicating a lower sensitivity of $\lambda$ to the specific covariate.
-Specifically, sensitivity ($S$) to competition or climate of species $i$ for a given plot-year $j$ is defined as follows:
+Sensitivity was evaluated separately for each species $i$ and plot-year $j$, conditional on the local climate and competition conditions as well as the corresponding kernel parameters $K_{ij}$.
+We set the perturbation magnitude to a 1% increase on the normalized scale of each covariate.
+For instance, a 1% increase corresponds to approximately 0.3°C for mean annual temperature (MAT) and 26 mm for mean annual precipitation (MAP).
+Because competition metrics were computed at the individual level, perturbations were applied to each individual prior to calculating plot-level basal area, where a 1% increase corresponds approximately to an increase of 1.2 cm in DBH.
+As we were interested in the magnitude of the response, absolute differences were used, resulting in sensitivity values ranging from 0 to $\infty$, where lower values indicate weaker sensitivity of $\lambda$ to the given covariate.
+Specifically, sensitivity ($S$) to competition or climate for species $i$ at plot-year $j$ was defined as:
 
 $$
 \begin{split}
@@ -243,12 +235,12 @@ $$
 \end{split}
 $${#eq:CCR}
 
-When averaging $S_{X,i}$ across $j$, this metric reflects the sensitivity of $\lambda_i$ to $X$, which is conditional upon the probability distribution of the covariate $X$.
-This yields a measure of realized sensitivity integrating both the demographic response and the environmental variability experienced by each species.
-We categorized each plot into cold, center, or hot conditions along the MAT axis for every species.
-Plots were labeled as cold (or hot) if the average MAT fell below (above) the 10% (90%) probability distribution, with all intermediate plots considered center plots.
-Thus, sensitivity to a covariate in the cold range of the species means the average sensitivity among all plots classified as cold.
-It is important to note that this classification is also conditional on the probability distribution of observed MAT within the species.
+When averaging $S_{X,i}$ across plot-years $j$, this metric represents the sensitivity of $\lambda_i$ to covariate $X$, conditional on the observed probability distribution of that covariate.
+This yields a measure of **realized sensitivity**, integrating both demographic responses and the environmental variability experienced across the species' range.
+To evaluate range-dependent sensitivity, plots were categorized into cold, center, or hot conditions along the MAT gradient for each species.
+Plots were classified as cold (or hot) if their average MAT fell below the 10th percentile (or above the 90th percentile) of the species-specific MAT distribution, with intermediate plots classified as center plots.
+Sensitivity within each range position was calculated as the average sensitivity across plots belonging to that category.
+Because this classification is based on observed MAT distributions, range categories are conditional on the environmental conditions experienced by each species.
 
 # Results
 
