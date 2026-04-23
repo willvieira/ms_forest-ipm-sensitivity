@@ -246,66 +246,61 @@ Because this classification is based on observed MAT distributions, range catego
 
 ## Model validation
 
-All species-specific demographic components demonstrated convergence with $\hat{R} <1.05$ and low to no divergent iterations.
-In comparing the simple intercept model with the more complete versions, the LOO-CV consistently favored the complete model for all three demographic rates, featuring plot random effects, competition, and climate covariates, over other competing models (Supplementary material 1).
-The absolute values of LOO-CV suggested that the growth model gained the most information from including covariates, followed by recruitment and survival models.
-We further validated our model predictions by comparing the parameters with traits groups such as growth rate classes, maximum observed size, maximum observed age, shade tolerance, and seed mass [@burns1990silvics;@diaz2022].
+All species-specific demographic components demonstrated good convergence ($\hat{R} < 1.05$) with few to no divergent iterations.
+Model comparison using LOO-CV consistently favored the full model, featuring plot-level random effects, competition, and climate covariates, over other competing models for all three demographic rates (Supplementary Material 1).
+The magnitude of LOO-CV differences indicated that the growth model benefited most from the inclusion of covariates, followed by recruitment and survival.
+We further evaluated biological realism by comparing model-derived parameters with known species trait groups, including growth rate class, maximum observed size, maximum observed age, shade tolerance, and seed mass [@burns1990silvics;@diaz2022].
 
-The growth model intercept comprises two parameters, one determining the asymptotic size ($\zeta_{\infty}$) and the annual growth rate $\Gamma$.
-The $\zeta_{\infty}$ can be interpreted as the maximum predicted size of the species, which correlates well across all 31 species with the maximum observed size in the literature ($R^2 = 0.31$, Figure @fig:crossGrowthSurv).
-Similarly, $\Gamma$ exhibited a distribution aligning with the fast, moderate, and slow-growing traits (Figure S8).
-In the survival model, the expected longevity ($L$) can be derived from the annual survival rate ( $\psi$) following the equality $L = e^{\psi}$, showing a high correlation with the maximum observed age in the literature ($R^2 = 0.59$, Figure @fig:crossGrowthSurv).
-In the recruitment model, the log of the annual ingrowth rate ($\phi$) reduced linearly with seed mass (Figure S9), capturing the seed mass-growth rate tradeoff [@Reich1998].
-Additionally, the annual survival probability of ingrowth ($\rho$) decreased with intolerance to shade (Figure S10).
+The growth model intercept included two parameters: one determining asymptotic size ($\zeta_{\infty}$) and another describing annual growth rate ($\Gamma$).
+Predicted asymptotic size, which can be interpreted as the maximum predicted size of the species, correlated well with maximum observed species size reported in the literature ($R^2 = 0.31$, Figure @fig:crossGrowthSurv).
+Similarly, $\Gamma$ values aligned with established fast-, moderate-, and slow-growing trait classes (Figure S8).
+In the survival model, expected longevity ($L$) was derived from annual survival probability ($\psi$) using the relationship $L = e^{\psi}$.
+Estimated longevity showed strong agreement with maximum observed age from the literature ($R^2 = 0.59$, Figure @fig:crossGrowthSurv).
+For recruitment, the log of annual ingrowth rate ($\phi$) declined linearly with seed mass (Figure S9), consistent with the seed mass–growth rate trade-off [@Reich1998].
+Additionally, the annual survival probability of ingrowth ($\rho$) decreased with increasing shade intolerance (Figure S10).
 
 ![Correlation between predicted asymptotic size ($\zeta_{\infty}$) with maximum observed size (left) and predicted longevity ($L$) with maximum observed age for the 31 forest species. Maximum observed size and age are obtained from @burns1990silvics. The gray line is the identity curve.](manuscript/figs/crossGrowthSurv.png){#fig:crossGrowthSurv width=100% short-caption="Correlation between predicted asymptotic size ($\zeta_{\infty}$) with maximum observed size (left) and predicted longevity ($L$) with maximum observed age for the 31 forest species."}
 
-Both conspecific and heterospecific competition effects for the growth and survival models increased with intolerance to shade (Figure @fig:crossComp).
-The stronger competition effect of conspecific over heterospecific was consistent for almost all species in both growth and survival models.
-Only two species for growth and three for survival among the 31 presented stronger heterospecific competition than conspecific competition.
-Moreover, *Fagus grandifolia* and *Thuja occidentalis* exhibited positive density-dependence for the survival model.
-For recruitment, the effect of total stand density increased with shade intolerance among the species (Figure S11).
+Both conspecific and heterospecific competition effects in growth and survival models increased with shade intolerance (Figure @fig:crossComp).
+Across nearly all species, conspecific competition effects were stronger than heterospecific effects.
+Only two species in the growth model and three in the survival model showed stronger heterospecific than conspecific competition.
+Notably, *Fagus grandifolia* and *Thuja occidentalis* exhibited positive density-dependence in survival.
+In the recruitment model, total stand density effects increased with shade intolerance (Figure S11).
 
 ![Posterior distribution for the conspecific (red) and heterospecific (blue) density-dependence for each class of shade tolerance [@burns1990silvics]. The more negative the $\beta$, the stronger the competition effect.](manuscript/figs/crossComp.png){#fig:crossComp width=100% short-caption="Posterior distribution for the conspecific (red) and heterospecific (blue) density-dependence for each class of shade tolerance [@burns1990silvics]."}
 
-The distribution of optimal MAT ($\xi_{MAT}$) and MAP ($\xi_{MAP}$) for the 31 species revealed that the optimal climates for growth, survival, and recruitment were rarely located at the center of the species ranges (Figure S12 and S13).
-Furthermore, most species exhibited some degree of demographic compensation, that is, opposing responses to the environment between demographic rates [@Villellas2015].
-Lastly, the climate breadth ($\sigma$) determined how flat or narrow the performance of species was across MAT and MAP.
-We found among all species that climate breadth increased with range size, demonstrating that species with larger range also had larger niche breadths (Figure S14).
-The exception was the niche breadth of survival over MAT, showing a weak, flat correlation.
+The distribution of optimal MAT ($\xi_{MAT}$) and MAP ($\xi_{MAP}$) indicated that optimal conditions for growth, survival, and recruitment were rarely located at the center of species' ranges (Figures S12 and S13).
+Many species exhibited demographic compensation, with opposing responses among demographic rates to environmental variation [@Villellas2015].
+Climate breadth ($\sigma$) determined how narrowly or broadly performance varied across MAT and MAP.
+Across species, climate breadth increased with geographic range size, indicating that widely distributed species tended to have broader niche breadths (Figure S14).
+An exception was survival breadth along MAT, which showed only a weak relationship.
 
 ## $\lambda$ sensitivity to climate and competition
 
-We conducted perturbation analysis to assess the relative contribution of each covariate to variation in $\lambda$.
-Figure @fig:mean_sens describes the sensitivity of each species' population growth rate to conspecific and heterospecific competition, temperature, and precipitation averaged across all plot-year observations.
-Across all species, $\lambda$ exhibited higher sensitivity to temperature, followed by conspecific and heterospecific competition, while sensitivity to mean annual precipitation was practically zero.
-This observation of sensitivity to the covariates was consistent across all species.
+We conducted perturbation analyses to quantify the relative contribution of each covariate to variation in population growth rate ($\lambda$). Figure @fig:mean_sens summarizes the sensitivity of $\lambda$ to conspecific competition, heterospecific competition, temperature, and precipitation, averaged across all plot-year observations. Across species, $\lambda$ was most sensitive to temperature, followed by conspecific and heterospecific competition, whereas sensitivity to precipitation was negligible. This overall pattern was consistent among species.
 
 ![Log sensitivity of species population growth rate to conspecific competition, heterospecific competition, mean annual temperature, and mean annual precipitation across all plot-year observations. The smaller the values, the lower the sensitivity to a covariate.](https://willvieira.github.io/book_forest-demography-IPM/marginal_lambda_files/figure-html/fig-ame-1.png){#fig:mean_sens width=100% short-caption="Log sensitivity of species population growth rate to conspecific competition, heterospecific competition, mean annual temperature, and mean annual precipitation across all plot-year observations."}
 
-We divided plots into cold and hot regions of each species' range based on the MAT to test whether sensitivity to climate and competition differs between range margins (Figure @fig:cold_vs_hot).
-Most species distributed in colder climates showed a decrease in climate sensitivity from the cold to the hot range margin.
-In contrast, species whose distributions are centered in warmer climates tended to exhibit higher climate sensitivity at the hot margin than at the cold margin.
-Sensitivity to competition was generally higher at the cold margin than at the hot margin for most species, regardless of their overall distribution.
-This elevated sensitivity to competition at the cold margin was particularly pronounced for boreal species.
-
-We next examined how the relative importance of climate versus competition for population growth varies
+To evaluate range-dependent responses, plots were divided into cold and hot regions based on species-specific MAT distributions (Figure @fig:cold_vs_hot).
+Most species occurring in colder climates exhibited decreasing climate sensitivity from the cold to the hot limit of their range.
+In contrast, species centered in warmer climates generally showed greater climate sensitivity at the hot limit than at the cold limit.
+Sensitivity to competition was typically higher at the cold limit than at the hot limit across most species, regardless of overall distribution.
+This elevated sensitivity to competition at the cold limit was particularly pronounced among boreal species.
 
 ![Differences in the sensitivity of species population growth rate to climate (left) and competition between the cold and hot range limits. Each species is represented by a connected line linking their cold (circle) and hot (triangle) range positions, colored according to the difference between the cold and hot sensitivities. Range positions were defined using the median mean annual temperature across all plots belonging to each thermal class. Note that uncertainty in each sensitivity point estimation has been omitted for clarity.](https://willvieira.github.io/book_forest-demography-IPM/marginal_lambda_files/figure-html/fig-hot_vs_cold-1.png){#fig:cold_vs_hot width=100% short-caption="Differences in species population growth rate sensitivity to climate (left) and competition between the cold and hot range limits."}
 
-We further included sensitivity estimates at the center of each species' distribution to characterize sensitivity across the range (Figure S15).
-Overall, most species exhibited a near linear change in sensitivity to both climate and competition from the cold to the hot range margins.
-For climate sensitivity, three of the four species displaying a concave relationship (i.e. sensitivity was higher at both range edges than at the center) were among those with the largest geographic ranges.
-In contrast, for competition, four species showed a convex relationship, with sensitivity to competition peaking at the center of the distribution relative to the range edges.
-These four species also exhibited the highest overall sensitivity to competition and were all predominantly distributed in colder climates.
+Including sensitivity estimates from the central portion of species ranges further clarified patterns across thermal gradients (Figure S15).
+Most species displayed approximately linear changes in sensitivity to both climate and competition from cold to hot range limits.
+For climate sensitivity, three of the four species exhibiting concave relationships, where sensitivity was highest at both range edges, were among those with the largest geographic ranges.
+In contrast, four species displayed convex relationships in competition sensitivity, with peak sensitivity occurring near the range center.
+These species also showed the highest overall competition sensitivity and were predominantly distributed in colder climates.
 
-We then examined how the relative importance of climate versus competition for population growth varies across species' thermal range positions (Figure @fig:comp_clim_ratio).
-For most species, $\lambda$ was consistently more sensitive to climate than to competition across cold, center, and hot range positions.
-Across the MAT gradient, the relative influence of climate increased toward both the cold and hot range margins.
-This observation indicates that species occurring at the extremes of their thermal distributions are more strongly climate-sensitive than those located near the center of their ranges.
-Notably, the mechanisms underlying this increase differed between cold and hot range margins (Figure S16).
-At the cold margin, sensitivities to both climate and competition increased, but the proportional increase was larger for climate.
-In contrast, at the hot margin, the greater relative importance of climate resulted primarily from a decline in sensitivity to competition.
+Finally, we evaluated how the relative importance of climate versus competition varied across species' thermal positions (Figure @fig:comp_clim_ratio).
+For most species, $\lambda$ remained more sensitive to climate than to competition across cold, center, and hot range positions.
+The relative importance of climate increased toward both cold and hot limits along the MAT gradient.
+This observation indicates that populations near thermal extremes are more strongly climate-sensitive than those near the center of their ranges.Notably, the mechanisms underlying this increase differed between range limits (Figure S16).
+At the cold limit, sensitivities to both climate and competition increased, but the proportional increase was greater for climate.
+In contrast, at the hot limit, the increasing dominance of climate sensitivity primarily resulted from declining sensitivity to competition.
 
 ![Ratio of population growth rate ($\lambda$) sensitivity to competition relative to climate across species' thermal ranges. Negative values indicate greater sensitivity to climate than to competition. Range positions were defined using the median mean annual temperature across all plots belonging to each thermal class. The larger and small bars represent the 20 and 70th quantile probabilities, respectively.](manuscript/figs/comp_clim_ratio2.png){#fig:comp_clim_ratio width=100%}
 
