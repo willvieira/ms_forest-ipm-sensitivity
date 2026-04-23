@@ -306,8 +306,8 @@ In contrast, at the hot limit, the increasing dominance of climate sensitivity p
 
 # Discussion
 
-We developed an integral projection model for 31 tree species linking growth, survival, and recruitment to stand level $\lambda$ in order to assess the sensitivity of $\lambda$ to climate and competition.
-Our model advances previous analysis of tree species performance by (i) explicitly incorporating climate and competition effects in the recruitment model, (ii) distinguishing between conspecific and heterospecific competition, while (iii) tracking model's uncertainty at both the individual and plot levels.
+We developed an Integral Projection Model for 31 tree species in order to evaluate the sensitivity of $\lambda$ to climate and competition.
+Our model advances previous analysis of tree species performance by (i) explicitly incorporating climate and competition effects in the recruitment model, (ii) distinguishing between conspecific and heterospecific competition, while (iii) tracking uncertainty at all levels of organization.
 Moreover, we designed a modular approach that is easily extendable to include any of the over 200 available species in the dataset and additional covariates influencing each demographic rate.
 
 The results reveal that, for all species, adding climate and competition covariates enhances the predictability of all demographic components in comparison to a simple random effect model without covariates.
@@ -320,7 +320,7 @@ These findings contribute to a better understanding of how tree species might re
 ***Fit of demographic components***
 
 Our model demonstrated remarkable coherence when reproducing the known variation in traits related to growth, survival, and recruitment components found in the literature.
-The intercepts for growth and survival were correlated with maximal size and longevity [@burns1990silvics], while the recruitment intercept aligned well with the seed mass [@diaz2022].
+The intercepts for growth and survival were correlated with maximal size and longevity [@burns1990silvics], while the recruitment intercept aligned well with seed mass [@diaz2022].
 Additionally, the models effectively reproduced the fast-slow continuum [@SalgueroGomez2016], showing a negative correlation between growth and survival rate and a positive correlation between growth and recruitment rate (Figure S17).
 Regarding competition, the model captured the negative correlation between density-dependence and shade tolerance.
 The model also matches a common expectation of communities where species coexist, with a stronger response to conspecific competition relative to heterospecific competition, crucial for biodiversity maintenance [@Chesson2000a].
@@ -330,7 +330,7 @@ Nevertheless, our results align with others, indicating the presence of demograp
 Furthermore, the estimated breadth of response to climate correlates with the range size (Figure S14), suggesting that the model captures information not explicitly included.
 
 Most of the variability in $\lambda$ was associated with local plot conditions captured by random effects, consistent with previous studies [@Vanderwel2016a;@LeSquin2021;@itter2024making].
-This pattern suggests that demographic variation is influenced by drivers beyond the climatic and competitive factors explicitly modeled here.
+This observation suggests that demographic variation is influenced by drivers beyond the climatic and competitive factors explicitly modeled here.
 At local scales, for instance, soil nitrogen availability [@Ibanez2018] and mixed mycorrhizal associations [@Luo2023] can enhance tree growth rates.
 At broader spatial scales, disturbances such as wildfires and insect outbreaks play fundamental roles in shaping forest dynamics and stand structure [@Franklin2002], causing synchronized mortality and altering species composition and abundance.
 Similarly, three Pinus species across the United States exhibited structured spatial variation in mortality driven primarily by local disturbance agents rather than broad climatic gradients [@bauman2025mosaic].
@@ -341,11 +341,11 @@ For instance, tree growth models show improved predictive performance when incor
 
 We found across all species that the sensitivity of $\lambda$ was highest for temperature, followed by conspecific competition.
 Previous studies assessing the relative effects of climate and competition on tree performance have reported contrasting results.
-For example, some studies suggest that competition exerts a stronger influence on growth than climate [@GomezAparicio2011; @LeSquin2021], whereas others report the opposite pattern [@CopenhaverParry2016].
+For example, some studies suggest that competition exerts a stronger influence on growth than climate [@GomezAparicio2011; @LeSquin2021], whereas others report the opposite observation [@CopenhaverParry2016].
 Moreover, the relative importance of climate and competition can vary across demographic components, with growth often being more sensitive to competition and fecundity more sensitive to climate [@Clark2011].
 Indeed, five dominant tree species in Poland showed high sensitivity to climate, with fecundity declining under warming temperatures [@foest2025forest].
 
-These contrasting findings may partly arise because sensitivity is frequently evaluated for individual demographic rates rather than for their integrated effect on population growth.
+These contrasting findings may partly arise because sensitivity is frequently evaluated for specific components of demography rather than for their integrated effect on population growth.
 This is particularly critical since $\lambda$ does not respond equally to all demographic components.
 Our additional sensitivity analyses revealed that $\lambda$ was most responsive to recruitment, followed by survival, with a comparatively smaller contribution from growth (see Supplementary Material 3).
 Given that recruitment tends to be more sensitive to temperature [@Clark2011; @foest2025forest], this greater elasticity of $\lambda$ to recruitment may explain why population growth rate is overall more sensitive to climate than to competition.
