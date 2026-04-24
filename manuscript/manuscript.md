@@ -214,7 +214,7 @@ The IPM implementation is packaged in [`forestIPM`](https://github.com/willvieir
 
 ## Perturbation analysis
 
-Sensitivity was defined as the partial derivative of $\lambda$ with respect to a covariate $X$, representing either competition (conspecific or heterospecific density dependence) or climate (temperature or precipitation).
+Sensitivity was defined as the partial derivative of $\lambda$ with respect to a covariate $X$, representing either competition (conspecific or heterospecific density-dependence) or climate (temperature or precipitation).
 We quantified sensitivity by slightly increasing each covariate value $X_j$ to $X_j^{'}$ and computing the resulting change in $\lambda$ using a finite-difference approximation (right-hand side of Equation @eq:sens):
 
 $$
@@ -307,81 +307,84 @@ In contrast, at the hot limit, the increasing dominance of climate sensitivity p
 # Discussion
 
 We developed an Integral Projection Model for 31 tree species in order to evaluate the sensitivity of $\lambda$ to climate and competition.
-Our model advances previous analysis of tree species performance by (i) explicitly incorporating climate and competition effects in the recruitment model, (ii) distinguishing between conspecific and heterospecific competition, while (iii) tracking uncertainty at all levels of organization.
-Moreover, we designed a modular approach that is easily extendable to include any of the over 200 available species in the dataset and additional covariates influencing each demographic rate.
+Our framework advances previous analyses of tree species performance by (i) explicitly incorporating climate and competition effects into the recruitment model, (ii) distinguishing between conspecific and heterospecific competition, while (iii) propagating uncertainty across all levels of the modeling hierarchy.
+In addition, the modular structure of our workflow allows straightforward expansion to include the more than 200 species available in the dataset, as well as additional environmental covariates affecting demographic rates.
 
-The results reveal that, for all species, adding climate and competition covariates enhances the predictability of all demographic components in comparison to a simple random effect model without covariates.
-Nevertheless, the most influential variable remained the local plot conditions captured by the random effects.
-Therefore, we evaluated species sensitivity to climate and competition while considering plot-level variability.
-Across the species and their respective ranges, we found that $\lambda$ was more sensitive to temperature and conspecific basal area of larger individuals.
-Furthermore, these sensitivities were contingent on the range position of the species, with climate being relatively more important than competition at both the cold and hot range border.
-These findings contribute to a better understanding of how tree species might respond to novel conditions arising from climate change and perturbations, providing valuable insights for their management.
+Our results reeal that incorporating climate and competition covariates consistently improves the predictive performance of all demographic components relative to models containing only random effects.
+Nevertheless, local plot-level conditions captured by random effects remained the strongest predictors of demographic variation.
+Therefore, we evaluated species sensitivity to climate and competition while explicitly accounting for this plot-level variability.
+Across species and their geographic ranges, $\\lambda$ was most sensitive to temperature and to conspecific basal area of larger individuals.
+Importantly, these sensitivities varied across species' range positions, with climate exerting relatively stronger influence than competition at both cold and hot range limits.
+Together, these findings contribute to a more mechanistic understanding of how tree species may respond to novel environmental conditions associated with climate change, offering insights relevant to forest management and conservation.
 
 ***Fit of demographic components***
 
-Our model demonstrated remarkable coherence when reproducing the known variation in traits related to growth, survival, and recruitment components found in the literature.
-The intercepts for growth and survival were correlated with maximal size and longevity [@burns1990silvics], while the recruitment intercept aligned well with seed mass [@diaz2022].
-Additionally, the models effectively reproduced the fast-slow continuum [@SalgueroGomez2016], showing a negative correlation between growth and survival rate and a positive correlation between growth and recruitment rate (Figure S17).
-Regarding competition, the model captured the negative correlation between density-dependence and shade tolerance.
-The model also matches a common expectation of communities where species coexist, with a stronger response to conspecific competition relative to heterospecific competition, crucial for biodiversity maintenance [@Chesson2000a].
-The intensity of conspecific density-dependence was also higher for fast-growing trees than for slow-growing ones (Figure S18), similar to observations in tropical trees [@Zhu2018].
-For climate, validation is challenging due to limited data on optimal temperature and precipitation measures.
-Nevertheless, our results align with others, indicating the presence of demographic compensation across forest trees [@bohner2020;@Yang2022].
-Furthermore, the estimated breadth of response to climate correlates with the range size (Figure S14), suggesting that the model captures information not explicitly included.
+Our model demonstrated strong biological consistency by reproducing well-established relationships among demographic traits.
+Growth and survival intercepts were positively correlated with maximum observed size and longevity, respectively [@burns1990silvics], while the recruitment intercept showed clear alignment with seed mass [@diaz2022].
+The model also reproduced the fast–slow life-history continuum [@SalgueroGomez2016], revealing a negative relationship between growth and survival rates and a positive relationship between growth and recruitment rates (Figure S17).
+Competition effects were consistent with ecological expectations.
+The model captured the negative relationship between density-dependence and shade tolerance, as well as the general pattern of stronger responses to conspecific competition than to heterospecific competition.
+This asymmetry is considered fundamental for species coexistence and biodiversity maintenance [@Chesson2000a].
+Additionally, conspecific density-dependence was stronger for fast-growing species than for slow-growing ones (Figure S18), consistent with observations from tropical forests [@Zhu2018].
+Validation of climate-related parameters remains challenging due to limited empirical estimates of species-specific climatic optima.
+Nevertheless, our results are aligned with previous findings documenting demographic compensation among forest trees [@bohner2020;@Yang2022].
+Moreover, the estimated climatic breadth of species correlated with geographic range size (Figure S14), suggesting that the model captures ecologically meaningful variation beyond explicitly modeled predictors.
 
-Most of the variability in $\lambda$ was associated with local plot conditions captured by random effects, consistent with previous studies [@Vanderwel2016a;@LeSquin2021;@itter2024making].
-This observation suggests that demographic variation is influenced by drivers beyond the climatic and competitive factors explicitly modeled here.
+Most of the variation in $\\lambda$ was associated with local plot conditions captured by random effects, consistent with previous studies [@Vanderwel2016a;@LeSquin2021;@itter2024making].
+This result indicates that demographic variability is influenced by drivers not explicitly included in our models.
 At local scales, for instance, soil nitrogen availability [@Ibanez2018] and mixed mycorrhizal associations [@Luo2023] can enhance tree growth rates.
-At broader spatial scales, disturbances such as wildfires and insect outbreaks play fundamental roles in shaping forest dynamics and stand structure [@Franklin2002], causing synchronized mortality and altering species composition and abundance.
-Similarly, three Pinus species across the United States exhibited structured spatial variation in mortality driven primarily by local disturbance agents rather than broad climatic gradients [@bauman2025mosaic].
-Although our analyses focused on quantifying the effects of climate and competition, other covariates may contribute more strongly to variation in demographic rates.
-For instance, tree growth models show improved predictive performance when incorporating extreme climatic events [@Sangines2017], and drought extremes, rather than mean precipitation, were the strongest predictors of fecundity after temperature in several species [@Clark2011].
+At broader spatial scales, disturbance regimes such as wildfire and insect outbreaks strongly shape forest dynamics and structure [@Franklin2002], causing synchronized mortality events and altering species composition across landscapes.
+Similarly, structured spatial variation in mortality among Pinus species across the United States has been linked primarily to local disturbance regimes rather than broad climatic gradients [@bauman2025mosaic].
+Although our analysis focused on climate and competition, other covariates may exert stronger influences on demographic variation.
+For instance, tree growth models incorporating extreme climatic events often show improved predictive performance relative to those using mean climatic conditions [@Sangines2017].
+Likewise, drought extremes, rather than mean precipitation, have been identified as strong predictors of fecundity following temperature effects [@Clark2011].
 
 ***$\lambda$ sensitivity to climate and competition***
 
 We found across all species that the sensitivity of $\lambda$ was highest for temperature, followed by conspecific competition.
-Previous studies assessing the relative effects of climate and competition on tree performance have reported contrasting results.
-For example, some studies suggest that competition exerts a stronger influence on growth than climate [@GomezAparicio2011; @LeSquin2021], whereas others report the opposite observation [@CopenhaverParry2016].
-Moreover, the relative importance of climate and competition can vary across demographic components, with growth often being more sensitive to competition and fecundity more sensitive to climate [@Clark2011].
-Indeed, five dominant tree species in Poland showed high sensitivity to climate, with fecundity declining under warming temperatures [@foest2025forest].
+Previous studies assessing the relative importance of climate and competition on tree performance have reported mixed results.
+Some studies emphasize stronger competition effects on growth [@GomezAparicio2011; @LeSquin2021], whereas others report stronger climate effects [@CopenhaverParry2016].
+In addition, the relative importance of climate and competition often differs among demographic components, with growth typically more sensitive to competition and fecundity more sensitive to climate [@Clark2011].
+For instance, several dominant tree species in Poland exhibited high climate sensitivity, with declining fecundity under warming temperatures [@foest2025forest].
 
-These contrasting findings may partly arise because sensitivity is frequently evaluated for specific components of demography rather than for their integrated effect on population growth.
-This is particularly critical since $\lambda$ does not respond equally to all demographic components.
-Our additional sensitivity analyses revealed that $\lambda$ was most responsive to recruitment, followed by survival, with a comparatively smaller contribution from growth (see Supplementary Material 3).
-Given that recruitment tends to be more sensitive to temperature [@Clark2011; @foest2025forest], this greater elasticity of $\lambda$ to recruitment may explain why population growth rate is overall more sensitive to climate than to competition.
+These contrasting findings may arise because many studies assess demographic components separately rather than evaluating their integrated effects on population growth rate.
+This is particularly critical since $\\lambda$ does not respond equally to all demographic processes.
+Our additional analyses revealed that $\\lambda$ was most sensitive to recruitment, followed by survival, with a comparatively smaller contribution from growth (Supplementary Material 3).
+Because recruitment tends to be more sensitive to temperature [@Clark2011;@foest2025forest], the high elasticity of $\\lambda$ to recruitment may explain the dominant role of climate sensitivity observed in our results.
 
-Assessing climate sensitivity across the species range distribution revealed divergent responses.
-As species' performance responds nonlinearly to climate, lower sensitivity values to a climate covariate indicate that the species operates under optimal climate conditions, whereas higher sensitivity values suggest the species is deviating from its optimal climate condition.
-Overall, climate sensitivity (primarily driven by MAT) was higher at both the cold and hot range extremes.
-This implies that species coming from colder temperatures exhibit optimal performance towards their warmer range, and vice versa for species from hotter conditions.
-Interestingly, the demographic components driving higher sensitivity to climate at the cold and hot extremes differ.
-The recruitment and growth models primarily influenced sensitivity at the cold border, while the survival and recruitment models dominated at the hot border, specially at high competition conditions (see Figure S22).
-Previous studies have indicated climate-constrained growth rates at the cold border for North American [@Ettinger2013] and European [@Kunstler2021] trees.
-Consistent with our results, a decrease in survival at the hot border was observed for European trees [@Kunstler2021], though not in eastern North America [@Purves2009].
+Sensitivity to climate and competition varied across species' geographic ranges.
+Because demographic responses to climate are nonlinear, lower sensitivity values generally indicate conditions near climatic optima, whereas higher values indicate deviation from optimal conditions.
+Overall, climate sensitivity, driven primarily by MAT, was greatest at both cold and hot range limits.
+This result suggests that species originating from colder environments perform optimally toward warmer portions of their ranges, whereas species from warmer environments perform optimally toward cooler conditions.
+Notably, the demographic mechanisms underlying increased climate sensitivity differed between range limits.
+Recruitment and growth processes primarily drove sensitivity at cold range limits, whereas survival and recruitment dominated at hot range limits, particularly under high competition conditions (Figure S22).
+Previous studies have documented climate-constrained growth at cold range limits for both North American [@Ettinger2013] and European trees [@Kunstler2021].
+Similarly, reduced survival at hot range limits has been observed in European forests [@Kunstler2021], although this observation has not been consistently detected in eastern North America [@Purves2009].
 
-The sensitivity of $\lambda$ to competition increased almost linearly toward colder temperatures for most species.
-Due to the nonlinearity between species' performance and competition, the sensitivity of $\lambda$ to changes in competition decreases as stand density increases (negative exponential shape).
-This implies that the observed decrease in sensitivity to competition toward the hot range results from an overall increase in stand density (i.e. competition intensity).
-Indeed, biotic interactions are often more critical at the warm range border [@Paquette2021].
-However, when evaluating only the growth rate of North American [@Ettinger2013] and European [@Kunstler2011a] trees, the effect of competition remains constant across the climate range.
+Sensitivity of $\\lambda$ to competition increased approximately linearly toward colder climates for most species.
+Due to nonlinear relationships between demographic performance and competition, sensitivity declines as stand density increases, following a negative exponential pattern.
+Consequently, the observed reduction in competition sensitivity toward hot range limits likely reflects higher overall stand density in those regions.
+Biotic interactions are often considered particularly important at hot range limits [@Paquette2021].
+However, when focusing exclusively on growth responses, previous studies have reported relatively constant competition effects across climatic gradients in both North American [@Ettinger2013] and European forests [@Kunstler2011a].
 
-***Limitations and Future Perspectives***
+***Limitations and future perspectives***
 
-Structured population models, such as the IPM, play a crucial role in capturing ontogenetic variability within tree population dynamics.
-While the growth model inherently considers individual size, the survival and recruitment models are size-independent.
-We attempted to incorporate the widely assumed "U-shape" form of mortality rate changes with individual size [@Lines2010], but it performed worse than the simple random effects one (Figure S6).
-Mortality has been observed to increase with individual size [@Luo2011;@Hember2017], but its significance appears to manifest only when interacting with climate and competition [@LeSquin2021].
-The challenge in capturing size dependence in the survival model likely stems from the lack of information on small individuals (dbh < 12.7 cm) and the rarity of larger individuals in datasets, even for extensive forest inventories [@Canham2017].
-Despite not explicitly including individual size in the survival model, its indirect influence is included with the asymmetric competition, where smaller individuals experience higher competitive pressure.
-Another limitation of this model, shared with many models using forest inventory data [Kunstler2021;@LeSquin2021;@Guyennon2023], is its focus on adults, while tree fecundity can be influenced by climate [@Clark2021], and the dynamics of recruitment may not necessarily align with those of adults [@SerraDiaz2016;@Wason2017; but see @Canham2016].
+Structured population models such as IPMs are essential for capturing ontogenetic variation in population dynamics.
+While our growth model explicitly incorporates individual size, survival and recruitment models were specified without direct size dependence.
+Attempts to include size-dependent mortality using the widely assumed U-shaped function [@Lines2010] did not improve model performance relative to simpler random-effects formulations (Figure S6).
+Although mortality often increases with size [@Luo2011;@Hember2017], its significance appears to manifest only when interacting with climate and competition [@LeSquin2021].
+The challenge in estimating size-dependent survival likely stems from limited observations of small individuals (dbh < 12.7 cm) and the rarity of large individuals, even in extensive forest inventories [@Canham2017].
+Despite the absence of explicit size dependence in survival, indirect size effects are partially captured through asymmetric competition, where smaller individuals experience stronger competitive pressure.
+Another limitation shared with many forest-inventory-based models [@Kunstler2021;@LeSquin2021;@Guyennon2023] is the focus on adult trees, even though fecundity can be influenced by climate [@Clark2021], and the dynamics of recruitment may not necessarily align with those of adults [@SerraDiaz2016;@Wason2017; but see @Canham2016].
 
-The modular nature of our approach makes it easily extensible to include new species or covariates.
-For instance, additional covariates such as water balance or evapotranspiration could be tested to evaluate the impact of drought-induced mortality [@Peng2011].
-Furthermore, exploring the interaction between climate, competition, and individual size can enhance predictions of demographic rates [@Peng2011;@Ford2017;@Rollinson2016;@LeSquin2021].
-An overlooked but computationally expensive improvement involves jointly fitting the growth, survival, and recruitment models to explore their interdependency [@pang2024niche].
-This would enable leveraging ecological knowledge, such as life history tradeoffs, by sharing information between processes with abundant data (e.g. growth) and those with scarce data (e.g. recruitment).
-Future steps should focus on better understanding the variability captured by random effects and translating it into ecological processes.
-While we addressed individual and plot-level model uncertainty, further considerations for other sources of variability arising from temporal stochasticity in climate and competition covariates are essential.
-This will enhance our understanding of the effects of spatiotemporal variability on species performance across their range [@Holt2022].
+The modular design of our framework enables straightforward integration of additional species and environmental predictors. 
+For instance, additional covariates such as water balance or evapotranspiration could be incorporated to assess drought-induced mortality [@Peng2011].
+Furthermore, exploring the interactions among climate, competition, and individual size may further improve predictions of demographic rates [@Peng2011;@Ford2017;@Rollinson2016;@LeSquin2021].
+
+A promising but computationally intensive extension would involve jointly fitting growth, survival, and recruitment models to explicitly capture their interdependence [@pang2024niche].
+Such an approach would allow the incorporation of ecological constraints, such as life-history trade-offs, by sharing information across demographic processes with abundant data (e.g. growth) and those with scarce data (e.g. recruitment).
+Future work should also focus on interpreting the ecological drivers underlying variation captured by random effects.
+While our framework accounts for individual and plot-level uncertainty, additional attention to temporal variability in climate and competition will be essential.
+Incorporating temporal stochasticity will improve predictions of species performance under changing environmental conditions and enhance understanding of population responses across space and time [@Holt2022].
 
 # References
