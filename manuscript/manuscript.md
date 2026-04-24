@@ -43,9 +43,8 @@ By quantifying the relative effects of climate and competition on population gro
 
 # Methods
 
-We developed species-specific, Integral Projection Models (IPM) parameterized with climate- and competition-dependent demographic rates (described in the following section).
-Deriving population growth rate (λ) from the IPM, we used perturbation analysis to assess the sensitivity of λ to competition and climate conditions (Caswell 2000).
-The sensitivity of each species is reported at the cold and hot limits of their range.
+We fitted species-specific growth, survival, and recruitment models using forest inventory data and integrated them into an Integral Projection Models (IPMs) to estimate population growth rate ($\lambda$).
+We then used perturbation analyses to quantify the sensitivity of $\lambda$ to climate and competition across species-specific thermal range positions.
 
 ## Forest inventory and climate data
 
