@@ -125,7 +125,7 @@ Thus, survival probability increases with longevity parameter $\psi$, while long
 
 **Recruitment** - We combined U.S. and Québec inventory data to capture a broader climatic range.
 However, these inventories differ in protocols for recording seedlings and saplings, including size thresholds.
-We therefore defined recruitment as the ingrowth of individuals into the adult population (DBH ≥ 12.7 cm).
+We therefore defined recruitment as the ingrowth of individuals into the adult population (DBH $\ge$ 12.7 cm).
 
 Recruitment rate ($I$) integrates fecundity, dispersal, growth, and survival up to the threshold size.
 Because ingrowth depends on census interval length, we defined two parameters: $\phi$, the annual ingrowth rate per square meter, and $\rho$, the annual survival probability of recruits:
@@ -372,7 +372,7 @@ Structured population models such as IPMs are essential for capturing ontogeneti
 While our growth model explicitly incorporates individual size, survival and recruitment models were specified without direct size dependence.
 Attempts to include size-dependent mortality using the widely assumed U-shaped function [@Lines2010] did not improve model performance relative to simpler random-effects formulations (Figure S6).
 Although mortality often increases with size [@Luo2011;@Hember2017], its significance appears to manifest only when interacting with climate and competition [@LeSquin2021].
-The challenge in estimating size-dependent survival likely stems from limited observations of small individuals (dbh < 12.7 cm) and the rarity of large individuals, even in extensive forest inventories [@Canham2017].
+The challenge in estimating size-dependent survival likely stems from limited observations of small individuals (dbh $<$ 12.7 cm) and the rarity of large individuals, even in extensive forest inventories [@Canham2017].
 Despite the absence of explicit size dependence in survival, indirect size effects are partially captured through asymmetric competition, where smaller individuals experience stronger competitive pressure.
 Another limitation shared with many forest-inventory-based models [@Kunstler2021;@LeSquin2021;@Guyennon2023] is the focus on adult trees, even though fecundity can be influenced by climate [@Clark2021], and the dynamics of recruitment may not necessarily align with those of adults [@SerraDiaz2016;@Wason2017; but see @Canham2016].
 
