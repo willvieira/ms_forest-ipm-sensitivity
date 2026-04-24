@@ -235,7 +235,7 @@ $$
 $${#eq:CCR}
 
 When averaging $S_{X,i}$ across plot-years $j$, this metric represents the sensitivity of $\lambda_i$ to covariate $X$, conditional on the observed probability distribution of that covariate.
-This yields a measure of **realized sensitivity**, integrating both demographic responses and the environmental variability experienced across the species' range.
+This yields a measure of realized sensitivity, integrating both demographic responses and the environmental variability experienced across the species' range.
 To evaluate range-dependent sensitivity, plots were categorized into cold, center, or hot conditions along the MAT gradient for each species.
 Plots were classified as cold (or hot) if their average MAT fell below the 10th percentile (or above the 90th percentile) of the species-specific MAT distribution, with intermediate plots classified as center plots.
 Sensitivity within each range position was calculated as the average sensitivity across plots belonging to that category.
@@ -312,7 +312,7 @@ In addition, the modular structure of our workflow allows straightforward expans
 Our results reeal that incorporating climate and competition covariates consistently improves the predictive performance of all demographic components relative to models containing only random effects.
 Nevertheless, local plot-level conditions captured by random effects remained the strongest predictors of demographic variation.
 Therefore, we evaluated species sensitivity to climate and competition while explicitly accounting for this plot-level variability.
-Across species and their geographic ranges, $\\lambda$ was most sensitive to temperature and to conspecific basal area of larger individuals.
+Across species and their geographic ranges, $\lambda$ was most sensitive to temperature and to conspecific basal area of larger individuals.
 Importantly, these sensitivities varied across species' range positions, with climate exerting relatively stronger influence than competition at both cold and hot range limits.
 Together, these findings contribute to a more mechanistic understanding of how tree species may respond to novel environmental conditions associated with climate change, offering insights relevant to forest management and conservation.
 
@@ -329,7 +329,7 @@ Validation of climate-related parameters remains challenging due to limited empi
 Nevertheless, our results are aligned with previous findings documenting demographic compensation among forest trees [@bohner2020;@Yang2022].
 Moreover, the estimated climatic breadth of species correlated with geographic range size (Figure S14), suggesting that the model captures ecologically meaningful variation beyond explicitly modeled predictors.
 
-Most of the variation in $\\lambda$ was associated with local plot conditions captured by random effects, consistent with previous studies [@Vanderwel2016a;@LeSquin2021;@itter2024making].
+Most of the variation in $\lambda$ was associated with local plot conditions captured by random effects, consistent with previous studies [@Vanderwel2016a;@LeSquin2021;@itter2024making].
 This result indicates that demographic variability is influenced by drivers not explicitly included in our models.
 At local scales, for instance, soil nitrogen availability [@Ibanez2018] and mixed mycorrhizal associations [@Luo2023] can enhance tree growth rates.
 At broader spatial scales, disturbance regimes such as wildfire and insect outbreaks strongly shape forest dynamics and structure [@Franklin2002], causing synchronized mortality events and altering species composition across landscapes.
@@ -347,9 +347,9 @@ In addition, the relative importance of climate and competition often differs am
 For instance, several dominant tree species in Poland exhibited high climate sensitivity, with declining fecundity under warming temperatures [@foest2025forest].
 
 These contrasting findings may arise because many studies assess demographic components separately rather than evaluating their integrated effects on population growth rate.
-This is particularly critical since $\\lambda$ does not respond equally to all demographic processes.
-Our additional analyses revealed that $\\lambda$ was most sensitive to recruitment, followed by survival, with a comparatively smaller contribution from growth (Supplementary Material 3).
-Because recruitment tends to be more sensitive to temperature [@Clark2011;@foest2025forest], the high elasticity of $\\lambda$ to recruitment may explain the dominant role of climate sensitivity observed in our results.
+This is particularly critical since $\lambda$ does not respond equally to all demographic processes.
+Our additional analyses revealed that $\lambda$ was most sensitive to recruitment, followed by survival, with a comparatively smaller contribution from growth (Supplementary Material 3).
+Because recruitment tends to be more sensitive to temperature [@Clark2011;@foest2025forest], the high elasticity of $\lambda$ to recruitment may explain the dominant role of climate sensitivity observed in our results.
 
 Sensitivity to climate and competition varied across species' geographic ranges.
 Because demographic responses to climate are nonlinear, lower sensitivity values generally indicate conditions near climatic optima, whereas higher values indicate deviation from optimal conditions.
@@ -360,7 +360,7 @@ Recruitment and growth processes primarily drove sensitivity at cold range limit
 Previous studies have documented climate-constrained growth at cold range limits for both North American [@Ettinger2013] and European trees [@Kunstler2021].
 Similarly, reduced survival at hot range limits has been observed in European forests [@Kunstler2021], although this observation has not been consistently detected in eastern North America [@Purves2009].
 
-Sensitivity of $\\lambda$ to competition increased approximately linearly toward colder climates for most species.
+Sensitivity of $\lambda$ to competition increased approximately linearly toward colder climates for most species.
 Due to nonlinear relationships between demographic performance and competition, sensitivity declines as stand density increases, following a negative exponential pattern.
 Consequently, the observed reduction in competition sensitivity toward hot range limits likely reflects higher overall stand density in those regions.
 Biotic interactions are often considered particularly important at hot range limits [@Paquette2021].
