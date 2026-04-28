@@ -6,6 +6,10 @@ keywords:
     - "Tree demography"
     - "Species distribution"
     - "Range limits"
+    - "Forest inventory"
+    - "Perturbation analysis"
+    - "Demographic compensation"
+    - "Eastern North America"
 highlights:
     - "Tree species population growth rate are consistently more sensitive to climate than to competition across their range."
 supporting-files:
@@ -43,7 +47,7 @@ affiliations:
 acknowledgments: "We acknowledge the support of Calcul Québec and Compute Canada for providing the computational resources used in this research. This research was supported by funding from the BIOS² NSERC CREATE program. We are especially grateful to Amaël Le Squin for insightful discussions on the mathematical and Stan models."
 data_availability: "All the code and data used to reproduce the analysis, figure and manuscript are stored as a research compendium at [https://github.com/willvieira/ms_forest-ipm-sensitivity](https://github.com/willvieira/ms_forest-ipm-sensitivity)."
 funding: "This research was supported by the BIOS² NSERC CREATE program."
-authorship: ""
+authorship: "Conceptualization: Willian Vieira, Dominique Gravel. Methodology: Willian Vieira, Andrew MacDonald. Formal analysis: Willian Vieira. Visualization: Willian Vieira. Writing — original draft: Willian Vieira. Writing — review and editing: Willian Vieira, Andrew MacDonald, Dominique Gravel."
 conflicts-of-interest: "The authors declare no conflict of interest."
 
 link-citations: true
