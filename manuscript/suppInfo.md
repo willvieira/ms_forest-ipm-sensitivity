@@ -287,7 +287,7 @@ Size s.d. & $\sigma$ & \texttt{sigma\_size} & half-normal & $\sigma\sim\mathcal{
 
 \newpage
 
-# Supplementary Mateiral 3
+# Supplementary Material 3
 
 ## Sensitivity analysis
 
