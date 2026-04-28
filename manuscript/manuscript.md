@@ -30,14 +30,13 @@ Yet such range-dependent evaluations of demographic sensitivity remain largely u
 Here, we evaluate how climate and competition jointly shape the demography and population growth rate of the 31 most abundant forest tree species across eastern North America (Figure @fig:concept_fig).
 Using forest inventories spanning 26–53° latitude across the United States and Canada, we capture the broad geographic ranges of these species.
 We model growth, survival, and recruitment as functions of temperature, precipitation, and conspecific and heterospecific basal area (as proxies for competition) using Bayesian hierarchical models, with explicit uncertainty propagation.
-We then integrate these climate- and competition-dependent vital rates into size-structured Integral Projection Models (IPMs) to estimate population growth rate ($\lambda$).
+We then integrate these demographic models into size-structured Integral Projection Models (IPMs) to estimate population growth rate ($\lambda$) under specified climate and competition conditions.
 
 Our primary goal is to quantify how sensitive $\lambda$ is to climate and competition across species' ranges.
-Using perturbation analysis [@Caswell2000], we decompose the contribution of each covariate to variation in $\lambda$ under the specific environmental and competitive conditions experienced across plot-years.
-This approach allows us to evaluate the overall sensitivity of $\lambda$ to each covariate while explicitly accounting for the variability experienced by species across their ranges.
-For instance, even if a species is highly sensitive to temperature, its average population response may remain weak if most populations occur under near-optimal conditions.
-Finally, building on previous evidence that North American trees have shown limited cold-edge expansion and hot-edge contraction under climate change [@Talluto2017], we test whether sensitivity to climate and competition varies across species' geographic ranges.
-By quantifying how climate and competition together govern population growth rate, this framework offers a mechanistic basis for predicting tree responses to climate change, management, and conservation.
+First, we estimate sensitivities at each plot under observed environmental and competitive conditions using perturbation analysis [@Caswell2000].
+This approach ensures that sensitivities reflect the environmental conditions actually occupied by the populations.
+Second, building on previous evidence that North American trees have shown limited cold-edge expansion and hot-edge contraction [@Talluto2017], we test whether sensitivity varies systematically with species' thermal range position.
+By quantifying how climate and competition jointly regulate population growth, this framework provides a mechanistic basis for predicting tree responses to climate change, management, and conservation.
 
 ![Conceptual framework to assess how the sensitivity of population growth rate to climate and competition varies across species' geographic ranges. Using repeated measurements of individual trees from forest inventories spanning the eastern United States and Québec, Canada, we fitted species-specific growth, survival, and recruitment models parameterized as functions of individual size, competition, and plot-level climate covariates. These demographic models form the components of a size-structured Integral Projection Model (IPM), from which population growth rate ($\lambda$) is estimated for each species $i$ at each plot location $j$. We then apply perturbation analysis to quantify the sensitivity of $\lambda$ to climate and competition under the local environmental and stand composition conditions of each plot. Cold and hot range limits were identified using the 10th and 90th percentiles of mean annual temperature across each species' distribution. By averaging sensitivities across plots within each range edge, we assess how the sensitivity of population growth rate differs between cold and hot distributional limits.](manuscript/figs/concept_fig.png){#fig:concept_fig width=100%}
 
@@ -136,15 +135,16 @@ $${#eq:rec}
 
 Here, $A$ represents plot area (m²).
 Individuals are assumed to enter annually at rate $\phi$, while their survival ($\rho$) until the subsequent measurement declines with time.
-Note that $\rho$ in Equation @eq:rec is not associated with Equation @eq:survP determining the survival of the adults.
-Instead, $\rho$ is estimated from the data of individuals arriving in the population.
+Note that $\rho$ (recruit survival) is distinct from $\psi$ (adult annual survival in Equation @eq:survP); the two parameters are estimated independently.
+$\rho$ is estimated from the data of individuals arriving in the population.
 Once individuals are recruited into the population, their initial size $z_I$ is modeled as:
 
 $$
-z_{I} \sim TNormal(\Omega + \beta \Delta t,~\sigma, ~ \alpha, ~ \beta)
+z_{I} \sim TNormal(\Omega + \gamma_{rec} \Delta t,~\sigma, ~ L_{rec}, ~ \infty)
 $${#eq:recSize}
 
-This truncated normal distribution has lower bound $\alpha=12.7$ cm and no upper bound.
+This truncated normal distribution has lower bound $L_{rec}=12.7$ cm and no upper bound.
+The mean recruit size at observation increases with census interval length at a rate $\gamma_{rec}$.
 
 ### Covariates
 
@@ -153,11 +153,11 @@ This truncated normal distribution has lower bound $\alpha=12.7$ cm and no upper
 $$
 \begin{split}
 &\alpha_j \sim N(0, \sigma) \\[2pt]
-&I_j = \overline{I} + \alpha_j
+&\eta_j = \bar{\eta} + \alpha_j
 \end{split}
 $${#eq:randomEffect}
 
-Here, $I$ represents parameters $\Gamma$, $\psi$, or $\phi$ depending on the demographic component, and $\sigma$ the variance among all plots.
+Here, $\eta$ represents parameters $\Gamma$, $\psi$, or $\phi$ depending on the demographic component, and $\sigma$ the variance among all plots.
 
 **Competition** - We assumed that competition for light is the primary competitive factor driving forest dynamics [@Pacala1996a].
 We therefore considered that each individual was affected only by larger neighbors.
@@ -167,11 +167,11 @@ We further split BAL into the total density of conspecific and heterospecific in
 Competition effects were modeled on parameters $\Gamma$, $\psi$, and $\rho$:
 
 $$
-I + \beta (BAL_{cons} + \theta \times BAL_{het})
+\eta + \beta (BAL_{cons} + \theta \times BAL_{het})
 $${#eq:compEffect}
 
 Parameter $\theta$ controls the relative strength of heterospecific competition.
-Values $\theta < 1$ indicate stronger conspecific competition, $\theta > 1$ indicates stronger heterospecific effects, and when $theta = 1$, there is no distinction between them.
+Values $\theta < 1$ indicate stronger conspecific competition, $\theta > 1$ indicates stronger heterospecific effects, and when $\theta = 1$, there is no distinction between them.
 Note that $\beta$ is also unbounded, allowing it to converge towards negative (indicating competition) or positive (indicating facilitation) values.
 For recruitment survival ($\rho$), $\theta$ was fixed at 1 due to convergence issues.
 Recruitment rate $\phi$ also included conspecific density-dependence, where it decreases with $BAL_{cons}$ as a positive effect of seed source up to reach the optimal density of recruitment, $\delta$, and then decreases with more conspecific density due to competition at a rate proportional to $\sigma$:
@@ -184,8 +184,8 @@ $${#eq:compingrowth}
 Each demographic parameter followed a unimodal climate response determined by an optimal climate condition ($\xi$) and a climate breadth parameter ($\sigma$):
 
 $$
-I + \left(\frac{MAT - \xi_{MAT}}{\sigma_{MAT}}\right)^2 + \left(\frac{MAP - \xi_{MAP}}{\sigma_{MAP}}\right)^2
-$${#eq:compEffect}
+\eta + \left(\frac{MAT - \xi_{MAT}}{\sigma_{MAT}}\right)^2 + \left(\frac{MAP - \xi_{MAP}}{\sigma_{MAP}}\right)^2
+$${#eq:climEffect}
 
 The climate breadth parameter ($\sigma$) influences the strength of the specific climate variable's effect on each demographic component.
 This unimodal function is flexible, assuming various shapes, such as bell, quasi-linear, or flat shapes.
@@ -195,6 +195,7 @@ To address this issue, we constrained the optimal climate condition parameter ($
 ### Model fit and validation
 
 We fitted growth, survival, and recruitment models separately for each species using Hamiltonian Monte Carlo (HMC) implemented in Stan [version 2.30.1 @stan2022stan] through the `cmdstanr` R interface [version 0.5.3 @cmdstanr].
+Weakly informative priors were used for all parameters and their full specifications are documented in Table S2.
 Each model used four chains with 2000 warm-up iterations and 2000 sampling iterations, yielding 8000 posterior samples.
 To reduce storage, only the final 1000 samples from each chain were retained, resulting in 4000 posterior samples.
 Models were constructed incrementally, beginning with intercept-only models and progressively adding random effects, competition, and climate covariates.
@@ -229,7 +230,7 @@ Specifically, sensitivity ($S$) to competition or climate for species $i$ at plo
 
 $$
 \begin{split}
-&S_{comp, ij} = \frac{\partial \lambda_{ij}}{\partial BA_{cons, i}} + \frac{\partial \lambda_{ij}}{\partial BA_{het, i}} \\[2pt]
+&S_{comp, ij} = \frac{\partial \lambda_{ij}}{\partial BAL_{cons, i}} + \frac{\partial \lambda_{ij}}{\partial BAL_{het, i}} \\[2pt]
 &S_{clim, ij} = \frac{\partial \lambda_{ij}}{\partial MAT_{i}} + \frac{\partial \lambda_{ij}}{\partial MAP_{i}} \\[2pt]
 \end{split}
 $${#eq:CCR}
@@ -278,7 +279,7 @@ An exception was survival breadth along MAT, which showed only a weak relationsh
 
 We conducted perturbation analyses to quantify the relative contribution of each covariate to variation in population growth rate ($\lambda$).
 Figure @fig:mean_sens summarizes the sensitivity of $\lambda$ to conspecific competition, heterospecific competition, temperature, and precipitation, averaged across all plot-year observations.
-Across species, $\lambda$ was most sensitive to temperature, followed by conspecific and heterospecific competition; sensitivity to precipitation was negligible, and this pattern was consistent across species.
+Across species, $\lambda$ was most sensitive to temperature, followed by conspecific and heterospecific competition; sensitivity to precipitation was substantially weaker, and this pattern was consistent across species.
 
 ![Log sensitivity of species population growth rate to conspecific competition, heterospecific competition, mean annual temperature, and mean annual precipitation across all plot-year observations. The smaller the values, the lower the sensitivity to a covariate.](https://willvieira.github.io/book_forest-demography-IPM/marginal_lambda_files/figure-html/fig-ame-1.png){#fig:mean_sens width=100% short-caption="Log sensitivity of species population growth rate to conspecific competition, heterospecific competition, mean annual temperature, and mean annual precipitation across all plot-year observations."}
 
@@ -322,7 +323,7 @@ Together, these findings contribute to a more mechanistic understanding of how t
 
 Our model demonstrated strong biological consistency by reproducing well-established relationships among demographic traits.
 Growth and survival intercepts were positively correlated with maximum observed size and longevity, respectively [@burns1990silvics], while the recruitment intercept showed clear alignment with seed mass [@diaz2022].
-The model also reproduced the fast–slow life-history continuum [@SalgueroGomez2016], revealing a negative relationship between growth and survival rates and a positive relationship between growth and recruitment rates (Figure S17).
+The model also reproduced the fast–slow life-history continuum [@SalgueroGomez2016], reflected in a negative relationship between growth and survival rates and a positive relationship between growth and recruitment rates (Figure S17).
 Competition effects were consistent with ecological expectations.
 The model captured the negative relationship between density-dependence and shade tolerance, as well as the general pattern of stronger responses to conspecific competition than to heterospecific competition.
 This asymmetry is considered fundamental for species coexistence and biodiversity maintenance [@Chesson2000a].
@@ -354,7 +355,7 @@ Our additional analyses revealed that $\lambda$ was most sensitive to recruitmen
 Because recruitment tends to be more sensitive to temperature [@Clark2011;@foest2025forest], the high elasticity of $\lambda$ to recruitment may explain the dominant role of climate sensitivity observed in our results.
 
 Sensitivity to climate and competition varied across species' geographic ranges.
-Because demographic responses to climate are nonlinear, lower sensitivity values generally indicate conditions near climatic optima, whereas higher values indicate deviation from optimal conditions.
+Because we modeled climate effects as a unimodal function centered at an optimal value, lower sensitivity values in our framework indicate conditions close to the climatic optimum, whereas higher values indicate deviation from optimal conditions.
 Overall, climate sensitivity, driven primarily by MAT, was greatest at both cold and hot range limits.
 This result suggests that species originating from colder environments perform optimally toward warmer portions of their ranges, whereas species from warmer environments perform optimally toward cooler conditions.
 Notably, the demographic mechanisms underlying increased climate sensitivity differed between range limits.
@@ -378,7 +379,7 @@ The challenge in estimating size-dependent survival likely stems from limited ob
 Despite the absence of explicit size dependence in survival, indirect size effects are partially captured through asymmetric competition, where smaller individuals experience stronger competitive pressure.
 Another limitation shared with many forest-inventory-based models [@Kunstler2021;@LeSquin2021;@Guyennon2023] is the focus on adult trees, even though fecundity can be influenced by climate [@Clark2021], and the dynamics of recruitment may not necessarily align with those of adults [@SerraDiaz2016;@Wason2017; but see @Canham2016].
 
-The modular design of our framework enables straightforward integration of additional species and environmental predictors. 
+The modular design of our framework enables direct integration of additional species and environmental predictors.
 For instance, additional covariates such as water balance or evapotranspiration could be incorporated to assess drought-induced mortality [@Peng2011].
 Exploring interactions among climate, competition, and individual size may also improve predictions of demographic rates [@Peng2011;@Ford2017;@Rollinson2016;@LeSquin2021].
 

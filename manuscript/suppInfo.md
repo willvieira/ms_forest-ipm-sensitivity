@@ -12,7 +12,7 @@ To simplify the model hierarchy, we did not incorporate temporal models.
 Instead, we treated two transition measurements for the same individual as independent information.
 The plot random effects partially accounted for the variation at the individual level, where different individuals with multiple measurements shared the same variation.
 
-We fitted each of the growth, survival, and recruitment models separately for each species, using the Hamiltonian Monte Carlo (HMC) algorithm via the Stan software [version 2.30.1 @stan2022stan] and the `cmdstandr` R package [version 0.5.3 @cmdstanr].
+We fitted each of the growth, survival, and recruitment models separately for each species, using the Hamiltonian Monte Carlo (HMC) algorithm via the Stan software [version 2.30.1 @stan2022stan] and the `cmdstanr` R package [version 0.5.3 @cmdstanr].
 We conducted 2000 iterations for the warm-up and sampling phases for each of the four chains, resulting in 8000 posterior samples.
 However, we kept only the last 1000 iterations of the sampling phase to save computation time and storage space, resulting in 4000 posterior samples.
 We assessed model convergence using Stan's $\hat{R}$ statistic, considering convergence achieved when $\hat{R} < 1.05$.
@@ -149,6 +149,81 @@ Consequently, we selected the complete model with plot random effects, competiti
 \end{longtable}
 }
 
+\begin{longtable}{@{}p{2.1cm} p{2.1cm} p{2.1cm} p{4.3cm} p{3.6cm}@{}}
+\caption{Prior specifications for all parameters in the species-specific
+demographic models. The \emph{Symbol} column gives the notation used in the
+main text Methods. The \emph{Stan name} column gives the parameter name in
+the publicly available Stan code. \emph{Scale / link} indicates the
+transformation (if any) between the prior and the quantity referenced in the
+main text. Unless noted, normal priors with a positive lower bound are
+half-normal.}\label{tab:priors}\\
+\toprule
+Component & Symbol & Stan name & Scale / link & Prior \\
+\midrule
+\endfirsthead
+\multicolumn{5}{l}{\textit{(continued from previous page)}}\\
+\toprule
+Component & Symbol & Stan name & Scale / link & Prior \\
+\midrule
+\endhead
+\midrule
+\multicolumn{5}{r}{\textit{(continued on next page)}}\\
+\endfoot
+\bottomrule
+\endlastfoot
+
+\multicolumn{5}{l}{\textbf{Growth model} (Eqs.~\ref{eq:VBlik}--\ref{eq:VBmodel}, with covariates from Eqs.~\ref{eq:randomEffect}, \ref{eq:compEffect}, \ref{eq:climEffect})}\\
+\midrule
+Intercept & $\bar{\Gamma}$ & \texttt{r} & $\bar{\Gamma}=e^{r}$ (log-link) & $r\sim\mathcal{N}(-3.5,\,1)$ \\
+Asymptotic size & $\zeta_{\infty}$ & \texttt{Lmax} & cm; lower bound $=1.2\times\max(\mathrm{DBH})$ & $\zeta_{\infty}\sim\mathcal{N}(1000,\,80)$ \\
+Observation s.d. & $\sigma$ & \texttt{sigma\_obs} & half-normal & $\sigma\sim\mathcal{N}^{+}(0,\,1.5)$ \\
+Plot effect & $\alpha_{j}$ & \texttt{rPlot\_log} & on log-$\Gamma$ scale & $\alpha_{j}\sim\mathcal{N}(0,\,\sigma_{\alpha})$ \\
+Plot s.d. & $\sigma_{\alpha}$ & \texttt{sigma\_plot} & half-normal & $\sigma_{\alpha}\sim\mathrm{Exp}(2)$ \\
+Competition & $\beta$ & \texttt{Beta} & on log-$\Gamma$ scale & $\beta\sim\mathcal{N}(-1,\,1)$ \\
+Comp.\ partition & $\theta$ & \texttt{theta} & lower bound $=0$ & $\theta\sim\mathrm{LogNormal}(1,\,3)$ \\
+Optimal MAT & $\xi_{\mathrm{MAT}}$ & \texttt{optimal\_temp} & scaled to $[0,1]$ within species range & $\xi_{\mathrm{MAT}}\sim\mathrm{Beta}(2,\,2)$ \\
+MAT breadth & $\sigma_{\mathrm{MAT}}$ & \texttt{tau\_temp} & $\tau_{\mathrm{MAT}}=1/\sigma_{\mathrm{MAT}}^{2}$; half-normal & $\tau_{\mathrm{MAT}}\sim\mathcal{N}^{+}(0,\,1)$ \\
+Optimal MAP & $\xi_{\mathrm{MAP}}$ & \texttt{optimal\_prec} & scaled to $[0,1]$ within species range & $\xi_{\mathrm{MAP}}\sim\mathrm{Beta}(2,\,2)$ \\
+MAP breadth & $\sigma_{\mathrm{MAP}}$ & \texttt{tau\_prec} & $\tau_{\mathrm{MAP}}=1/\sigma_{\mathrm{MAP}}^{2}$; half-normal & $\tau_{\mathrm{MAP}}\sim\mathcal{N}^{+}(0,\,1)$ \\
+\midrule
+
+\multicolumn{5}{l}{\textbf{Survival model} (Eqs.~\ref{eq:survL}--\ref{eq:survP}, with covariates from Eqs.~\ref{eq:randomEffect}, \ref{eq:compEffect}, \ref{eq:climEffect})}\\
+\midrule
+Intercept & $\bar{\psi}$ & \texttt{psi} & $\bar{\psi}=\mathrm{logit}^{-1}(\texttt{psi})$; bounds $[-2,10]$ & $\texttt{psi}\sim\mathcal{N}(5,\,1)$ \\
+Plot effect & $\alpha_{j}$ & \texttt{psiPlot} & on logit-$\psi$ scale & $\alpha_{j}\sim\mathcal{N}(0,\,\sigma_{\alpha})$ \\
+Plot s.d. & $\sigma_{\alpha}$ & \texttt{sigma\_plot} & lognormal & $\sigma_{\alpha}\sim\mathrm{LogNormal}(2,\,1)$ \\
+Competition & $\beta$ & \texttt{Beta} & on logit-$\psi$ scale & $\beta\sim\mathcal{N}(0,\,0.1)$ \\
+Comp.\ partition & $\theta$ & \texttt{theta} & bounds $[0,2]$ & $\theta\sim\mathrm{Exp}(2.5)$ \\
+Optimal MAT & $\xi_{\mathrm{MAT}}$ & \texttt{optimal\_temp} & scaled to $[0,1]$ within species range & $\xi_{\mathrm{MAT}}\sim\mathrm{Beta}(2,\,2)$ \\
+MAT breadth & $\sigma_{\mathrm{MAT}}$ & \texttt{tau\_temp} & $\tau_{\mathrm{MAT}}=1/\sigma_{\mathrm{MAT}}^{2}$; half-normal & $\tau_{\mathrm{MAT}}\sim\mathcal{N}^{+}(0,\,2)$ \\
+Optimal MAP & $\xi_{\mathrm{MAP}}$ & \texttt{optimal\_prec} & scaled to $[0,1]$ within species range & $\xi_{\mathrm{MAP}}\sim\mathrm{Beta}(2,\,2)$ \\
+MAP breadth & $\sigma_{\mathrm{MAP}}$ & \texttt{tau\_prec} & $\tau_{\mathrm{MAP}}=1/\sigma_{\mathrm{MAP}}^{2}$; half-normal & $\tau_{\mathrm{MAP}}\sim\mathcal{N}^{+}(0,\,2)$ \\
+\midrule
+
+\multicolumn{5}{l}{\textbf{Recruitment model} (Eq.~\ref{eq:rec}, with covariates from Eqs.~\ref{eq:randomEffect}, \ref{eq:compingrowth}, \ref{eq:climEffect})}\\
+\midrule
+Ingrowth rate & $\bar{\phi}$ & \texttt{mPop\_log} & $\bar{\phi}=e^{\texttt{mPop\_log}}$ (log-link) & $\texttt{mPop\_log}\sim\mathcal{N}(-5,\,1.5)$ \\
+Plot effect & $\alpha_{j}$ & \texttt{mPlot\_log} & on log-$\phi$ scale & $\alpha_{j}\sim\mathcal{N}(0,\,\sigma_{\alpha})$ \\
+Plot s.d. & $\sigma_{\alpha}$ & \texttt{sigma\_plot} & half-normal & $\sigma_{\alpha}\sim\mathrm{Exp}(6)$ \\
+Optimal density & $\delta$ & \texttt{optimal\_BA} & m$^{2}$\,ha$^{-1}$; bounds $[5,150]$ & $\delta\sim\mathcal{N}(20,\,10)$ \\
+Density breadth & $\sigma$ & \texttt{sigma\_BA} & half-normal & $\sigma\sim\mathcal{N}^{+}(15,\,10)$ \\
+Recruit survival & $\bar{\rho}$ & \texttt{p\_log} & $\bar{\rho}=\exp(-e^{\texttt{p\_log}})$ & $\texttt{p\_log}\sim\mathcal{N}(-3,\,1.5)$ \\
+Comp.\ on $\rho$ & $\beta_{p}$ & \texttt{beta\_p} & half-normal; $\theta\equiv 1$ for $\rho$ & $\beta_{p}\sim\mathcal{N}^{+}(0,\,0.6)$ \\
+Optimal MAT & $\xi_{\mathrm{MAT}}$ & \texttt{optimal\_temp} & scaled to $[0,1]$ within species range & $\xi_{\mathrm{MAT}}\sim\mathrm{Beta}(2,\,2)$ \\
+MAT breadth & $\sigma_{\mathrm{MAT}}$ & \texttt{tau\_temp} & $\tau_{\mathrm{MAT}}=1/\sigma_{\mathrm{MAT}}^{2}$; half-normal & $\tau_{\mathrm{MAT}}\sim\mathcal{N}^{+}(0,\,2)$ \\
+Optimal MAP & $\xi_{\mathrm{MAP}}$ & \texttt{optimal\_prec} & scaled to $[0,1]$ within species range & $\xi_{\mathrm{MAP}}\sim\mathrm{Beta}(2,\,2)$ \\
+MAP breadth & $\sigma_{\mathrm{MAP}}$ & \texttt{tau\_prec} & $\tau_{\mathrm{MAP}}=1/\sigma_{\mathrm{MAP}}^{2}$; half-normal & $\tau_{\mathrm{MAP}}\sim\mathcal{N}^{+}(0,\,2)$ \\
+\midrule
+
+\multicolumn{5}{l}{\textbf{Recruit size model} (Eq.~\ref{eq:recSize})}\\
+\midrule
+Size intercept & $\Omega$ & \texttt{size\_int} & cm; half-normal, $L_{\mathrm{rec}}=12.7$ & $\Omega\sim\mathcal{N}^{+}(L_{\mathrm{rec}},\,50)$ \\
+Time slope & $\gamma_{\mathrm{rec}}$ & \texttt{phi\_time} & cm\,yr$^{-1}$; half-normal & $\gamma_{\mathrm{rec}}\sim\mathcal{N}^{+}(0,\,1)$ \\
+Size s.d. & $\sigma$ & \texttt{sigma\_size} & half-normal & $\sigma\sim\mathcal{N}^{+}(20,\,5)$ \\
+
+\end{longtable}
+
+
 \newpage
 
 ![Spatial (top left) and temporal (top right) coverage of the dataset incorporating data from the USA and Quebec. The top right panel shows the distribution of observations per class of latitude for the 31 species used in this study.](https://willvieira.github.io/book_forest-demography-IPM/db_files/figure-html/fig-plotCoverage-1.png){#fig:figsupp1 short-caption="Spatial (top left) and temporal (top right) coverage of the dataset incorporating data from the USA and Quebec."}
@@ -160,7 +235,7 @@ Consequently, we selected the complete model with plot random effects, competiti
 \newpage
 
 
-![Posterior distribution for the intercept of the ingrwoth model for the number of individuals that ingress the population per year per $m^2$ in function seed mass [@diaz2022]. Species are classified by their successional status following @burns1990silvics.](https://willvieira.github.io/book_forest-demography-IPM/pars_intercept_files/figure-html/fig-intcerpt_ingrowth-1.png){#fig:figsupp3 short-caption="Posterior distribution for the intercept of the ingrwoth model for the number of individuals that ingress the population per year per $m^2$ in function seed mass [@diaz2022]."}
+![Posterior distribution for the intercept of the ingrowth model for the number of individuals that ingress the population per year per $m^2$ in function seed mass [@diaz2022]. Species are classified by their successional status following @burns1990silvics.](https://willvieira.github.io/book_forest-demography-IPM/pars_intercept_files/figure-html/fig-intcerpt_ingrowth-1.png){#fig:figsupp3 short-caption="Posterior distribution for the intercept of the ingrowth model for the number of individuals that ingress the population per year per $m^2$ in function seed mass [@diaz2022]."}
 
 \newpage
 
