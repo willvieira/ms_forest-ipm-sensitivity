@@ -207,9 +207,7 @@ Additional diagnostics are provided in Supplementary Material 1.
 
 The IPM kernel $K$ was constructed following Equation @eq:kernel and discretized using the midpoint rule [@Ellner2016].
 Kernel discretization used 0.1 cm size bins, consistent with previous recommendations for trees [@zuidema2010integral].
-The asymptotic population growth rate ($\lambda$) was computed as the leading eigenvalue of the discretized kernel matrix under specified climate and competition conditions.
-
-All model code is available in the [`TreesDemography`](https://github.com/willvieira/TreesDemography) repository.
+The asymptotic population growth rate ($\lambda$) was computed as the leading eigenvalue of the discretized kernel matrix under specified climate and competition conditions. All model code is available in the [`TreesDemography`](https://github.com/willvieira/TreesDemography) repository.
 The IPM implementation is packaged in [`forestIPM`](https://github.com/willvieira/forestIPM), and sensitivity analysis code is available in the `simulations/covariates_perturbation` directory.
 
 ## Perturbation analysis
@@ -347,9 +345,7 @@ We found across all species that the sensitivity of $\lambda$ was highest for te
 Previous studies assessing the relative importance of climate and competition on tree performance have reported mixed results.
 Some studies emphasize stronger competition effects on growth [@GomezAparicio2011;@LeSquin2021], whereas others report stronger climate effects [@CopenhaverParry2016].
 The relative importance of climate and competition also varies among demographic components, with growth typically more sensitive to competition and fecundity more sensitive to climate [@Clark2011].
-For instance, several dominant tree species in Poland exhibited high climate sensitivity, with declining fecundity under warming temperatures [@foest2025forest].
-
-These contrasting findings may arise because many studies assess demographic components separately rather than evaluating their integrated effects on population growth rate.
+For instance, several dominant tree species in Poland exhibited high climate sensitivity, with declining fecundity under warming temperatures [@foest2025forest]. These contrasting findings may arise because many studies assess demographic components separately rather than evaluating their integrated effects on population growth rate.
 This matters because $\lambda$ does not respond equally to all demographic processes.
 Our additional analyses revealed that $\lambda$ was most sensitive to recruitment, followed by survival, with a comparatively smaller contribution from growth (Supplementary Material 3).
 Because recruitment tends to be more sensitive to temperature [@Clark2011;@foest2025forest], the high elasticity of $\lambda$ to recruitment may explain the dominant role of climate sensitivity observed in our results.
@@ -381,9 +377,7 @@ Another limitation shared with many forest-inventory-based models [@Kunstler2021
 
 The modular design of our framework enables direct integration of additional species and environmental predictors.
 For instance, additional covariates such as water balance or evapotranspiration could be incorporated to assess drought-induced mortality [@Peng2011].
-Exploring interactions among climate, competition, and individual size may also improve predictions of demographic rates [@Peng2011;@Ford2017;@Rollinson2016;@LeSquin2021].
-
-A promising but computationally intensive extension would involve jointly fitting growth, survival, and recruitment models to explicitly capture their interdependence [@pang2024niche].
+Exploring interactions among climate, competition, and individual size may also improve predictions of demographic rates [@Peng2011;@Ford2017;@Rollinson2016;@LeSquin2021]. A promising but computationally intensive extension would involve jointly fitting growth, survival, and recruitment models to explicitly capture their interdependence [@pang2024niche].
 Such an approach would allow the incorporation of ecological constraints, such as life-history trade-offs, by sharing information across demographic processes with abundant data (e.g. growth) and those with scarce data (e.g. recruitment).
 Understanding the ecological drivers underlying variation captured by random effects remains a priority.
 While our framework accounts for individual and plot-level uncertainty, additional attention to temporal variability in climate and competition will be important.

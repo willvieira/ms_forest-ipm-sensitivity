@@ -149,6 +149,8 @@ Consequently, we selected the complete model with plot random effects, competiti
 \end{longtable}
 }
 
+\newpage
+
 \begin{longtable}{@{}p{2.1cm} p{2.1cm} p{2.1cm} p{4.3cm} p{3.6cm}@{}}
 \caption{Prior specifications for all parameters in the species-specific
 demographic models. The \emph{Symbol} column gives the notation used in the
@@ -172,7 +174,7 @@ Component & Symbol & Stan name & Scale / link & Prior \\
 \bottomrule
 \endlastfoot
 
-\multicolumn{5}{l}{\textbf{Growth model} (Eqs.~\ref{eq:VBlik}--\ref{eq:VBmodel}, with covariates from Eqs.~\ref{eq:randomEffect}, \ref{eq:compEffect}, \ref{eq:climEffect})}\\
+\multicolumn{5}{l}{\textbf{Growth model}}\\
 \midrule
 Intercept & $\bar{\Gamma}$ & \texttt{r} & $\bar{\Gamma}=e^{r}$ (log-link) & $r\sim\mathcal{N}(-3.5,\,1)$ \\
 Asymptotic size & $\zeta_{\infty}$ & \texttt{Lmax} & cm; lower bound $=1.2\times\max(\mathrm{DBH})$ & $\zeta_{\infty}\sim\mathcal{N}(1000,\,80)$ \\
@@ -187,7 +189,7 @@ Optimal MAP & $\xi_{\mathrm{MAP}}$ & \texttt{optimal\_prec} & scaled to $[0,1]$ 
 MAP breadth & $\sigma_{\mathrm{MAP}}$ & \texttt{tau\_prec} & $\tau_{\mathrm{MAP}}=1/\sigma_{\mathrm{MAP}}^{2}$; half-normal & $\tau_{\mathrm{MAP}}\sim\mathcal{N}^{+}(0,\,1)$ \\
 \midrule
 
-\multicolumn{5}{l}{\textbf{Survival model} (Eqs.~\ref{eq:survL}--\ref{eq:survP}, with covariates from Eqs.~\ref{eq:randomEffect}, \ref{eq:compEffect}, \ref{eq:climEffect})}\\
+\multicolumn{5}{l}{\textbf{Survival model}}\\
 \midrule
 Intercept & $\bar{\psi}$ & \texttt{psi} & $\bar{\psi}=\mathrm{logit}^{-1}(\texttt{psi})$; bounds $[-2,10]$ & $\texttt{psi}\sim\mathcal{N}(5,\,1)$ \\
 Plot effect & $\alpha_{j}$ & \texttt{psiPlot} & on logit-$\psi$ scale & $\alpha_{j}\sim\mathcal{N}(0,\,\sigma_{\alpha})$ \\
@@ -200,7 +202,7 @@ Optimal MAP & $\xi_{\mathrm{MAP}}$ & \texttt{optimal\_prec} & scaled to $[0,1]$ 
 MAP breadth & $\sigma_{\mathrm{MAP}}$ & \texttt{tau\_prec} & $\tau_{\mathrm{MAP}}=1/\sigma_{\mathrm{MAP}}^{2}$; half-normal & $\tau_{\mathrm{MAP}}\sim\mathcal{N}^{+}(0,\,2)$ \\
 \midrule
 
-\multicolumn{5}{l}{\textbf{Recruitment model} (Eq.~\ref{eq:rec}, with covariates from Eqs.~\ref{eq:randomEffect}, \ref{eq:compingrowth}, \ref{eq:climEffect})}\\
+\multicolumn{5}{l}{\textbf{Recruitment model}}\\
 \midrule
 Ingrowth rate & $\bar{\phi}$ & \texttt{mPop\_log} & $\bar{\phi}=e^{\texttt{mPop\_log}}$ (log-link) & $\texttt{mPop\_log}\sim\mathcal{N}(-5,\,1.5)$ \\
 Plot effect & $\alpha_{j}$ & \texttt{mPlot\_log} & on log-$\phi$ scale & $\alpha_{j}\sim\mathcal{N}(0,\,\sigma_{\alpha})$ \\
@@ -215,7 +217,7 @@ Optimal MAP & $\xi_{\mathrm{MAP}}$ & \texttt{optimal\_prec} & scaled to $[0,1]$ 
 MAP breadth & $\sigma_{\mathrm{MAP}}$ & \texttt{tau\_prec} & $\tau_{\mathrm{MAP}}=1/\sigma_{\mathrm{MAP}}^{2}$; half-normal & $\tau_{\mathrm{MAP}}\sim\mathcal{N}^{+}(0,\,2)$ \\
 \midrule
 
-\multicolumn{5}{l}{\textbf{Recruit size model} (Eq.~\ref{eq:recSize})}\\
+\multicolumn{5}{l}{\textbf{Recruit size model}}\\
 \midrule
 Size intercept & $\Omega$ & \texttt{size\_int} & cm; half-normal, $L_{\mathrm{rec}}=12.7$ & $\Omega\sim\mathcal{N}^{+}(L_{\mathrm{rec}},\,50)$ \\
 Time slope & $\gamma_{\mathrm{rec}}$ & \texttt{phi\_time} & cm\,yr$^{-1}$; half-normal & $\gamma_{\mathrm{rec}}\sim\mathcal{N}^{+}(0,\,1)$ \\
