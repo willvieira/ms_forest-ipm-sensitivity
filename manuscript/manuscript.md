@@ -35,7 +35,7 @@ We then integrate these demographic models into size-structured Integral Project
 Our primary goal is to quantify how sensitive $\lambda$ is to climate and competition across species' ranges.
 First, we estimate sensitivities at each plot under observed environmental and competitive conditions using perturbation analysis [@Caswell2000].
 This approach ensures that sensitivities reflect the environmental conditions actually occupied by the populations.
-Second, building on previous evidence that North American trees have shown limited cold-edge expansion and hot-edge contraction [@Talluto2017], we test whether sensitivity varies systematically with species' thermal range position.
+Second, building on previous evidence that North American trees have shown limited cold-edge expansion and hot-edge contraction [@Talluto2017], we test whether demographic sensitivity varies systematically with species' thermal range position.
 By quantifying how climate and competition jointly regulate population growth, this framework provides a mechanistic basis for predicting tree responses to climate change, management, and conservation.
 
 ![Conceptual framework to assess how the sensitivity of population growth rate to climate and competition varies across species' geographic ranges. Using repeated measurements of individual trees from forest inventories spanning the eastern United States and Québec, Canada, we fitted species-specific growth, survival, and recruitment models parameterized as functions of individual size, competition, and plot-level climate covariates. These demographic models form the components of a size-structured Integral Projection Model (IPM), from which population growth rate ($\lambda$) is estimated for each species $i$ at each plot location $j$. We then apply perturbation analysis to quantify the sensitivity of $\lambda$ to climate and competition under the local environmental and stand composition conditions of each plot. Cold and hot range limits were identified using the 10th and 90th percentiles of mean annual temperature across each species' distribution. By averaging sensitivities across plots within each range edge, we assess how the sensitivity of population growth rate differs between cold and hot distributional limits.](manuscript/figs/concept_fig.png){#fig:concept_fig width=100%}
@@ -350,11 +350,14 @@ This matters because $\lambda$ does not respond equally to all demographic proce
 Our additional analyses revealed that $\lambda$ was most sensitive to recruitment, followed by survival, with a comparatively smaller contribution from growth (Supplementary Material 3).
 Because recruitment tends to be more sensitive to temperature [@Clark2011;@foest2025forest], the high elasticity of $\lambda$ to recruitment may explain the dominant role of climate sensitivity observed in our results.
 
-Sensitivity to climate and competition varied across species' geographic ranges.
+Demographic sensitivity to climate and competition varied across species' geographic ranges.
 Because we modeled climate effects as a unimodal function centered at an optimal value, lower sensitivity values in our framework indicate conditions close to the climatic optimum, whereas higher values indicate deviation from optimal conditions.
-Overall, climate sensitivity, driven primarily by MAT, was greatest at both cold and hot range limits.
-This result suggests that species originating from colder environments perform optimally toward warmer portions of their ranges, whereas species from warmer environments perform optimally toward cooler conditions.
-Notably, the demographic mechanisms underlying increased climate sensitivity differed between range limits.
+Overall, sensitivity of $\lambda$ to climate, driven primarily by MAT, was greatest at both cold and hot range limits.
+This result suggests that species occupying colder portions of the continental thermal gradient have their demographic optimum toward the warmer parts of their ranges, whereas species occupying warmer portions of the continental gradient have their optimum toward the cooler parts.
+Because multiple species occupy overlapping portions of the same thermal gradient, increasing climatic sensitivity near thermal extremes may represent a shared demographic response to environmental stress rather than an independent property of each species' geographic range [@Korner2021].
+This interpretation shifts the focus from species-level range position to community-level responses to climate, highlighting potential common physiological constraints experienced across species.
+
+The demographic mechanisms underlying increased climate sensitivity differed between range limits.
 Recruitment and growth processes primarily drove sensitivity at cold range limits, whereas survival and recruitment dominated at hot range limits, particularly under high competition conditions (Figure S22).
 Previous studies have documented climate-constrained growth at cold range limits for both North American [@Ettinger2013] and European trees [@Kunstler2021].
 Reduced survival at hot range limits has been observed in European forests [@Kunstler2021], although this observation has not been consistently detected in eastern North America [@Purves2009].
@@ -385,9 +388,10 @@ Incorporating temporal stochasticity will improve predictions of species perform
 
 # Conclusions
 
-By integrating species-specific growth, survival, and recruitment models into Integral Projection Models, we showed that population growth rate of 31 eastern North American tree species is consistently more sensitive to mean annual temperature than to competition, with sensitivity to precipitation substantially weaker.
-Sensitivity varied systematically across thermal range positions: the relative dominance of climate over competition increased toward both cold and hot range limits, indicating that center–limit dynamics operate at the community level along the thermal gradient shared across species, rather than within each species' own range.
+By integrating species-specific growth, survival, and recruitment models into Integral Projection Models, we showed that the population growth rate of 31 eastern North American tree species is consistently more sensitive to mean annual temperature than to competition, with sensitivity to precipitation substantially weaker.
+Demographic sensitivity varied systematically across thermal range positions: the relative dominance of climate over competition increased toward both cold and hot range limits, with these sensitivity gradients emerging along the continental thermal gradient shared across species rather than within each species' own range.
+This result suggests that range-edge demographic responses may emerge as a community-level phenomenon, and that increasing demographic sensitivity toward thermal extremes may provide a mechanistic pathway underlying the expected performance declines predicted by range-limit theories.
 Most of the variation in $\lambda$, however, remained tied to local plot conditions captured by random effects, indicating that fine-scale drivers not represented by our climate and competition covariates exert a stronger influence on demography than the broad-scale predictors typically used in range models.
-Together, these results provide a mechanistic basis for predicting how forest populations may reorganize under climate change, and provide a framework to improve our understanding of species performance across their distribution.
+Together, these results provide a mechanistic basis for predicting how forest populations may reorganize under climate change, and a framework for understanding the demographic underpinnings of range-limit dynamics.
 
 # References
