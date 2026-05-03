@@ -47,6 +47,19 @@ pandoc $1 -o docs/manuscript.pdf \
     --bibliography=$2 \
     --csl=manuscript/conf/ecology.csl
 
+# Build preprint pdf (single column, readable, inline figures)
+echo [1] Rendering manuscript preprint pdf
+pandoc $1 -o docs/manuscript_preprint.pdf \
+    --quiet \
+    --metadata-file=$3 \
+    --metadata=figures-at-end=false \
+    --pdf-engine=xelatex \
+    --template=manuscript/conf/templatePreprint.tex \
+    --filter pandoc-xnos \
+    --number-sections \
+    --bibliography=$2 \
+    --csl=manuscript/conf/ecology.csl
+
 # if double-blind, print title page separated
 if ${double_blind}
 then

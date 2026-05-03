@@ -1,58 +1,131 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Wenneker Article
-% LaTeX Template
-% Version 2.0 (28/2/17)
-%
-% This template was downloaded from:
-% http://www.LaTeXTemplates.com
-%
-% Authors:
-% Vel (vel@LaTeXTemplates.com)
-% Frits Wenneker
-%
-% Modified by Will Vieira
-% December 12, 2020
-%
-% License:
-% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%!TEX TS-program = xelatex
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Preprint template — single column, readable, neat
+% Will Vieira
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%----------------------------------------------------------------------------------------
-%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
-%----------------------------------------------------------------------------------------
+\documentclass[11pt]{article}
 
-\documentclass[11pt, a4paper, twocolumn]{article} % 10pt font size (11 and 12 also possible), A4 paper (letterpaper for US letter) and two column layout (remove for one column)
+%--- page geometry -----------------------------------------------------------
+\usepackage{geometry}
+\geometry{letterpaper,
+          tmargin=2.4cm, bmargin=2.4cm,
+          lmargin=2.6cm, rmargin=2.6cm,
+          headsep=14pt, footskip=28pt}
 
+%--- spacing & paragraphs ----------------------------------------------------
+\usepackage{setspace}
+\setstretch{1.15}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em plus 0.1em minus 0.1em}
 
+%--- fonts (xelatex) ---------------------------------------------------------
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0
+  % pdflatex fallback
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{XCharter}
+  \usepackage[scaled=0.92]{helvet}
+\else
+  \usepackage{fontspec}
+  \defaultfontfeatures{Ligatures=TeX, Scale=MatchLowercase}
+  % serif body — Libertinus if available, else Charter, else system serif
+  \IfFontExistsTF{Libertinus Serif}{%
+    \setmainfont{Libertinus Serif}
+    \setsansfont{Libertinus Sans}
+    \setmonofont{Libertinus Mono}
+  }{%
+    \IfFontExistsTF{XCharter}{%
+      \setmainfont{XCharter}
+    }{}%
+  }
+\fi
+\usepackage{microtype}
 
-%----------------------------------------------------------------------------------------
-%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
-%----------------------------------------------------------------------------------------
+%--- math --------------------------------------------------------------------
+\usepackage{amsmath, amssymb}
 
-\usepackage[english]{babel} % English language hyphenation
+%--- color -------------------------------------------------------------------
+\usepackage{xcolor}
+\definecolor{accent}{HTML}{1F5673}     % muted teal-blue for links/rules
+\definecolor{soft}{HTML}{6B6B6B}       % soft grey for metadata
+\definecolor{rule}{HTML}{C9C9C9}       % light hairline rule
 
-\usepackage{microtype} % Better typography
+%--- graphics & captions -----------------------------------------------------
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
 
-\usepackage{amsmath,amsfonts,amsthm} % Math packages for equations
+\usepackage[font=small, labelfont={bf,color=accent}, labelsep=period,
+            justification=justified, singlelinecheck=false]{caption}
 
-\usepackage[svgnames]{xcolor} % Enabling colors by their 'svgnames'
+%--- tables ------------------------------------------------------------------
+$if(tables)$
+\usepackage{longtable, booktabs}
+$endif$
 
-\usepackage[hang, small, labelfont=bf, up, textfont=it]{caption} % Custom captions under/above tables and figures
+%--- section headings --------------------------------------------------------
+\usepackage{titlesec}
+\titleformat{\section}
+  {\sffamily\large\bfseries\color{accent}}{\thesection}{0.6em}{}
+\titleformat{\subsection}
+  {\sffamily\normalsize\bfseries}{\thesubsection}{0.5em}{}
+\titleformat{\subsubsection}
+  {\sffamily\normalsize\itshape}{\thesubsubsection}{0.5em}{}
+\titlespacing*{\section}{0pt}{1.4ex plus .4ex minus .2ex}{0.6ex}
+\titlespacing*{\subsection}{0pt}{1.0ex plus .3ex minus .2ex}{0.4ex}
+\titlespacing*{\subsubsection}{0pt}{0.8ex plus .2ex minus .2ex}{0.3ex}
 
-\usepackage{booktabs} % Horizontal rules in tables
+%--- author block ------------------------------------------------------------
+\usepackage{authblk}
+\renewcommand\Authfont{\normalsize}
+\renewcommand\Affilfont{\footnotesize\itshape\color{soft}}
+\setlength{\affilsep}{0.4em}
 
-\usepackage{lastpage} % Used to determine the number of pages in the document (for "Page X of Total")
+%--- header / footer ---------------------------------------------------------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+$if(running_title)$
+\fancyhead[L]{\footnotesize\itshape\color{soft}$running_title$}
+$else$
+$if(title-meta)$
+\fancyhead[L]{\footnotesize\itshape\color{soft}$title-meta$}
+$endif$
+$endif$
+\fancyhead[R]{\footnotesize\color{soft}%
+$if(authors)$$for(authors)$$authors.familyname$$sep$, $endfor$$endif$}
+\fancyfoot[C]{\footnotesize\color{soft}\thepage}
 
-\usepackage{graphicx} % Required for adding images
+\fancypagestyle{firstpage}{%
+  \fancyhf{}
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0pt}
+  \fancyfoot[C]{\footnotesize\color{soft}\thepage}
+}
 
-\usepackage{enumitem} % Required for customising lists
-\setlist{noitemsep} % Remove spacing between bullet/numbered list elements
+%--- abstract environment (boxed-left rule) ----------------------------------
+\usepackage{changepage}
+\newenvironment{preprintabstract}
+  {\par\medskip
+   \begingroup
+   \leftskip=0.6em \rightskip=0.6em
+   \small
+   \noindent\textcolor{accent}{\rule{2.5em}{1.2pt}}\par\smallskip
+   \noindent\textsf{\bfseries\color{accent}Abstract}\par\smallskip}
+  {\par\endgroup\medskip}
 
-\usepackage{sectsty} % Enables custom section titles
-\allsectionsfont{\usefont{OT1}{phv}{b}{n}} % Change the font of all section commands (Helvetica)
-
-\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+%--- hyperref ----------------------------------------------------------------
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{}
 \IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
 \hypersetup{
 $if(title-meta)$
@@ -64,138 +137,29 @@ $endif$
 $if(language)$
   pdflang={$language$},
 $endif$
-$if(subject)$
-  pdfsubject={$subject$},
-$endif$
 $if(keywords)$
   pdfkeywords={$for(keywords)$$keywords$$sep$, $endfor$},
 $endif$
-colorlinks=true,
-allcolors=[rgb]{0,0.4,0.5},
-pdfcreator={LaTeX via pandoc}}
-\urlstyle{same} % disable monospaced font for URLs
+  colorlinks=true,
+  allcolors=accent,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same}
 
-
-%----------------------------------------------------------------------------------------
-%	MARGINS AND SPACING
-%----------------------------------------------------------------------------------------
-
-\usepackage{geometry} % Required for adjusting page dimensions
-
-\geometry{
-	top=1cm, % Top margin
-	bottom=1.5cm, % Bottom margin
-	left=2cm, % Left margin
-	right=2cm, % Right margin
-	includehead, % Include space for a header
-	includefoot, % Include space for a footer
-	%showframe, % Uncomment to show how the type block is set on the page
-}
-
-\setlength{\columnsep}{7mm} % Column separation width
-
-%----------------------------------------------------------------------------------------
-%	FONTS
-%----------------------------------------------------------------------------------------
-
-\usepackage[T1]{fontenc} % Output font encoding for international characters
-\usepackage[utf8]{inputenc} % Required for inputting international characters
-
-\usepackage{XCharter} % Use the XCharter font
-
-%----------------------------------------------------------------------------------------
-%	HEADERS AND FOOTERS
-%----------------------------------------------------------------------------------------
-
-\usepackage{fancyhdr} % Needed to define custom headers/footers
-\pagestyle{fancy} % Enables the custom headers/footers
-
-\renewcommand{\headrulewidth}{0.0pt} % No header rule
-\renewcommand{\footrulewidth}{0.4pt} % Thin footer rule
-
-\renewcommand{\sectionmark}[1]{\markboth{#1}{}} % Removes the section number from the header when \leftmark is used
-
-%\nouppercase\leftmark % Add this to one of the lines below if you want a section title in the header/footer
-
-% Headers
-\lhead{} % Left header
-\chead{\textit{\thetitle}} % Center header - currently printing the article title
-\rhead{} % Right header
-
-% Footers
-\lfoot{} % Left footer
-\cfoot{} % Center footer
-\rfoot{\footnotesize Page \thepage\ of \pageref{LastPage}} % Right footer, "Page 1 of 2"
-
-\fancypagestyle{firstpage}{ % Page style for the first page with the title
-	\fancyhf{}
-	\renewcommand{\footrulewidth}{0pt} % Suppress footer rule
-}
-
-%----------------------------------------------------------------------------------------
-%	TITLE SECTION
-%----------------------------------------------------------------------------------------
-
-\newcommand{\authorstyle}[1]{{\large\usefont{OT1}{phv}{b}{n}\color{DarkRed}#1}} % Authors style (Helvetica)
-
-\newcommand{\institution}[1]{{\footnotesize\usefont{OT1}{phv}{m}{sl}\color{Black}#1}} % Institutions style (Helvetica)
-
-\usepackage{titling} % Allows custom title configuration
-
-\newcommand{\HorRule}{\color{DarkGoldenrod}\rule{\linewidth}{1pt}} % Defines the gold horizontal rule around the title
-
-\pretitle{
-	\vspace{-30pt} % Move the entire title section up
-	\HorRule\vspace{10pt} % Horizontal rule before the title
-	\fontsize{32}{36}\usefont{OT1}{phv}{b}{n}\selectfont % Helvetica
-	\color{DarkRed} % Text colour for the title and author(s)
-}
-
-\posttitle{\par\vskip 15pt} % Whitespace under the title
-
-\preauthor{} % Anything that will appear before \author is printed
-
-\postauthor{ % Anything that will appear after \author is printed
-	\vspace{10pt} % Space before the rule
-	\par\HorRule % Horizontal rule after the title
-	\vspace{20pt} % Space after the title section
-}
-
-%----------------------------------------------------------------------------------------
-%	ABSTRACT
-%----------------------------------------------------------------------------------------
-
-\usepackage{lettrine} % Package to accentuate the first letter of the text (lettrine)
-\usepackage{fix-cm}	% Fixes the height of the lettrine
-
-\newcommand{\initial}[1]{ % Defines the command and style for the lettrine
-	\lettrine[lines=3,findent=4pt,nindent=0pt]{% Lettrine takes up 3 lines, the text to the right of it is indented 4pt and further indenting of lines 2+ is stopped
-		\color{DarkGoldenrod}% Lettrine colour
-		{#1}% The letter
-	}{}%
-}
-
-\usepackage{xstring} % Required for string manipulation
-
-\newcommand{\lettrineabstract}[1]{
-	\StrLeft{#1}{1}[\firstletter] % Capture the first letter of the abstract for the lettrine
-	\initial{\firstletter}\textbf{\StrGobbleLeft{#1}{1}} % Print the abstract with the first letter as a lettrine and the rest in bold
-}
-
-%----------------------------------------------------------------------------------------
-%	BIBLIOGRAPHY
-%----------------------------------------------------------------------------------------
-
-$if(natbib)$
-\usepackage[$natbiboptions$]{natbib}
-\bibliographystyle{$if(biblio-style)$$biblio-style$$else$plainnat$endif$}
+%--- pandoc plumbing ---------------------------------------------------------
+$if(highlighting-macros)$
+$highlighting-macros$
 $endif$
-$if(biblatex)$
-\usepackage[$if(biblio-style)$style=$biblio-style$,$endif$$for(biblatexoptions)$$biblatexoptions$$sep$,$endfor$]{biblatex}
-$for(bibliography)$
-\addbibresource{$bibliography$}
-$endfor$
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+$if(numbersections)$
+\setcounter{secnumdepth}{$if(secnumdepth)$$secnumdepth$$else$5$endif$}
+$else$
+\setcounter{secnumdepth}{-\maxdimen}
 $endif$
+
+% csl reference list (pandoc)
 $if(csl-refs)$
 \newlength{\cslhangindent}
 \setlength{\cslhangindent}{1.5em}
@@ -205,55 +169,72 @@ $if(csl-refs)$
   {\par}
 $endif$
 
-%----------------------------------------------------------------------------------------
-%	ARTICLE INFORMATION
-%----------------------------------------------------------------------------------------
+\setlength{\emergencystretch}{3em}
 
-\title{$title$} % The article title
+$for(header-includes)$
+$header-includes$
+$endfor$
 
-\author{
-	\authorstyle{$for(authors)$$authors.givennames$~$authors.familyname$\textsuperscript{$for(authors.affiliations)$$authors.affiliations$$sep$,$endfor$}$sep$, $endfor$} % Authors
-	\newline\newline % Space before institutions
-	$for(affiliations)$\textsuperscript{$affiliations.index$}\institution{$affiliations.name$}$sep$\\$endfor$ % Institution 1
+%--- title block -------------------------------------------------------------
+\title{\vspace{-2.0em}%
+  {\sffamily\bfseries\fontsize{18}{22}\selectfont\color{accent}$title$}\vspace{0.2em}}
+
+$for(authors)$
+\author[$for(authors.affiliations)$$authors.affiliations$$sep$,$endfor$]{%
+  $authors.givennames$~$authors.familyname$%
+  $if(authors.corresponding)$\thanks{Corresponding author: \href{mailto:$authors.email$}{$authors.email$}}$endif$%
 }
+$endfor$
 
-% Example of a one line author/institution relationship
-%\author{\newauthor{John Marston} \newinstitution{Universidad Nacional Autónoma de México, Mexico City, Mexico}}
+$for(affiliations)$
+\affil[$affiliations.index$]{$affiliations.name$}
+$endfor$
 
-\date{\today} % Add a date here if you would like one to appear underneath the title block, use \today for the current date, leave empty for no date
+\date{\footnotesize\color{soft}$date$}
 
-%----------------------------------------------------------------------------------------
-
+%=============================================================================
 \begin{document}
 
-\maketitle % Print the title
+% subtle preprint banner
+\noindent{\sffamily\footnotesize\color{soft}%
+  PREPRINT \textcolor{rule}{\textbar}\ Not peer-reviewed%
+  $if(date)$ \textcolor{rule}{\textbar}\ $date$$endif$%
+}\par
+\vspace{-0.4em}
+\noindent\textcolor{rule}{\rule{\linewidth}{0.4pt}}
 
-\thispagestyle{firstpage} % Apply the page style for the first page (no headers and footers)
+\maketitle
+\thispagestyle{firstpage}
+\vspace{-1.2em}
 
-%----------------------------------------------------------------------------------------
-%	ABSTRACT
-%----------------------------------------------------------------------------------------
+$if(abstract)$
+\begin{preprintabstract}
+$abstract$
+\end{preprintabstract}
+$endif$
 
-\lettrineabstract{$abstract$}
+$if(keywords)$
+\noindent{\small\textsf{\bfseries\color{accent}Keywords}\ \ %
+$for(keywords)$$keywords$$sep$ \textcolor{rule}{\textbullet}\ $endfor$}
+\par\medskip
+\noindent\textcolor{rule}{\rule{\linewidth}{0.4pt}}
+$endif$
 
-%----------------------------------------------------------------------------------------
-%	ARTICLE CONTENTS
-%----------------------------------------------------------------------------------------
+$for(include-before)$
+$include-before$
 
+$endfor$
+
+%--- body --------------------------------------------------------------------
 $body$
 
-%----------------------------------------------------------------------------------------
-%	BIBLIOGRAPHY
-%----------------------------------------------------------------------------------------
+%--- references --------------------------------------------------------------
+\newpage
 
 $if(natbib)$
 $if(bibliography)$
 $if(biblio-title)$
-$if(has-chapters)$
-\renewcommand\bibname{$biblio-title$}
-$else$
 \renewcommand\refname{$biblio-title$}
-$endif$
 $endif$
 \bibliography{$for(bibliography)$$bibliography$$sep$,$endfor$}
 
@@ -263,6 +244,24 @@ $if(biblatex)$
 \printbibliography$if(biblio-title)$[title=$biblio-title$]$endif$
 $endif$
 
-%----------------------------------------------------------------------------------------
+%--- article information (admin metadata, small, at end) ---------------------
+$if(acknowledgments)$$if(funding)$$if(authorship)$$if(conflicts-of-interest)$$if(open_research_statement)$
+\bigskip
+\noindent\textcolor{rule}{\rule{\linewidth}{0.4pt}}\par
+\section*{\sffamily\normalsize\color{accent}Article information}
+\begingroup\small\color{soft}
+$if(open_research_statement)$\noindent\textbf{Open research statement.} $open_research_statement$\par\smallskip$endif$
+$if(acknowledgments)$\noindent\textbf{Acknowledgments.} $acknowledgments$\par\smallskip$endif$
+$if(funding)$\noindent\textbf{Funding.} $funding$\par\smallskip$endif$
+$if(authorship)$\noindent\textbf{Authorship.} $authorship$\par\smallskip$endif$
+$if(conflicts-of-interest)$\noindent\textbf{Conflicts of interest.} $conflicts-of-interest$\par\smallskip$endif$
+$if(supporting-files)$\noindent\textbf{Supporting information.} Available $for(supporting-files)$\href{https://$github-user$.github.io/$github-repo$/$supporting-files$.pdf}{here}$sep$, $endfor$.\par$endif$
+\endgroup
+$endif$$endif$$endif$$endif$$endif$
+
+$for(include-after)$
+$include-after$
+
+$endfor$
 
 \end{document}

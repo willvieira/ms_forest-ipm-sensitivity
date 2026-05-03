@@ -34,7 +34,7 @@ jobs:
 
       - name: Install LaTeX
         run: |
-          sudo apt-get install texlive-latex-base texlive-fonts-recommended texlive-fonts-extra texlive-latex-extra
+          sudo apt-get install texlive-latex-base texlive-fonts-recommended texlive-fonts-extra texlive-latex-extra texlive-xetex fonts-libertinus
 
       - name: Install R packages
         uses: r-lib/actions/setup-renv@v2
