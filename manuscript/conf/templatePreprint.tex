@@ -19,27 +19,20 @@
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{0.5em plus 0.1em minus 0.1em}
 
-%--- fonts (xelatex) ---------------------------------------------------------
+%--- fonts -------------------------------------------------------------------
 \usepackage{ifxetex,ifluatex}
 \ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0
-  % pdflatex fallback
+  % pdflatex
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
-  \usepackage{XCharter}
-  \usepackage[scaled=0.92]{helvet}
+  \IfFileExists{libertinus.sty}{\usepackage{libertinus}}{%
+    \IfFileExists{XCharter.sty}{\usepackage{XCharter}\usepackage[scaled=0.92]{helvet}}{}}
 \else
-  \usepackage{fontspec}
-  \defaultfontfeatures{Ligatures=TeX, Scale=MatchLowercase}
-  % serif body — Libertinus if available, else Charter, else system serif
-  \IfFontExistsTF{Libertinus Serif}{%
-    \setmainfont{Libertinus Serif}
-    \setsansfont{Libertinus Sans}
-    \setmonofont{Libertinus Mono}
-  }{%
-    \IfFontExistsTF{XCharter}{%
-      \setmainfont{XCharter}
-    }{}%
-  }
+  % xelatex / lualatex — libertinus package auto-loads fontspec + sets faces
+  \IfFileExists{libertinus.sty}{\usepackage{libertinus}}{%
+    \usepackage{fontspec}
+    \defaultfontfeatures{Ligatures=TeX, Scale=MatchLowercase}
+    \IfFileExists{XCharter.sty}{\usepackage{XCharter}}{}}
 \fi
 \usepackage{microtype}
 
