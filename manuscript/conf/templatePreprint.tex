@@ -23,20 +23,16 @@
 \usepackage{amsmath, amssymb}
 
 %--- fonts -------------------------------------------------------------------
+% Source Serif Pro (body) + Source Sans Pro (headings) — modern, screen-tuned
 \usepackage{ifxetex,ifluatex}
 \ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0
-  % pdflatex
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
-  \IfFileExists{libertinus.sty}{\usepackage{libertinus}}{%
-    \IfFileExists{XCharter.sty}{\usepackage{XCharter}\usepackage[scaled=0.92]{helvet}}{}}
-\else
-  % xelatex / lualatex — libertinus package auto-loads fontspec + sets faces
-  \IfFileExists{libertinus.sty}{\usepackage{libertinus}}{%
-    \usepackage{fontspec}
-    \defaultfontfeatures{Ligatures=TeX, Scale=MatchLowercase}
-    \IfFileExists{XCharter.sty}{\usepackage{XCharter}}{}}
 \fi
+\IfFileExists{sourceserifpro.sty}{\usepackage[default,osf]{sourceserifpro}}{%
+  \IfFileExists{libertinus.sty}{\usepackage{libertinus}}{}}
+\IfFileExists{sourcesanspro.sty}{\usepackage[scaled=0.95]{sourcesanspro}}{}
+\IfFileExists{sourcecodepro.sty}{\usepackage[scaled=0.85]{sourcecodepro}}{}
 \usepackage{microtype}
 
 %--- color -------------------------------------------------------------------
@@ -88,22 +84,22 @@ $endif$
 \fancyhf{}
 \renewcommand{\headrulewidth}{0pt}
 \renewcommand{\footrulewidth}{0pt}
-$if(running_title)$
-\fancyhead[L]{\footnotesize\itshape\color{soft}$running_title$}
-$else$
-$if(title-meta)$
-\fancyhead[L]{\footnotesize\itshape\color{soft}$title-meta$}
-$endif$
-$endif$
-\fancyhead[R]{\footnotesize\color{soft}%
-$if(authors)$$for(authors)$$authors.familyname$$sep$, $endfor$$endif$}
-\fancyfoot[C]{\footnotesize\color{soft}\thepage}
+\fancyfoot[L]{\footnotesize\itshape\color{soft}%
+  $if(running_title)$$running_title$$else$$if(title-meta)$$title-meta$$endif$$endif$}
+\fancyfoot[R]{\footnotesize\color{soft}%
+  $if(authors)$$for(authors)$$authors.familyname$$sep$, $endfor$$endif$%
+  \ \textcolor{rule}{\textbar}\ \thepage}
 
+% First page uses the same delicate footer (no header, no top banner)
 \fancypagestyle{firstpage}{%
   \fancyhf{}
   \renewcommand{\headrulewidth}{0pt}
   \renewcommand{\footrulewidth}{0pt}
-  \fancyfoot[C]{\footnotesize\color{soft}\thepage}
+  \fancyfoot[L]{\footnotesize\itshape\color{soft}%
+    $if(running_title)$$running_title$$else$$if(title-meta)$$title-meta$$endif$$endif$}
+  \fancyfoot[R]{\footnotesize\color{soft}%
+    $if(authors)$$for(authors)$$authors.familyname$$sep$, $endfor$$endif$%
+    \ \textcolor{rule}{\textbar}\ \thepage}
 }
 
 %--- abstract environment (boxed-left rule) ----------------------------------
@@ -187,14 +183,6 @@ $endfor$
 
 %=============================================================================
 \begin{document}
-
-% subtle preprint banner
-\noindent{\sffamily\footnotesize\color{soft}%
-  PREPRINT \textcolor{rule}{\textbar}\ Not peer-reviewed%
-  $if(date)$ \textcolor{rule}{\textbar}\ $date$$endif$%
-}\par
-\vspace{-0.4em}
-\noindent\textcolor{rule}{\rule{\linewidth}{0.4pt}}
 
 \maketitle
 \thispagestyle{firstpage}
