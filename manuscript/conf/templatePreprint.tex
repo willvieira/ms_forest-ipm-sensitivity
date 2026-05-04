@@ -23,15 +23,16 @@
 \usepackage{amsmath, amssymb}
 
 %--- fonts -------------------------------------------------------------------
-% Source Serif Pro (body) + Source Sans Pro (headings) — modern, screen-tuned
+% Cochineal (body, open Minion clone) + Lato (headings) — TREE / Cell Press feel
 \usepackage{ifxetex,ifluatex}
 \ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
 \fi
-\IfFileExists{sourceserifpro.sty}{\usepackage[default,osf]{sourceserifpro}}{%
-  \IfFileExists{libertinus.sty}{\usepackage{libertinus}}{}}
-\IfFileExists{sourcesanspro.sty}{\usepackage[scaled=0.95]{sourcesanspro}}{}
+\IfFileExists{cochineal.sty}{\usepackage[proportional,scaled=1.0]{cochineal}}{%
+  \IfFileExists{XCharter.sty}{\usepackage{XCharter}}{}}
+\IfFileExists{lato.sty}{\usepackage[default,scaled=0.94]{lato}}{}
+\IfFileExists{newtxmath.sty}{\usepackage[cochineal,vvarbb]{newtxmath}}{}
 \IfFileExists{sourcecodepro.sty}{\usepackage[scaled=0.85]{sourcecodepro}}{}
 \usepackage{microtype}
 
