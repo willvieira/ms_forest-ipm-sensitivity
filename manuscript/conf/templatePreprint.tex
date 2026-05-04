@@ -23,17 +23,20 @@
 \usepackage{amsmath, amssymb}
 
 %--- fonts -------------------------------------------------------------------
-% EB Garamond (body) + Lato (headings) — refined academic / journal feel
 \usepackage{ifxetex,ifluatex}
 \ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0
+  % pdflatex
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
+  \IfFileExists{libertinus.sty}{\usepackage{libertinus}}{%
+    \IfFileExists{XCharter.sty}{\usepackage{XCharter}\usepackage[scaled=0.92]{helvet}}{}}
+\else
+  % xelatex / lualatex — libertinus auto-loads fontspec + sets faces
+  \IfFileExists{libertinus.sty}{\usepackage{libertinus}}{%
+    \usepackage{fontspec}
+    \defaultfontfeatures{Ligatures=TeX, Scale=MatchLowercase}
+    \IfFileExists{XCharter.sty}{\usepackage{XCharter}}{}}
 \fi
-\IfFileExists{ebgaramond.sty}{\usepackage[oldstyle]{ebgaramond}}{%
-  \IfFileExists{XCharter.sty}{\usepackage{XCharter}}{}}
-\IfFileExists{lato.sty}{\usepackage[scaled=0.92]{lato}}{}
-\IfFileExists{newtxmath.sty}{\usepackage[ebgaramond]{newtxmath}}{}
-\IfFileExists{sourcecodepro.sty}{\usepackage[scaled=0.82]{sourcecodepro}}{}
 \usepackage{microtype}
 
 %--- color -------------------------------------------------------------------
