@@ -19,6 +19,9 @@
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{0.5em plus 0.1em minus 0.1em}
 
+%--- math (load BEFORE libertinus to avoid \eth redefinition clash) ----------
+\usepackage{amsmath, amssymb}
+
 %--- fonts -------------------------------------------------------------------
 \usepackage{ifxetex,ifluatex}
 \ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0
@@ -35,9 +38,6 @@
     \IfFileExists{XCharter.sty}{\usepackage{XCharter}}{}}
 \fi
 \usepackage{microtype}
-
-%--- math --------------------------------------------------------------------
-\usepackage{amsmath, amssymb}
 
 %--- color -------------------------------------------------------------------
 \usepackage{xcolor}
